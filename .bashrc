@@ -20,6 +20,6 @@ alias netrestart="sudo rc.d restart network"
 # These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
 alias ls="ls --color=auto --group-directories-first"
 alias la="ls -a" #all files
-alias ll="ls -l" #long listing format
+# Removed for better alternative ^ alias ll="ls -l" #long listing format
 alias lx="ls -x" #grouped by file extension
 
