@@ -1,0 +1,15 @@
+Xft.dpi:80
+Xft.antialias:1
+Xft.hinting:1
+Xft.hintstyle:hintfull
+Xft.rgba:rgb
+
+urxvt*font:xft:Terminus
+URxvt.scrollBar:off
+URxvt.background:Black
+URxvt.foreground:grey80
+URxvt.depth:32
+URxvt.background: rgba:2222/2222/2222/eeee
+URxvt.blurRadius: 1x128
+
+
