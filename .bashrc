@@ -11,15 +11,15 @@ if [ -f ~/.dir_colors ]; then
     eval `dircolors ~/.dir_colors`
 fi
 
+# These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
+alias ls="ls --color=auto --group-directories-first"
+alias la="ls -a" #all files
+# Removed for better alternative below  alias ll="ls -l" #long listing format
+alias lx="ls -x" #grouped by file extension
 
-
+alias ld="ls -d */" # Lists only folders
 alias la="ls -a" #lists all files
 alias ll="ls -alh" #lists all files in long form, and in a more human readble format
 alias netrestart="sudo rc.d restart network"
 
-# These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
-alias ls="ls --color=auto --group-directories-first"
-alias la="ls -a" #all files
-# Removed for better alternative ^ alias ll="ls -l" #long listing format
-alias lx="ls -x" #grouped by file extension
 
