@@ -1,0 +1,1 @@
+use "screen -D" to force a disconnect, then reconnect normally

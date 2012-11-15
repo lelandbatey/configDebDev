@@ -1,0 +1,4 @@
+There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
+sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
+
+substitute different values as needed, but that is the basic way it should go.
