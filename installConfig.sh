@@ -17,4 +17,5 @@ elif [ -z "$1" ]; then
   cp -r .vim ~/
   cp .vimrc ~/
   cp .Xresources ~/
+  cp .dir_colors ~/
 fi
