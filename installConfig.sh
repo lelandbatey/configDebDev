@@ -15,7 +15,9 @@ cp .vimrc ~/
 cp .Xresources ~/
 cp .dir_colors ~/
 cp .bash_profile ~/
-cp .xinitrc ~/)
+cp .xinitrc ~/
+cp -r .xmonad ~/
+cp .xmobarrc ~/)
 
 
 printf "${CMDS[3]}"
