@@ -27,3 +27,9 @@ Connection details:
 Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
+#### Installing Easy_Install with Python3 on Ubuntu ####
+Run "sudo apt-get install python3-setuptools"
+From there, you can install Pip with:
+	"python3 -m easy_install pip"
+
+
