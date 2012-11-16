@@ -32,4 +32,20 @@ Run "sudo apt-get install python3-setuptools"
 From there, you can install Pip with:
 	"python3 -m easy_install pip"
 
+#### Installing Xmobar with DWM on Ubuntu Server ####
+Installing Xmobar normally seems to fail with the error: 
 
+	checking for X11/extensions/Xinerama.h... yes
+	checking X11/extensions/Xrandr.h usability... no
+	checking X11/extensions/Xrandr.h presence... no
+	checking for X11/extensions/Xrandr.h... no
+	configure: error: X11/extensions/Xrandr.h (from libXrandr) is required
+	cabal: Error: some packages failed to install:
+	X11-1.6.0.2 failed during the configure step. The exception was:
+	ExitFailure 1
+	xmobar-0.15 depends on X11-1.6.0.2 which failed to install.
+
+The problem is that there aren't certain Xrandr development files installed. To resolve this, run:
+	"sudo apt-get install libxrandr-dev"
+
+This will install the appropriate files for Xmobar to be installed.
