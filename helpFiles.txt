@@ -1,0 +1,27 @@
+    __  __     __         _______ __         
+   / / / /__  / /___     / ____(_) /__  _____
+  / /_/ / _ \/ / __ \   / /_  / / / _ \/ ___/
+ / __  /  __/ / /_/ /  / __/ / / /  __(__  ) 
+/_/ /_/\___/_/ .___/  /_/   /_/_/\___/____/  
+            /_/                              
+
+Author: Leland Batey
+
+This help file is going to be primarilly written using markdown as an organizational tool. It won't be rendered markdown, but since markdown is a nice and human readable format, it makes this easier.
+
+
+#### How to reconnect to an interupted screen session. Useful for when a terminal quits on you. ####
+	- use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
+
+#### Alternate way to add network interfaces for Ubuntu ####
+There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
+	sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
+
+substitute different values as needed, but that is the basic way it should go.
+
+#### Connecting to the RaspberyPi with RaspBMC installed ####
+Connection details:
+	username : pi
+	password : raspberry
+
+Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
