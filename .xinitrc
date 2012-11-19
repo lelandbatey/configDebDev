@@ -12,5 +12,4 @@ xrdb -merge ~/.Xresources
 
 # For now DWM will be launched
 #dwm
-xmonad &
-xmobar
+xmonad	
