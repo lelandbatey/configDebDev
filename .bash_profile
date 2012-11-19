@@ -6,6 +6,15 @@
 #                        /_____/_/                              
 # Leland Batey
 
+#### This is part of the default .profile for Ubuntu server, and is copied from that. ####
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+        . "$HOME/.bashrc"
+    fi
+fi
+
 # Include .bashrc
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
