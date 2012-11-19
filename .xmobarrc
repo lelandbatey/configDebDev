@@ -1,31 +1,13 @@
-#                           __                        
-#     _  ______ ___  ____  / /_  ____ ________________
-#    | |/_/ __ `__ \/ __ \/ __ \/ __ `/ ___/ ___/ ___/
-# _ _>  </ / / / / / /_/ / /_/ / /_/ / /  / /  / /__  
-#(_)_/|_/_/ /_/ /_/\____/_.___/\__,_/_/  /_/   \___/  
-#                                                     
-# Leland Batey - .xmobarrc
-# Currently a default file from https://raw.github.com/jaor/xmobar/master/samples/xmobar.config
-#
-
-Config { font = "-misc-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
-       , borderColor = "black"
-       , border = TopB
-       , bgColor = "black"
-       , fgColor = "grey"
+   Config { font = "-misc-fixed-*-*-*-*-12-*-*-*-*-*-*-*"
+       , bgColor = "#222222"
+       , fgColor = "#aaaaaa"
        , position = Top
        , lowerOnStart = True
-       , persistent = False
-       , commands = [ Run Weather "EGPF" ["-t","<station>: <tempC>C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
-                    , Run Com "uname" ["-s","-r"] "" 36000
-    		    , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+       , commands = [ Run Date "%e[%H:%M]" "date" 60
+              	    , Run Com "ncmpcpp --now-playing" [] "mpd" 10
+		    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
-       }
+       , template = "%StdinReader% } %mpd% { <fc=grey>%date%</fc>"
+      }
