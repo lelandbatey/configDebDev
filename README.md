@@ -11,3 +11,5 @@ Prerequisites
 	3. Xmobar has to be installed via Cabal, and located in the ~/.cabal/bin directory
 
 This is pretty much it. Simply run the "installConfig.sh" script to install. Be aware, this will copy over all existing files without double checking.
+
+<sup>The idea for this, as well as some parts of some configuration files, is taken from the awesome work by Lane Aasen (https://github.com/aaasen/config). I have attempted to give proper attribution for all specific borrowed configurations.</sup>
