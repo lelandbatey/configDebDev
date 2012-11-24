@@ -5,6 +5,9 @@
 # slackware version of dircolors) are recognized but ignored.
 
 # Below, there should be one TERM entry for each termtype that is colorizable
+
+### This configuration file taken from Lane Aasen, and can be found at https://github.com/aaasen/config ###
+
 TERM linux
 TERM linux-c
 TERM mach-color

@@ -49,3 +49,11 @@ The problem is that there aren't certain Xrandr development files installed. To 
 	"sudo apt-get install libxrandr-dev"
 
 This will install the appropriate files for Xmobar to be installed.
+
+#### Using Irssi Linux IRC Client ####
+Irssi operates in a way similar to screen/xmonad in that it creates many virtual "windows" to manage things. Additionally, the switching of windows is done using a "modkey" (is generally ALT, although the ESC key will also always work).
+	A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
+The following is a list of commands and tips for using IRSSI:
+	- To join a channel, use the command "/j #<channelname>" (the # is important!)
+	- The modkey is either the ALT key or the ESC key. I use ESC because ALT is used for Xmonad.
+	- To switch between windows, press the modkey and the number of the window you want to switch to.
