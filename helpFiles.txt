@@ -57,3 +57,4 @@ The following is a list of commands and tips for using IRSSI:
 	- To join a channel, use the command "/j #<channelname>" (the # is important!)
 	- The modkey is either the ALT key or the ESC key. I use ESC because ALT is used for Xmonad.
 	- To switch between windows, press the modkey and the number of the window you want to switch to.
+	- To list all the users in a channel, type "/names" or the shorthand, "/n"
