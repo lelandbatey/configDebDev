@@ -58,3 +58,14 @@ The following is a list of commands and tips for using IRSSI:
 	- The modkey is either the ALT key or the ESC key. I use ESC because ALT is used for Xmonad.
 	- To switch between windows, press the modkey and the number of the window you want to switch to.
 	- To list all the users in a channel, type "/names" or the shorthand, "/n"
+
+#### Using SSH with Authorization Keys ####
+To make use of authorization keys, the basics are that you need to append your rsa/dsa public key to the "authorized_keys" file on the machine you want to connect to. When you connect, the server creates a problem using your public key, that only the private key will solve. You recieve this data, solve it with your private key, and you send it back to the server. Then, the server knows you are who you say you are, and lets you connect. (This is pretty much taken straight out of the Arch Wiki https://wiki.archlinux.org/index.php/SSH_Keys#Background)
+The following is the basics on using ssh keys with a server.
+	1. On the host machine (the desktop) create an rsa/dsa pair.
+	2. Log into the remote machine (server) and append the rsa/dsa .PUB (!!!) to the end of the "authorized_keys" file on the server.
+	3. At this point, you may have to run the command "exec ssh-agent /bin/bash" on the host (desktop) machine to get the ssh service working correctly.
+	4. Now connect to the server with "ssh <hostname here>"
+	5. If you need to connect with a user other than the one on the host machine, use "ssh -l <remote machine username> <remote hostname here>"
+
+
