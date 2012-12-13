@@ -10,6 +10,9 @@ xset fp rehash
 #prepare xmonad
 xrdb -merge ~/.Xresources
 
+# Set the cursor to the standard pointer, pointing to top left corner.
+xsetroot -cursor_name left_ptr
+
 # For now DWM will be launched
 #dwm
 xmonad	
