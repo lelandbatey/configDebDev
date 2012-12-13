@@ -11,6 +11,10 @@ if [ -f ~/.dir_colors ]; then
     eval `dircolors ~/.dir_colors`
 fi
 
+# Start ssh-agent, then run ssh-add so that all rsa keys are loaded for use
+exec ssh-agent bash
+ssh-add
+
 # These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
 alias ls="ls --color=auto --group-directories-first"
 alias la="ls -a" #all files
