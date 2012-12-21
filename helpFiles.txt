@@ -68,9 +68,29 @@ The following is the basics on using ssh keys with a server.
 	4. Now connect to the server with "ssh <hostname here>"
 	5. If you need to connect with a user other than the one on the host machine, use "ssh -l <remote machine username> <remote hostname here>"
 
+It is important to note that on the client machine, the name of the public/private key pair needs to be "rsa/dsa_id(.pub)" to work by default. Otherwise, you have to specify if something is using an alternateley named key pair.
+
 #### Using "Sets" in Python ####
 In Python, a "set" is nearly exactly like a list, however it is not ordered. That means that referencing anything via placement (i.e. myList[0]) will not work. However, checking the membership of an item in a set is much much faster than checking the membership of an item in a list. For this reason, it is worthwhile to convert large lists to sets before checking for membership in one of those lists/sets.
 	(I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
 
 #### Using Virtual Environments (virtualenv) in Python ####
 So virtualenvs seem pretty awesome. However, something to note is that they cannot be moved. That means that if they move at all, they break. So if you rename a parent directory, then they're broken. Something to be aware of.
+
+#### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer ####
+To restrict access according to a websites referer, this is how the .htaccess needs to look like this:
+
+RewriteEngine On
+RewriteCond %{HTTP_REFERER} !^http://(.+\.)?allowedSite\.com/ [NC]
+RewriteCond %{HTTP_REFERER} !^$
+RewriteRule .* - [F]
+
+Mod_rewrite works by comparing the incoming referer against the specified (regular expression) rules for referers. If all of the (regular expression) rules return True, then it acts out the "RewriteRule". For example:
+
+	RewriteCond %{HTTP_REFERER} !^http://(.+\.)?allowedSite\.com/ [NC]
+		Returns TRUE if the referer does not come from "allowedSite.com"
+	
+	RewriteCond %{HTTP_REFERER} !^$
+		Returns TRUE if the referer is not blank (null).
+
+It then applies the rule, which in this case is to deny access.
