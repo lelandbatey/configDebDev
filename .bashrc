@@ -1,3 +1,12 @@
+#       __               __             
+#      / /_  ____ ______/ /_  __________
+#     / __ \/ __ `/ ___/ __ \/ ___/ ___/
+#  _ / /_/ / /_/ (__  ) / / / /  / /__  
+# (_)_.___/\__,_/____/_/ /_/_/   \___/  
+# 
+# Leland Batey
+
+
 if [ "$TERM" != "dumb" ]; then
     [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
     [ -e "$DIR_COLORS" ] || DIR_COLORS=""
@@ -66,3 +75,6 @@ alias netrestart="sudo rc.d restart network"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
+
+#Increases the size of the .bash_history file to 5000 lines
+HISTSIZE=5000
