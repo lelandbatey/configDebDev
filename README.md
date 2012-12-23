@@ -13,3 +13,5 @@ Prerequisites
 This is pretty much it. Simply run the "installConfig.sh" script to install. Be aware, this will copy over all existing files without double checking.
 
 <sup>The idea for this, as well as some parts of some configuration files, is taken from the awesome work by Lane Aasen (https://github.com/aaasen/config). I have attempted to give proper attribution for all specific borrowed configurations.</sup>
+
+<sup><sup>All original parts of this project are licensed under the GPLv3. All work done by others is under their own respective licenses.</sup></sup>

@@ -5,6 +5,8 @@
 #(_)_.___/\__,_/____/_/ /_/_____/ .___/_/   \____/_/ /_/_/\___/ 
 #                        /_____/_/                              
 # Leland Batey
+# All original code written by Leland Batey is licensed under the GPLv3. All copied code is licensed under their own respective license.
+
 
 #### This is part of the default .profile for Ubuntu server, and is copied from that. ####
 # if running bash
