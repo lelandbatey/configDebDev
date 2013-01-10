@@ -13,6 +13,11 @@ xrdb -merge ~/.Xresources
 # Set the cursor to the standard pointer, pointing to top left corner.
 xsetroot -cursor_name left_ptr
 
+# Start Virtualbox Gues Additions with screen resizing and clipboard support
+VBoxClient --clipboard
+VBoxClient --display
+
+
 # For now DWM will be launched
 #dwm
 xmonad	
