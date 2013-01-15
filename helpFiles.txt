@@ -94,3 +94,10 @@ Mod_rewrite works by comparing the incoming referer against the specified (regul
 		Returns TRUE if the referer is not blank (null).
 
 It then applies the rule, which in this case is to deny access.
+
+#### Deleting Old Kernels from a Full /boot partition ####
+I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
+    Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
+    Use "uname -r" to show the current kernel
+    Now you can remove and old kernels with the command "sudo apt-get purge linux-image-<kernel number here>"
+        I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
