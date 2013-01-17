@@ -75,6 +75,7 @@ alias netrestart="sudo rc.d restart network"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
+alias less="less -N" # Less now shows line numbers on the left hand side.
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=5000
