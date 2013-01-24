@@ -20,8 +20,9 @@ cp -r .xmonad ~/
 cp .xmobarrc ~/)
 CMDS[4]=$(cp .bashrc ~/
 cp -r .vim ~/
+cp .vimrc ~/
 cp .dir_colors ~/
-cp .bash_colors ~/)
+cp .bash_profile ~/)
 
 
 printf "${CMDS[3]}"
