@@ -18,6 +18,10 @@ cp .bash_profile ~/
 cp .xinitrc ~/
 cp -r .xmonad ~/
 cp .xmobarrc ~/)
+CMDS[4]=$(cp .bashrc ~/
+cp -r .vim ~/
+cp .dir_colors ~/
+cp .bash_colors ~/)
 
 
 printf "${CMDS[3]}"
@@ -29,6 +33,8 @@ if [ -n "$1" ] && [ ! "$1" == vim ]; then
 elif [ "$1" == vim ]; then
   cp -r .vim ~/ &
   cp .vimrc ~/
+elif [ "$1" == noX ]; then
+  ${CMDS[4]}
 elif [ -z "$1" ]; then
   ${CMDS[3]}
 fi
