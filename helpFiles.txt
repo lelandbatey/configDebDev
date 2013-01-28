@@ -101,3 +101,11 @@ I have found that on my Ubuntu servers I frequently run out of space on my /boot
     Use "uname -r" to show the current kernel
     Now you can remove and old kernels with the command "sudo apt-get purge linux-image-<kernel number here>"
         I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
+
+#### Using Bootstrap Javascript and Jquery ####
+I had gone into this trying to set up a simple dropdown for the frontpage of adrenl.in. However, I could not for the life of me figure out why the bootstrap javascript wasn't working. After tons of trial and error, this is what I eventually learned:
+
+    1. Placement of javascript "<script>" notifications matters. These will not work if called in the "head", they must be called in the "body" of the page.
+    2. The *order* of the javascript files matters. In my case, bootstrap requires jquery to already be loaded, so jquery must come BEFORE bootstrap.
+
+Once I'd done both of those, everything worked great!
