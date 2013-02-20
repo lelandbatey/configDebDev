@@ -20,4 +20,8 @@ VBoxClient --display
 
 # For now DWM will be launched
 #dwm
+
+# Sets a background image for us!
+feh --bg-fill  ~/.xmonad/jewel-joehesus.jpg
+
 xmonad	
