@@ -79,7 +79,7 @@ alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
 alias less="less -N" # Less now shows line numbers on the left hand side.
 alias gca="git commit -am" # Makes commits faster!
-alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
+alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "\$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
 alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "list all gits" and it just lists all the git repo's under ~/
 
 #Increases the size of the .bash_history file to 5000 lines
