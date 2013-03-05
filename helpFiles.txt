@@ -138,3 +138,9 @@ Alright, now you've got this big long list of individual frames, but no animated
 This will combine every ".gif" file in the current working directory into a single animated gif, in the order of the file name (lowest is first frame, highest is last frame).
 
 Also note the `--delay=4` option. What this option is doing is specifying the delay in miliseconds between frames. I found that for a ~25 fps video, which most video is, this will produce a reasonably "normal speed" gif.
+
+For further gif awesomeness, you can shrink the size of your gif using the `imagemagick` software package (also installable via apt-get). The command to remember is:
+
+    convert -layers Optimize input.gif output_optimized.gif
+
+And that's all. I was able to shrink a gif from 8mb to 2.1mb by doing this.
