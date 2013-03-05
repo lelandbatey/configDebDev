@@ -109,3 +109,32 @@ I had gone into this trying to set up a simple dropdown for the frontpage of adr
     2. The *order* of the javascript files matters. In my case, bootstrap requires jquery to already be loaded, so jquery must come BEFORE bootstrap.
 
 Once I'd done both of those, everything worked great!
+
+### Converting video's to animated GIF's ###
+So, converting a video to an animated gif is semi-easy, but mostly not. Here's how it goes:
+
+Make sure you have the following tools install:
+    
+    ffmpeg
+    gifsicle
+
+Both of which can be gotten via "sudo apt-get install <name>".
+
+Now for the fun part! For whatever reason, the built in video -> .gif convertion function of ffmpeg is super garbage. So, instead we do things a little bit better:
+
+    First, we split apart every single frame of the video into it's own gif frame, with an appropriate file name to put it in the correct order.
+    Second, we use gifsicle to combine all these .gif frames into a single animated gif.
+
+Here's the command to split up the video into the gif frames:
+    
+    ffmpeg -i file_to_be_input.mp4 out%04d.gif
+
+Note the weird name specified for the output gif. For whatever reason, this seems to be important. It apparently makes sure each frame has the correct/appropriate number.
+
+Alright, now you've got this big long list of individual frames, but no animated gif :( NEVER FEAR, all shall be well. To combine them into a single animated gif, this is the command:
+
+    gifsicle --delay=4 --loop *.gif > anim.gif
+
+This will combine every ".gif" file in the current working directory into a single animated gif, in the order of the file name (lowest is first frame, highest is last frame).
+
+Also note the `--delay=4` option. What this option is doing is specifying the delay in miliseconds between frames. I found that for a ~25 fps video, which most video is, this will produce a reasonably "normal speed" gif.
