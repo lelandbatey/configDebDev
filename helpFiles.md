@@ -175,7 +175,8 @@ Now FFMPEG will output high quality .png's as the individual frames. Then, you'l
 In the end, this is what the whole script looks like:
 
     #!/bin/bash
-     
+    
+    # NOTE: the "$1" in the line below this means "command line argument #1 is inserted here". If you're running these manually, replace the $1 with the name of your video file.
     ffmpeg -i $1 out%04d.png # Extracts each frame of the video as a single gif
     convert -delay 4 out*.png anim.gif # Combines all the frames into one very nicely animated gif.
     convert -layers Optimize anim.gif optimized_output.gif # Optimizes the gif using imagemagick
@@ -185,3 +186,49 @@ In the end, this is what the whole script looks like:
     rm anim.gif
 
 And that's how you convert a video to a .gif file!
+
+### Further Details on Converting Video to .GIF ###
+
+So, after *EVEN MOAR* messing around with .gifs and videos, I have found a nice and easy way to also do reverse .gifs! This script needs to be run between the `ffmpeg` step and the `convert` step:
+
+    image=( out*.png )
+    MAX=${#image[*]}
+    echo $MAX
+    for i in ${image[*]}
+    do
+        num=${i:5:3} # grab the digits
+        compliment=$(printf '%04d' $(echo 2*$MAX-$num+1 | bc))
+        echo $num $i $compliment
+        ln $i out$compliment.png
+    done
+
+Btw, [this is where I found this script](http://stackoverflow.com/questions/7136222/bash-script-to-copy-numbered-files-in-reverse-order) though I've done a lot of adapting it to my needs.
+
+#### Anyway, here's an explanation of what the above is doing:
+
+Here's an abstract look at what it acomplishes.
+
+    For a set of files named `out*.png` it counts how many there are, then copys them in reverse order, renaming them sequentially, continuing with the numbering of the existing photos.
+
+    So, if we had 5 frames named like so:
+
+        out0001.png
+        out0002.png
+        out0003.png
+        out0004.png
+        out0005.png
+
+    Then it would create the following:
+
+        out0001.png
+        out0002.png
+        out0003.png
+        out0004.png
+        out0005.png
+        out0006.png <- Is actually a renamed out0005.png
+        out0007.png <- renamed out0004.png
+        out0008.png <- renamed out0003.png
+        out0009.png <- etc
+        out0010.png
+
+What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!
