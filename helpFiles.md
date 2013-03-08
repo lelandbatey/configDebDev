@@ -232,3 +232,11 @@ Here's an abstract look at what it acomplishes.
         out0010.png
 
 What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!
+
+### Resize .gif while making this conversion
+
+You can also resize the gif that you create automatically. Like so:
+
+    convert -delay 4 out*.png -resize %50 anim.gif
+
+This'll resize it to %50 of it's previous size, maintaining the aspect ratio.
