@@ -72,7 +72,8 @@ alias lx="ls -x" #grouped by file extension
 
 alias ld="ls -d */" # Lists only folders
 alias la="ls -a" #lists all files
-alias ll="ls -alh" #lists all files in long form, and in a more human readble format
+alias ll="ls -lh" #lists files in long form, and in a more human readble format
+alias lk="ls -alh" #listals all files in verbose form with human readable numbers/permissions.
 alias netrestart="sudo rc.d restart network"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
