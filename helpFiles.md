@@ -235,7 +235,9 @@ Here's an abstract look at what it acomplishes.
         out0002.png
         out0003.png
         out0004.png
-        out0005.png out0006.png <- Is actually a renamed out0005.png out0007.png <- renamed out0004.png out0008.png <- renamed out0003.png out0009.png <- etc out0010.png What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!  ### Resize .gif while making this conversion
+        out0005.png out0006.png <- Is actually a renamed out0005.png out0007.png <- renamed out0004.png out0008.png <- renamed out0003.png out0009.png <- etc out0010.png What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!  
+
+### Resize .gif while making this conversion
 
 You can also resize the gif that you create automatically. Like so:
 
