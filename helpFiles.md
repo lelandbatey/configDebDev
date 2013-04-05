@@ -260,3 +260,13 @@ Xresources can be an absolute pain (they were for me). So, this a bit of help:
     urxvt*font:xft:{your font name goes here}:size={the size of the font goes here},xft:{fall-back font #1 goes here}
 
 > So, thats the most basic part of fonts in urxvt specified via Xresources.
+
+#### Fixing ~/.ssh/ Permissions in Cygwin
+
+In Cygwin on Windows I found that I could not set the permissions of my `~/.ssh/ folder` to be 0600, as is required for ssh to allow you to use keys. The symptom I had was that I no matter what I did, it always modfied the owner **and** the group permissions for a file and folder. So if I entered `chmod 0600 id_rsa` it would instead set the permissions of `id_rsa` to 0660 instead of 0600 (this is bad because it gives the owner of the file **and** anyone in the same group as the owner read access to this key file. Which means anyone who's in the same group as the owner could use it to log into a remote system).
+
+After much Googling, I found that the problem was the setting of a `None` group as the group for all files in Cygwin. For whatever reason, since all files where part of the `None` group their owner and group permissions where linked. The fix was to assign a group to the files. I did it like so:
+
+    chgrp Users *
+
+This added all the files in the current folder to the user-group called "`Users`". From there, I was able to set the permissions normally.
