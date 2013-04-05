@@ -15,12 +15,14 @@ This help file is going to be primarilly written using markdown as an organizati
 
 #### Alternate way to add network interfaces for Ubuntu ####
 There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
+
 	sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
 
 substitute different values as needed, but that is the basic way it should go.
 
 #### Connecting to the RaspberyPi with RaspBMC installed ####
 Connection details:
+
 	username : pi
 	password : raspberry
 
@@ -28,8 +30,9 @@ Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
 #### Installing Easy_Install with Python3 on Ubuntu ####
-Run "sudo apt-get install python3-setuptools"
+Run `"sudo apt-get install python3-setuptools"`
 From there, you can install Pip with:
+
 	"python3 -m easy_install pip"
 
 #### Installing Xmobar with DWM on Ubuntu Server ####
@@ -46,33 +49,39 @@ Installing Xmobar normally seems to fail with the error:
 	xmobar-0.15 depends on X11-1.6.0.2 which failed to install.
 
 The problem is that there aren't certain Xrandr development files installed. To resolve this, run:
+
 	"sudo apt-get install libxrandr-dev"
 
 This will install the appropriate files for Xmobar to be installed.
 
 #### Using Irssi Linux IRC Client ####
 Irssi operates in a way similar to screen/xmonad in that it creates many virtual "windows" to manage things. Additionally, the switching of windows is done using a "modkey" (is generally ALT, although the ESC key will also always work).
-	A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
+
+> A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
 The following is a list of commands and tips for using IRSSI:
-	- To join a channel, use the command "/j #<channelname>" (the # is important!)
-	- The modkey is either the ALT key or the ESC key. I use ESC because ALT is used for Xmonad.
-	- To switch between windows, press the modkey and the number of the window you want to switch to.
-	- To list all the users in a channel, type "/names" or the shorthand, "/n"
+
+- To join a channel, use the command "/j #&lt;channelname&gt;" (the # is important!)
+- The modkey is either the ALT key or the ESC key. I use ESC because ALT is used for Xmonad.
+- To switch between windows, press the modkey and the number of the window you want to switch to.
+- To list all the users in a channel, type "/names" or the shorthand, "/n"
 
 #### Using SSH with Authorization Keys ####
 To make use of authorization keys, the basics are that you need to append your rsa/dsa public key to the "authorized_keys" file on the machine you want to connect to. When you connect, the server creates a problem using your public key, that only the private key will solve. You recieve this data, solve it with your private key, and you send it back to the server. Then, the server knows you are who you say you are, and lets you connect. (This is pretty much taken straight out of the Arch Wiki https://wiki.archlinux.org/index.php/SSH_Keys#Background)
+
 The following is the basics on using ssh keys with a server.
-	1. On the host machine (the desktop) create an rsa/dsa pair.
-	2. Log into the remote machine (server) and append the rsa/dsa .PUB (!!!) to the end of the "authorized_keys" file on the server.
-	3. At this point, you may have to run the command "exec ssh-agent /bin/bash" on the host (desktop) machine to get the ssh service working correctly.
-	4. Now connect to the server with "ssh <hostname here>"
-	5. If you need to connect with a user other than the one on the host machine, use "ssh -l <remote machine username> <remote hostname here>"
+
+1. On the host machine (the desktop) create an rsa/dsa pair.
+2. Log into the remote machine (server) and append the rsa/dsa .PUB (!!!) to the end of the "authorized_keys" file on the server.
+3. At this point, you may have to run the command "exec ssh-agent /bin/bash" on the host (desktop) machine to get the ssh service working correctly.
+4. Now connect to the server with "ssh &lt;hostname here&gt;"
+5. If you need to connect with a user other than the one on the host machine, use "ssh -l &lt;remote machine username&gt; &lt;remote hostname here&gt;"
 
 It is important to note that on the client machine, the name of the public/private key pair needs to be "rsa/dsa_id(.pub)" to work by default. Otherwise, you have to specify if something is using an alternateley named key pair.
 
 #### Using "Sets" in Python ####
 In Python, a "set" is nearly exactly like a list, however it is not ordered. That means that referencing anything via placement (i.e. myList[0]) will not work. However, checking the membership of an item in a set is much much faster than checking the membership of an item in a list. For this reason, it is worthwhile to convert large lists to sets before checking for membership in one of those lists/sets.
-	(I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
+
+> (I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
 
 #### Using Virtual Environments (virtualenv) in Python ####
 So virtualenvs seem pretty awesome. However, something to note is that they cannot be moved. That means that if they move at all, they break. So if you rename a parent directory, then they're broken. Something to be aware of.
@@ -80,32 +89,34 @@ So virtualenvs seem pretty awesome. However, something to note is that they cann
 #### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer ####
 To restrict access according to a websites referer, this is how the .htaccess needs to look like this:
 
-RewriteEngine On
-RewriteCond %{HTTP_REFERER} !^http://(.+\.)?allowedSite\.com/ [NC]
-RewriteCond %{HTTP_REFERER} !^$
-RewriteRule .* - [F]
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^http://(.+\.)?allowedSite\.com/ [NC]
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteRule .* - [F]
 
 Mod_rewrite works by comparing the incoming referer against the specified (regular expression) rules for referers. If all of the (regular expression) rules return True, then it acts out the "RewriteRule". For example:
 
 	RewriteCond %{HTTP_REFERER} !^http://(.+\.)?allowedSite\.com/ [NC]
-		Returns TRUE if the referer does not come from "allowedSite.com"
+
+>> Returns TRUE if the referer does not come from "allowedSite.com"
 	
 	RewriteCond %{HTTP_REFERER} !^$
-		Returns TRUE if the referer is not blank (null).
+
+>> Returns TRUE if the referer is not blank (null).
 
 It then applies the rule, which in this case is to deny access.
 
 #### Deleting Old Kernels from a Full /boot partition ####
 I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
-    Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
-    Use "uname -r" to show the current kernel
-    Now you can remove and old kernels with the command "sudo apt-get purge linux-image-<kernel number here>"
-        I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
+> Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
+> Use "uname -r" to show the current kernel
+> Now you can remove and old kernels with the command "sudo apt-get purge linux-image-&lt;kernel number here&gt;"
+>> I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
 
 #### Using Bootstrap Javascript and Jquery ####
 I had gone into this trying to set up a simple dropdown for the frontpage of adrenl.in. However, I could not for the life of me figure out why the bootstrap javascript wasn't working. After tons of trial and error, this is what I eventually learned:
 
-    1. Placement of javascript "<script>" notifications matters. These will not work if called in the "head", they must be called in the "body" of the page.
+    1. Placement of javascript "&lt;script&gt;" notifications matters. These will not work if called in the "head", they must be called in the "body" of the page.
     2. The *order* of the javascript files matters. In my case, bootstrap requires jquery to already be loaded, so jquery must come BEFORE bootstrap.
 
 Once I'd done both of those, everything worked great!
@@ -118,7 +129,7 @@ Make sure you have the following tools install:
     ffmpeg
     gifsicle
 
-Both of which can be gotten via "sudo apt-get install <name>".
+Both of which can be gotten via "sudo apt-get install &lt;name&gt;".
 
 Now for the fun part! For whatever reason, the built in video -> .gif convertion function of ffmpeg is super garbage. So, instead we do things a little bit better:
 
@@ -241,6 +252,7 @@ If you want to list fonts in Ubuntu, use the command `fc-list` which will list a
 Xresources can be an absolute pain (they were for me). So, this a bit of help:
 
 > First of all, the way that fonts are generally handled in Xmonad is through `XFT`. Xft is the [X FreeType Interface library](http://en.wikipedia.org/wiki/Xft) and is a library that handles the actual rendering of fonts in Xmonad/urxvt (Xresources specifies a bunch of resources to things that launch under the X window manager. Settings for individual programs are specified in Xresources like so: `Urxvt.background:{background settins here}`).
+
 > Anyway, fonts are set using this syntax in `Xresources`:
 
     urxvt*font:xft:{your font name goes here}:size={the size of the font goes here},xft:{fall-back font #1 goes here}
