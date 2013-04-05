@@ -224,19 +224,25 @@ Here's an abstract look at what it acomplishes.
         out0002.png
         out0003.png
         out0004.png
-        out0005.png
-        out0006.png <- Is actually a renamed out0005.png
-        out0007.png <- renamed out0004.png
-        out0008.png <- renamed out0003.png
-        out0009.png <- etc
-        out0010.png
-
-What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!
-
-### Resize .gif while making this conversion
+        out0005.png out0006.png <- Is actually a renamed out0005.png out0007.png <- renamed out0004.png out0008.png <- renamed out0003.png out0009.png <- etc out0010.png What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!  ### Resize .gif while making this conversion
 
 You can also resize the gif that you create automatically. Like so:
 
     convert -delay 4 out*.png -resize %50 anim.gif
 
 This'll resize it to %50 of it's previous size, maintaining the aspect ratio.
+
+#### List Fonts in Ubuntu
+
+If you want to list fonts in Ubuntu, use the command `fc-list` which will list all the fonts on your system. Then use `grep` to check for certain versions.
+
+#### Xmonad, Xresources, and Fonts
+
+Xresources can be an absolute pain (they were for me). So, this a bit of help:
+
+> First of all, the way that fonts are generally handled in Xmonad is through `XFT`. Xft is the [X FreeType Interface library](http://en.wikipedia.org/wiki/Xft) and is a library that handles the actual rendering of fonts in Xmonad/urxvt (Xresources specifies a bunch of resources to things that launch under the X window manager. Settings for individual programs are specified in Xresources like so: `Urxvt.background:{background settins here}`).
+> Anyway, fonts are set using this syntax in `Xresources`:
+
+    urxvt*font:xft:{your font name goes here}:size={the size of the font goes here},xft:{fall-back font #1 goes here}
+
+> So, thats the most basic part of fonts in urxvt specified via Xresources.
