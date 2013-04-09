@@ -270,3 +270,28 @@ After much Googling, I found that the problem was the setting of a `None` group 
     chgrp Users *
 
 This added all the files in the current folder to the user-group called "`Users`". From there, I was able to set the permissions normally.
+
+## Jquery Parameters - Odd Behaviour Explained
+
+Something that I noticed in the Jquery documentation was that there were odd inconsistencies with the parameters being passed to various functions. For example, according to the Jquery documentation, the method `$.getJSON` takes these arguments: `jQuery.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )`
+
+That seems to make plenty of sense; it requires the URL to get the JSON from, any additional data that needs to be sent along with that request, and an anonymous function that will happen when/if fetching the data is successful. However, in the documentation they give this example:
+
+    $.getJSON('ajax/test.json', function(data) {
+        var items = [];
+             
+        $.each(data, function(key, val) {
+            items.push('<li id="' + key + '">' + val + '</li>');
+        });
+                      
+        $('<ul/>', {
+            'class': 'my-new-list',
+            html: items.join('')
+        }).appendTo('body');
+    });
+
+What I noticed about this was that the documentation seems to skip an extremely important step here: ** it includes the first argument, skips the second, and then includes the third!** How is that possible? How can you omit an argument in the middle of your list of arguments? Doesn't that break everything after it?
+
+The answer is: no, that's valid in Jquery. I searched for quite a while, and [I did eventually find an explanation.](http://stackoverflow.com/a/6865331) It turns out that Jquery basically uses logic to figure out what you intend to do. I'll pick on `$.getJSON` as an example:
+
+> `$.getJSON` has 3 different variables, and most importantly, *each variable is of a differnt type.* What this means is that if you only pass two variables (a string and a function) then Jquery can match up the variables based on type. It's a pretty smart system.
