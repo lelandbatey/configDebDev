@@ -320,3 +320,17 @@ The RVM example is just one. Another thing that is quite annoying: RVM seems lik
 RVM though does no such thing. Everything goes in one place, your `rvm` folder which could be in one of many locations (though frequently it's in `~/.rvm`). From there, you must choose which version of Ruby to use. Once you've done so, you pick which "gemset" to use. The gemset is at the heart the virtualenv: what's in that is what actually matters. By default you're in the `default` gemset and if you install anything while "in" this gemset then it is added to the gemset.Something quite bothersome with this is that `rvm` doesn't do anything to give you feedback about what's going on at any given time. Virtualenv does this right by adding a `(virtualenv name here)` string to the beginning of the shell prompt, so you always know if you're in a virtual environment and which one you're in. That's really helpful, and it'd be great if `rvm` did the same.
 
 Alright, ranting over. I have a feeling in about two weeks I'm going to look back at myself and say how stupid this is. Oh well :)
+
+#### Bash Color Characters / Escape Sequences
+
+In messing with Ruby and RVM, I found that I wanted to use a more modified terminal prompt. I wanted color, and most of what I actually write to be on a new line. This is what I originally created:
+
+    export PS1='\e[0;36m${debian_chroot:+($debian_chroot)}\u@\e[0;35m\h:\e[0;32m\n\w\e[0m $ '
+
+Which on first glance does seem to work. However, if you are typing in the Terminal and you hit the edge of the screen, instead of wrapping around to the next line on the terminal, it would instead jump back to the beginning of the current line and start to over-write it. All your commands would be still be typed as you originally wrote them, but you couldn't read things.
+
+After some searching I learned that I'd made a classic newbie mistake: you need to wrap all escaped color codes in "escaped square-braces", nameley `\[` and `\]`. So now it looks like this:
+
+    export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
+
+Problem solved!
