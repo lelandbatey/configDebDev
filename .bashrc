@@ -88,3 +88,5 @@ alias vnv="source ~/bin/venv/bin/activate"
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=5000
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
