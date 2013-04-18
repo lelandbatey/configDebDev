@@ -25,6 +25,20 @@ fi
 # This is important, since otherwise it breaks SFTP.
 if [[ $- == *i* ]]
 then
+    ### RVM Startup! ###
+    # By default RVM puts this next line into the .bash_profile line. However, 
+    # this is a STUPID IDEA because .bash_profile is only exectuted for "login"
+    # shells. By default, most shells opened once you've actually logged in are
+    # NOT login shells. So URXVT, Gnome Terminal, etc are all non-login shells 
+    # by default. However, they are interactive shells, which should be the
+    # distinction. But, because the Ruby community seems to only ever do
+    # anything on OS X and they don't care at all about how stuff works, they
+    # plopped this down in .bash_profile and said that the way to fix this is
+    # to change your terminal emulator to log in as a login shell.
+    # Which is just INCREDIBLY stupid. They need to get their crap together.
+    # Douchebags.
+    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
     ### Starts ssh-agent and loads all ssh keys as needed ###
     # This excellent script was copied from http://rocksolidwebdesign.com/notes-and-fixes/ubuntu-server-ssh-agent/
     # Check to see if SSH Agent is already running

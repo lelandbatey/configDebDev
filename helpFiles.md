@@ -290,8 +290,33 @@ That seems to make plenty of sense; it requires the URL to get the JSON from, an
         }).appendTo('body');
     });
 
-What I noticed about this was that the documentation seems to skip an extremely important step here: ** it includes the first argument, skips the second, and then includes the third!** How is that possible? How can you omit an argument in the middle of your list of arguments? Doesn't that break everything after it?
+What I noticed about this was that the documentation seems to skip an extremely important step here: **it includes the first argument, skips the second, and then includes the third!** How is that possible? How can you omit an argument in the middle of your list of arguments? Doesn't that break everything after it?
 
 The answer is: no, that's valid in Jquery. I searched for quite a while, and [I did eventually find an explanation.](http://stackoverflow.com/a/6865331) It turns out that Jquery basically uses logic to figure out what you intend to do. I'll pick on `$.getJSON` as an example:
 
 > `$.getJSON` has 3 different variables, and most importantly, *each variable is of a differnt type.* What this means is that if you only pass two variables (a string and a function) then Jquery can match up the variables based on type. It's a pretty smart system.
+
+#### Gemfiles, RVM, and Ruby
+
+Alright, the following is a rant that I wrote in my .bash_profile, after just trying to **install** RVM:
+    
+    ### RVM Startup! ###
+    # By default RVM puts this next line into the .bash_profile line. However, 
+    # this is a STUPID IDEA because .bash_profile is only exectuted for "login"
+    # shells. By default, most shells opened once you've actually logged in are
+    # NOT login shells. So URXVT, Gnome Terminal, etc are all non-login shells 
+    # by default. However, they are interactive shells, which should be the
+    # distinction. But, because the Ruby community seems to only ever do
+    # anything on OS X and they don't care at all about how stuff works, they
+    # plopped this down in .bash_profile and said that the way to fix this is
+    # to change your terminal emulator to log in as a login shell.
+    # Which is just INCREDIBLY stupid. They need to get their crap together.
+    # Douchebags.
+
+Ok, so while that may have been a little bit heavy handed, it's something that I find really frequently *every single time* I have to use something involving Ruby. It seems like the VAST majority of their tools are pretty low quality, or very bad implentations of tools used by other languages.
+
+The RVM example is just one. Another thing that is quite annoying: RVM seems like it's trying to be virtualenv, but sucks at it. With virtualenv, you have a single directory that acts as it's own self contained instance of python. It has lots of standard tools that make using it really easy (like pip, which is *rock solid*) and it's location gives it context for what it's doing. For instance, in `~/projects` you might have a virtualenv that you use for development (or several). You may have another in `~/scraps` that you install stuff into willy-nilly for experimentation purposes. However, it integrates with existing tools and makes design choices that make lots of sense (like location as context).
+
+RVM though does no such thing. Everything goes in one place, your `rvm` folder which could be in one of many locations (though frequently it's in `~/.rvm`). From there, you must choose which version of Ruby to use. Once you've done so, you pick which "gemset" to use. The gemset is at the heart the virtualenv: what's in that is what actually matters. By default you're in the `default` gemset and if you install anything while "in" this gemset then it is added to the gemset.Something quite bothersome with this is that `rvm` doesn't do anything to give you feedback about what's going on at any given time. Virtualenv does this right by adding a `(virtualenv name here)` string to the beginning of the shell prompt, so you always know if you're in a virtual environment and which one you're in. That's really helpful, and it'd be great if `rvm` did the same.
+
+Alright, ranting over. I have a feeling in about two weeks I'm going to look back at myself and say how stupid this is. Oh well :)
