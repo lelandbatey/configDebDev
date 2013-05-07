@@ -334,3 +334,38 @@ After some searching I learned that I'd made a classic newbie mistake: you need 
     export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
 
 Problem solved!
+
+#### Finding files in *Nix
+
+I figured I'd finally take the time to actually write down some of the great commands I've found that you can use to find and manipulate files en-mass!
+
+    find . -type d -name "*venv*" -prune -o -type f -name "*.py" -exec cat {} \; >> combinedworks.txt
+
+> *Short primer on **find**:* The structure of the parameters passed into find is awfully odd. Here's what it looks like:
+
+> 1. `find .` this is setting up the find command and telling it to search in the current directory.
+> 2. `-type d -name "*venv*" -prune` a conditional specifying that if there is a *directory* (the `-type d`) with the name "venv" anywhere inside it, then that directory is the be "pruned", or removed from the search criteria.
+> 3. `-o -type f -name "*.py" -exec cat {} \; >> combinedworks.txt` another conditional. The `-o` is an `or` comparison. The `-type f -name "*.py"` says "if the thing you find is of the type `file` (as opposed to, say, a directory) and it's name ends in `.py`", while `-exec cat {} \; >> combinedworks.txt` is the instruction saying what to do if the prior if statement is true.
+
+> So, given all that, I'll write out the pseudo code for the logic happening in this `find` command:
+
+    if ( the thing that we are looking at directory with the word "venv" in it ) then:
+        prune that directory from the list of things to search and don't search there
+    else if ( the thing that we are looking at is a file that ends in ".py") then:
+        use the command "cat" to concatenate that file onto the end of "combinedworks.txt"
+
+So that's that explanation. Here's another command I found really useful:
+
+    find . -path ./Lumen\ Gaming -prune -o -path ./conflict -prune -o -name '*_conflict-*' -print -exec mv {} ./conflict/ \;
+
+> I'll just write out the pseudo code for this:
+
+    if (the_thing_we're_looking_at == the path "./Lumen\ Gaming") then:
+        prune that from the searchable area
+    else if (the_thing_we're_looking_at == the path "./conflict") then:
+        prune that from the searchable area
+    else if (the_thing_we're_looking_at has the name "_conflict-" anywhere in it) then:
+        print the name of that file
+        use the move command to move it to the directory called "./conflict"
+
+That's all for my favorite find commands right now. I'll add more later if need be.
