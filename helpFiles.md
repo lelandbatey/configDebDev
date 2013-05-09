@@ -369,3 +369,13 @@ So that's that explanation. Here's another command I found really useful:
         use the move command to move it to the directory called "./conflict"
 
 That's all for my favorite find commands right now. I'll add more later if need be.
+
+### Dealing with programs that don't play well with \*nix pipes
+
+I found that there are actually a pretty decent amount of programs that don't really play well with traditional Unix pipes. In fact, that reason is why I ended up having to create Veiled, which uses pseudo-terminals to totally get in front of the input/output of various programs and control them, even if they don't want to play nice.
+
+However, what if you just need to script somthing? For example, I found that the first time the `hldsupdate` program is run on *nix is doesn't play well and will send a force close *directly* to it's controlling terminal, circumventing any terminals. This is the way I found to get around this:
+
+    ./yourProgram || true
+
+This puts a logical or there, and is the equivenlent of saying `some_thing_which_is_always_false OR true` and thus it will always be able to continue. Huzzah!
