@@ -20,6 +20,11 @@ if [ -f ~/.dir_colors ]; then
     eval `dircolors ~/.dir_colors`
 fi
 
+# If the appropriate bash_completion file exists, then source it!
+if [ -f /etc/bash_completion ]; then
+ . /etc/bash_completion
+fi
+
 ## SSH KEYS ##
 # The below handles ssh keys. It's inside a massive if block that checks if we are in an interactive vs non-interactive shell.
 # This is important, since otherwise it breaks SFTP.
