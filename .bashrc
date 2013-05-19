@@ -106,7 +106,7 @@ alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "l
 alias vnv="source ~/bin/venv/bin/activate"
 
 #Increases the size of the .bash_history file to 5000 lines
-HISTSIZE=5000
+HISTSIZE=50000
 
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
 
