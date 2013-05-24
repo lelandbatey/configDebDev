@@ -387,6 +387,26 @@ This puts a logical or there, and is the equivenlent of saying `some_thing_which
 
 > `F - <some character>`: Will jump the the next-previous instance of the entered character on the line you are on.
 
+> Split Windows:
+
+>> Vertical split: `Ctrl-w-v`
+
+>> Horizontal split: `Ctrl-w-s`
+
+>> Close current window: `Ctrl-w-q`
+
+#### Vim, Buffers, and Windows: What?
+
+I'll attempt here to record how buffers and windows work in Vim, hopefully outlining the correct "mental model" for how this operates.
+
+> *Note: when I say "windows" in this next description, I'm NOT talking about windows as used by the operating system. Instead I'm refering to the internal "windows" used by the given text editor.*
+
+First off, windows: unlike in many other editors, windows in Vim are a bit lower on the organizational tree than usual. I'll use Sublime Text 2 as an example for how other editors operate; in ST2, a window acts as an organizational distinguisher. In the heirarchy of organization, you've got the window, then the tab, then the actual veiwing area for that tab.
+
+However, in Vim, the window is purely a veiwing area. Nothing is organized within it. All it does is provide an interface to edit and manipulate one buffer.
+
+Having said that, the next logical topic is: buffers. In Vim, buffers are just that: they are buffers that contain a file. It's a copy of a given file in memory that you can edit using Vim.
+
 *Pydoc plugin:*
 
 > This plugin will look up the built in documentation for various python modules. By built in, I mean that it can only access documentation that has been installed into the `man pages` of a system. Generally, that rather centralized storage of info can only be added to by a very structured installer like pip, apt-get, etc. So use this for big important stuff, but not for your own work.

@@ -1,7 +1,7 @@
 Configuration Files
 ===================
 
-This is my unified set of configuration files that I use for my Debian-based development environment.
+This is my unified set of configuration files that I use for my Debian-based development environment (basically it's a dotfiles repo).
 
 Prerequisites
 -------------
