@@ -379,3 +379,16 @@ However, what if you just need to script somthing? For example, I found that the
     ./yourProgram || true
 
 This puts a logical or there, and is the equivenlent of saying `some_thing_which_is_always_false OR true` and thus it will always be able to continue. Huzzah!
+
+
+### Various things to remember about Vim (and all of your plugins for it)
+
+*Vanilla Vim Stuff:*
+
+> `F - <some character>`: Will jump the the next-previous instance of the entered character on the line you are on.
+
+*Pydoc plugin:*
+
+> This plugin will look up the built in documentation for various python modules. By built in, I mean that it can only access documentation that has been installed into the `man pages` of a system. Generally, that rather centralized storage of info can only be added to by a very structured installer like pip, apt-get, etc. So use this for big important stuff, but not for your own work.
+
+
