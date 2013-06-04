@@ -6,6 +6,15 @@
 # 
 # Leland Batey
 
+# The below is a very ancient holdover from the classic TTY days. It used to be
+# that you could pause the presentation of characters on a TTY by using a
+# control key (Ctrl-S) so that the person using it could read things before they
+# moved off the screen.
+# Now though, that's wholely unnecessary, since you can scroll up in your
+# terminal :). So, this little flag disables the very annoying behaviour of
+# Ctrl-S freezing the terminal, requiring Ctrl-Q to unfreeze. So yay for things
+# being more modern!
+stty -ixon
 
 if [ "$TERM" != "dumb" ]; then
     [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"

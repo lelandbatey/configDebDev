@@ -387,7 +387,27 @@ This puts a logical or there, and is the equivenlent of saying `some_thing_which
 
 > `F - <some character>`: Will jump the the next-previous instance of the entered character on the line you are on.
 
-> Split Windows:
+> `f - <some character>`: Will jump to the next-forward instance of the entered character on the line you are on.
+
+> **Text Formatting:**
+
+> Hard Wrap lines at column 80: set `textwidth` to 80, then use one of several different commands to reformat various chunks of text:
+
+>> `gqG` : Wraps everything till the end of the file.
+
+>> `gq}` : Wraps the current paragraph.
+
+>> `gq$` : Wraps current line.
+
+> Stop hard wraping lines:
+
+>> Set `textwidth` to 0.
+
+> **Comment out multiple lines:**
+
+> Go to the first line to be commented out. Press `Ctrl-v` to enter visual mode, then move down till all the lines to comment are selected. From there, type `I-#-ESC` to insert at `#` at the beginning of each line (make sure to note that that's a capital `I`).
+
+> *Split Windows:*
 
 >> Vertical split: `Ctrl-w-v`
 
