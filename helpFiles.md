@@ -432,3 +432,24 @@ Having said that, the next logical topic is: buffers. In Vim, buffers are just t
 > This plugin will look up the built in documentation for various python modules. By built in, I mean that it can only access documentation that has been installed into the `man pages` of a system. Generally, that rather centralized storage of info can only be added to by a very structured installer like pip, apt-get, etc. So use this for big important stuff, but not for your own work.
 
 
+### Shared Access to Files on Linux Via FTP
+
+In many cases I've needed to set up a folder that can be accessed by multiple users on Linux, something I find I do often enough to warrant documentation:
+
+* Create a group to be shared by all users with read and write access. All users who are members of this group will have access to the folder we're specifying.
+    * `groupadd group_name_here` will create the group
+* Create any additional users. It's best to create all users now, so that things are smooth.
+    * `useradd username_here` This creates a user, but doesn't set up any home directory or password for them.
+        * `passwd username_here` Set a password for the specified user.
+        * `usermod -m -d /path/to/new/home/dir userNameHere` Set's the home directory of the specified user to the specified directory. If a user needs to be in the shared directory by default, I recommend changing their home directory to the shared directory. However, they won't be able to access it till the correct permissions are set.
+    * `adduser username_here` Creates the specified user, guiding you through the process of setting a home directory
+* Add all users to the shared group.
+    * `usermod -a -G group user` adds the existing user to the existing group
+* Set appropriate ownership for the folder.
+    * `chown -R username_here:group_here /path/to/shared/dir/` This will set the owner of the shared directory (and all subdirectories) to the given username, and the group ownership of the directory (and all subdirectories) to the specified group.
+* Set appropriate permissions for the folder.
+    * `chmod -R 775 /path/to/shared/dir/` This will set the permissions on the shared directory to an appropriate and functional set of permissions. The owner (a single user) and all members of the group will have total access to the contents of the folder, while all other users will be able to read and execute files in that directory.
+* Install and configure ftp
+    * `apt-get install vsftpd` will install vsftp on Debian based systems. Vsftp is a good, reliable choice.
+    * **Edit the vsftp configuration file to allow files to be uploaded!** I often forget this step, which is regrettable since it's so important.
+        * Edit the `/etc/vsftpd.conf` file, and uncomment the line that says `write_enable=YES`.
