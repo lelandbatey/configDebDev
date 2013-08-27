@@ -10,17 +10,17 @@ Author: Leland Batey
 This help file is going to be primarilly written using markdown as an organizational tool. It won't be rendered markdown, but since markdown is a nice and human readable format, it makes this easier.
 
 
-#### How to reconnect to an interupted screen session. Useful for when a terminal quits on you. ####
+### How to reconnect to an interupted screen session. Useful for when a terminal quits on you. ####
 	- use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
 
-#### Alternate way to add network interfaces for Ubuntu ####
+### Alternate way to add network interfaces for Ubuntu ####
 There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
 
 	sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
 
 substitute different values as needed, but that is the basic way it should go.
 
-#### Connecting to the RaspberyPi with RaspBMC installed ####
+### Connecting to the RaspberyPi with RaspBMC installed ####
 Connection details:
 
 	username : pi
@@ -29,13 +29,13 @@ Connection details:
 Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
-#### Installing Easy_Install with Python3 on Ubuntu ####
+### Installing Easy_Install with Python3 on Ubuntu ####
 Run `"sudo apt-get install python3-setuptools"`
 From there, you can install Pip with:
 
 	"python3 -m easy_install pip"
 
-#### Installing Xmobar with DWM on Ubuntu Server ####
+### Installing Xmobar with DWM on Ubuntu Server ####
 Installing Xmobar normally seems to fail with the error: 
 
 	checking for X11/extensions/Xinerama.h... yes
@@ -54,7 +54,7 @@ The problem is that there aren't certain Xrandr development files installed. To 
 
 This will install the appropriate files for Xmobar to be installed.
 
-#### Using Irssi Linux IRC Client ####
+### Using Irssi Linux IRC Client ####
 Irssi operates in a way similar to screen/xmonad in that it creates many virtual "windows" to manage things. Additionally, the switching of windows is done using a "modkey" (is generally ALT, although the ESC key will also always work).
 
 > A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
@@ -65,7 +65,7 @@ The following is a list of commands and tips for using IRSSI:
 - To switch between windows, press the modkey and the number of the window you want to switch to.
 - To list all the users in a channel, type "/names" or the shorthand, "/n"
 
-#### Using SSH with Authorization Keys ####
+### Using SSH with Authorization Keys ####
 To make use of authorization keys, the basics are that you need to append your rsa/dsa public key to the "authorized_keys" file on the machine you want to connect to. When you connect, the server creates a problem using your public key, that only the private key will solve. You recieve this data, solve it with your private key, and you send it back to the server. Then, the server knows you are who you say you are, and lets you connect. (This is pretty much taken straight out of the Arch Wiki https://wiki.archlinux.org/index.php/SSH_Keys#Background)
 
 The following is the basics on using ssh keys with a server.
@@ -78,15 +78,15 @@ The following is the basics on using ssh keys with a server.
 
 It is important to note that on the client machine, the name of the public/private key pair needs to be "rsa/dsa_id(.pub)" to work by default. Otherwise, you have to specify if something is using an alternateley named key pair.
 
-#### Using "Sets" in Python ####
+### Using "Sets" in Python ####
 In Python, a "set" is nearly exactly like a list, however it is not ordered. That means that referencing anything via placement (i.e. myList[0]) will not work. However, checking the membership of an item in a set is much much faster than checking the membership of an item in a list. For this reason, it is worthwhile to convert large lists to sets before checking for membership in one of those lists/sets.
 
 > (I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
 
-#### Using Virtual Environments (virtualenv) in Python ####
+### Using Virtual Environments (virtualenv) in Python ####
 So virtualenvs seem pretty awesome. However, something to note is that they cannot be moved. That means that if they move at all, they break. So if you rename a parent directory, then they're broken. Something to be aware of.
 
-#### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer ####
+### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer ####
 To restrict access according to a websites referer, this is how the .htaccess needs to look like this:
 
     RewriteEngine On
@@ -106,7 +106,7 @@ Mod_rewrite works by comparing the incoming referer against the specified (regul
 
 It then applies the rule, which in this case is to deny access.
 
-#### Deleting Old Kernels from a Full /boot partition ####
+### Deleting Old Kernels from a Full /boot partition ####
 I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
 > Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
 > Use "uname -r" to show the current kernel
@@ -245,11 +245,11 @@ You can also resize the gif that you create automatically. Like so:
 
 This'll resize it to %50 of it's previous size, maintaining the aspect ratio.
 
-#### List Fonts in Ubuntu
+### List Fonts in Ubuntu
 
 If you want to list fonts in Ubuntu, use the command `fc-list` which will list all the fonts on your system. Then use `grep` to check for certain versions.
 
-#### Xmonad, Xresources, and Fonts
+### Xmonad, Xresources, and Fonts
 
 Xresources can be an absolute pain (they were for me). So, this a bit of help:
 
@@ -261,7 +261,7 @@ Xresources can be an absolute pain (they were for me). So, this a bit of help:
 
 > So, thats the most basic part of fonts in urxvt specified via Xresources.
 
-#### Fixing ~/.ssh/ Permissions in Cygwin
+### Fixing ~/.ssh/ Permissions in Cygwin
 
 In Cygwin on Windows I found that I could not set the permissions of my `~/.ssh/ folder` to be 0600, as is required for ssh to allow you to use keys. The symptom I had was that I no matter what I did, it always modfied the owner **and** the group permissions for a file and folder. So if I entered `chmod 0600 id_rsa` it would instead set the permissions of `id_rsa` to 0660 instead of 0600 (this is bad because it gives the owner of the file **and** anyone in the same group as the owner read access to this key file. Which means anyone who's in the same group as the owner could use it to log into a remote system).
 
@@ -271,7 +271,7 @@ After much Googling, I found that the problem was the setting of a `None` group 
 
 This added all the files in the current folder to the user-group called "`Users`". From there, I was able to set the permissions normally.
 
-## Jquery Parameters - Odd Behaviour Explained
+### Jquery Parameters - Odd Behaviour Explained
 
 Something that I noticed in the Jquery documentation was that there were odd inconsistencies with the parameters being passed to various functions. For example, according to the Jquery documentation, the method `$.getJSON` takes these arguments: `jQuery.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )`
 
@@ -296,7 +296,7 @@ The answer is: no, that's valid in Jquery. I searched for quite a while, and [I 
 
 > `$.getJSON` has 3 different variables, and most importantly, *each variable is of a differnt type.* What this means is that if you only pass two variables (a string and a function) then Jquery can match up the variables based on type. It's a pretty smart system.
 
-#### Gemfiles, RVM, and Ruby
+### Gemfiles, RVM, and Ruby
 
 Alright, the following is a rant that I wrote in my .bash_profile, after just trying to **install** RVM:
     
@@ -334,3 +334,122 @@ After some searching I learned that I'd made a classic newbie mistake: you need 
     export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
 
 Problem solved!
+
+### Finding files in *Nix
+
+I figured I'd finally take the time to actually write down some of the great commands I've found that you can use to find and manipulate files en-mass!
+
+    find . -type d -name "*venv*" -prune -o -type f -name "*.py" -exec cat {} \; >> combinedworks.txt
+
+> *Short primer on **find**:* The structure of the parameters passed into find is awfully odd. Here's what it looks like:
+
+> 1. `find .` this is setting up the find command and telling it to search in the current directory.
+> 2. `-type d -name "*venv*" -prune` a conditional specifying that if there is a *directory* (the `-type d`) with the name "venv" anywhere inside it, then that directory is the be "pruned", or removed from the search criteria.
+> 3. `-o -type f -name "*.py" -exec cat {} \; >> combinedworks.txt` another conditional. The `-o` is an `or` comparison. The `-type f -name "*.py"` says "if the thing you find is of the type `file` (as opposed to, say, a directory) and it's name ends in `.py`", while `-exec cat {} \; >> combinedworks.txt` is the instruction saying what to do if the prior if statement is true.
+
+> So, given all that, I'll write out the pseudo code for the logic happening in this `find` command:
+
+    if ( the thing that we are looking at directory with the word "venv" in it ) then:
+        prune that directory from the list of things to search and don't search there
+    else if ( the thing that we are looking at is a file that ends in ".py") then:
+        use the command "cat" to concatenate that file onto the end of "combinedworks.txt"
+
+So that's that explanation. Here's another command I found really useful:
+
+    find . -path ./Lumen\ Gaming -prune -o -path ./conflict -prune -o -name '*_conflict-*' -print -exec mv {} ./conflict/ \;
+
+> I'll just write out the pseudo code for this:
+
+    if (the_thing_we're_looking_at == the path "./Lumen\ Gaming") then:
+        prune that from the searchable area
+    else if (the_thing_we're_looking_at == the path "./conflict") then:
+        prune that from the searchable area
+    else if (the_thing_we're_looking_at has the name "_conflict-" anywhere in it) then:
+        print the name of that file
+        use the move command to move it to the directory called "./conflict"
+
+That's all for my favorite find commands right now. I'll add more later if need be.
+
+### Dealing with programs that don't play well with \*nix pipes
+
+I found that there are actually a pretty decent amount of programs that don't really play well with traditional Unix pipes. In fact, that reason is why I ended up having to create Veiled, which uses pseudo-terminals to totally get in front of the input/output of various programs and control them, even if they don't want to play nice.
+
+However, what if you just need to script somthing? For example, I found that the first time the `hldsupdate` program is run on *nix is doesn't play well and will send a force close *directly* to it's controlling terminal, circumventing any terminals. This is the way I found to get around this:
+
+    ./yourProgram || true
+
+This puts a logical or there, and is the equivenlent of saying `some_thing_which_is_always_false OR true` and thus it will always be able to continue. Huzzah!
+
+
+### Various things to remember about Vim (and all of your plugins for it)
+
+*Vanilla Vim Stuff:*
+
+> `F - <some character>`: Will jump the the next-previous instance of the entered character on the line you are on.
+
+> `f - <some character>`: Will jump to the next-forward instance of the entered character on the line you are on.
+
+> **Text Formatting:**
+
+> Hard Wrap lines at column 80: set `textwidth` to 80, then use one of several different commands to reformat various chunks of text:
+
+>> `gqG` : Wraps everything till the end of the file.
+
+>> `gq}` : Wraps the current paragraph.
+
+>> `gq$` : Wraps current line.
+
+> Stop hard wraping lines:
+
+>> Set `textwidth` to 0.
+
+> **Comment out multiple lines:**
+
+> Go to the first line to be commented out. Press `Ctrl-v` to enter visual mode, then move down till all the lines to comment are selected. From there, type `I-#-ESC` to insert at `#` at the beginning of each line (make sure to note that that's a capital `I`).
+
+> *Split Windows:*
+
+>> Vertical split: `Ctrl-w-v`
+
+>> Horizontal split: `Ctrl-w-s`
+
+>> Close current window: `Ctrl-w-q`
+
+#### Vim, Buffers, and Windows: What?
+
+I'll attempt here to record how buffers and windows work in Vim, hopefully outlining the correct "mental model" for how this operates.
+
+> *Note: when I say "windows" in this next description, I'm NOT talking about windows as used by the operating system. Instead I'm refering to the internal "windows" used by the given text editor.*
+
+First off, windows: unlike in many other editors, windows in Vim are a bit lower on the organizational tree than usual. I'll use Sublime Text 2 as an example for how other editors operate; in ST2, a window acts as an organizational distinguisher. In the heirarchy of organization, you've got the window, then the tab, then the actual veiwing area for that tab.
+
+However, in Vim, the window is purely a veiwing area. Nothing is organized within it. All it does is provide an interface to edit and manipulate one buffer.
+
+Having said that, the next logical topic is: buffers. In Vim, buffers are just that: they are buffers that contain a file. It's a copy of a given file in memory that you can edit using Vim.
+
+*Pydoc plugin:*
+
+> This plugin will look up the built in documentation for various python modules. By built in, I mean that it can only access documentation that has been installed into the `man pages` of a system. Generally, that rather centralized storage of info can only be added to by a very structured installer like pip, apt-get, etc. So use this for big important stuff, but not for your own work.
+
+
+### Shared Access to Files on Linux Via FTP
+
+In many cases I've needed to set up a folder that can be accessed by multiple users on Linux, something I find I do often enough to warrant documentation:
+
+* Create a group to be shared by all users with read and write access. All users who are members of this group will have access to the folder we're specifying.
+    * `groupadd group_name_here` will create the group
+* Create any additional users. It's best to create all users now, so that things are smooth.
+    * `useradd username_here` This creates a user, but doesn't set up any home directory or password for them.
+        * `passwd username_here` Set a password for the specified user.
+        * `usermod -m -d /path/to/new/home/dir userNameHere` Set's the home directory of the specified user to the specified directory. If a user needs to be in the shared directory by default, I recommend changing their home directory to the shared directory. However, they won't be able to access it till the correct permissions are set.
+    * `adduser username_here` Creates the specified user, guiding you through the process of setting a home directory
+* Add all users to the shared group.
+    * `usermod -a -G group user` adds the existing user to the existing group
+* Set appropriate ownership for the folder.
+    * `chown -R username_here:group_here /path/to/shared/dir/` This will set the owner of the shared directory (and all subdirectories) to the given username, and the group ownership of the directory (and all subdirectories) to the specified group.
+* Set appropriate permissions for the folder.
+    * `chmod -R 775 /path/to/shared/dir/` This will set the permissions on the shared directory to an appropriate and functional set of permissions. The owner (a single user) and all members of the group will have total access to the contents of the folder, while all other users will be able to read and execute files in that directory.
+* Install and configure ftp
+    * `apt-get install vsftpd` will install vsftp on Debian based systems. Vsftp is a good, reliable choice.
+    * **Edit the vsftp configuration file to allow files to be uploaded!** I often forget this step, which is regrettable since it's so important.
+        * Edit the `/etc/vsftpd.conf` file, and uncomment the line that says `write_enable=YES`.

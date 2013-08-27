@@ -6,6 +6,15 @@
 # 
 # Leland Batey
 
+# The below is a very ancient holdover from the classic TTY days. It used to be
+# that you could pause the presentation of characters on a TTY by using a
+# control key (Ctrl-S) so that the person using it could read things before they
+# moved off the screen.
+# Now though, that's wholely unnecessary, since you can scroll up in your
+# terminal :). So, this little flag disables the very annoying behaviour of
+# Ctrl-S freezing the terminal, requiring Ctrl-Q to unfreeze. So yay for things
+# being more modern!
+stty -ixon
 
 if [ "$TERM" != "dumb" ]; then
     [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
@@ -18,6 +27,11 @@ fi
 
 if [ -f ~/.dir_colors ]; then
     eval `dircolors ~/.dir_colors`
+fi
+
+# If the appropriate bash_completion file exists, then source it!
+if [ -f /etc/bash_completion ]; then
+ . /etc/bash_completion
 fi
 
 ## SSH KEYS ##
@@ -88,7 +102,7 @@ alias ld="ls -d */" # Lists only folders
 alias la="ls -a" #lists all files
 alias ll="ls -lh" #lists files in long form, and in a more human readble format
 alias lk="ls -alh" #listals all files in verbose form with human readable numbers/permissions.
-alias netrestart="sudo rc.d restart network"
+alias netrestart="sudo service networking restart"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
@@ -100,8 +114,14 @@ alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "l
 
 alias vnv="source ~/bin/venv/bin/activate"
 
+# Function for quickly making latex-pdfs via Pandoc easier.
+function mkPd(){
+    echo $2 "what" $1
+    pandoc --webtex -o $2 $1
+}
+
 #Increases the size of the .bash_history file to 5000 lines
-HISTSIZE=5000
+HISTSIZE=50000
 
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
 
