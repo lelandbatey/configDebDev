@@ -114,7 +114,11 @@ alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "l
 
 alias vnv="source ~/bin/venv/bin/activate"
 
-alias mkpd='pandoc --webtex $1 -o $2'
+# Function for quickly making latex-pdfs via Pandoc easier.
+function mkPd(){
+    echo $2 "what" $1
+    pandoc --webtex -o $2 $1
+}
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=50000
