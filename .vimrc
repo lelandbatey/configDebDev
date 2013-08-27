@@ -8,6 +8,8 @@
 :set tabstop=4
 :set autoindent
 :set smartindent
+" The following sets up a very permissive backspace command, so that you can use backspace pretty much anywhere.
+:set backspace=indent,eol,start
 " The following 2 *map statements allow for 'inverse tabbing' using 'shift-tab'
 " for insert mode
 imap <S-Tab> <Esc><<i
