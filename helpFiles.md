@@ -453,3 +453,18 @@ In many cases I've needed to set up a folder that can be accessed by multiple us
     * `apt-get install vsftpd` will install vsftp on Debian based systems. Vsftp is a good, reliable choice.
     * **Edit the vsftp configuration file to allow files to be uploaded!** I often forget this step, which is regrettable since it's so important.
         * Edit the `/etc/vsftpd.conf` file, and uncomment the line that says `write_enable=YES`.
+
+### Installing Virtualbox Guest Additions in Ubuntu 13.04
+
+Many times before, I had problems installing virtualbox guest additions in Ubuntu. Things'd often just not work, and I'd not really know why.
+
+However, after following the advice here, I did eventually find my solution, which I'll summarize below: http://askubuntu.com/questions/165544/why-do-guest-additions-need-kernel-headers-in-virtualbox-4-04
+
+Basically, you need to install the appropriate kernel header files, as well as the package `dkms` on the guest machine. The commands in question:
+
+    sudo apt-get install dkms
+    sudo apt-get install linux-headers-$(uname -r)
+
+Although I found that just doing `sudo apt-get install linux-headers-generic` worked just fine for me as well.
+
+
