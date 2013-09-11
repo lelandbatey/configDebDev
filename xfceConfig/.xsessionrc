@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Inside the if block so that it only get's run when we're in xfce. Xmonad 
+# crashes Unity if I try to launch it in this way :/
+if [ `echo $DESKTOP_SESSION` = "xfce" ]; then
+    xrandr --output DVI-D-0 --mode 1920x1200 --pos 0x96 --rotate normal --output HDMI-0 --off --output DVI-I-1 --off --output DVI-I-0 --mode 1440x900 --pos 1920x0 --rotate right --output DP-1 --off --output DP-0 --off &
+fi
+
+# This is here to wait for all the proper graphical things to be setup before
+# it launches xmonad to replace the window manager.
+#
+# It's actually quite important that this wait to happen, since launching it
+# prior to the full startup of the existing window manager will cause problems.
+# For example, if xmonad is lanched prior to, or during the startup of, the
+# default XFCE window manager, then the GTK window styles will not be applied.
+# Additionally, custom keyboard commands won't be loaded, which in my case
+# disables me from launching `dmenu` with "ctrl+alt+p"
+#
+# The reason this is here and not in the XFCE startup configuration like most
+# people recommend is because I've found the XFCE statup configurator to be
+# rather unreliable in when it launches things. On my laptop initializing
+# xmonad via the XFCE statup config works just fine, but on my desktop I had to
+# resort to this hack to get things working.
+#
+# On a different note, at some time in the future I may adapt this so that I
+# can load larger custom scripts consistently after the entire desktop is
+# setup.
+
