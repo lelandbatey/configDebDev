@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from __future__ import print_function
 from subprocess import call
 import argparse
@@ -10,12 +11,10 @@ xfce\n\t\
 prepvim\n"
 
 HOMEDIR = os.path.expanduser('~')
-print(HOMEDIR)
-
+# print(HOMEDIR)
 
 
 parser = argparse.ArgumentParser(description='Installation script for Leland Batey dotfiles repo. If this your first time running this on a new installation, run this command with the "--act prepvim" flag to properly prepare all the necessary  vim packages.')
-
 parser.add_argument('--act', default='', 
     help='Action to be taken;'+actType)
 
@@ -47,11 +46,6 @@ appropriate directory. It should be:\n\t\
 ~/.mozilla/firefox/<randomString.default>/chrome.\nIf the chrome directory\
  doesn't exist, just make one.")
     
-# git submodule init
-# git submodule update
-# git submodule foreach git submodule init
-# git submodule foreach git submodule update
-
 def prepvim():
     call(["git","submodule", "init"])
     call(["git","submodule", "update"])
@@ -61,12 +55,7 @@ def prepvim():
     
 
 def main():
-    # print(args.act)
 
-    # print(os.getcwd())
-
-    # print(call(["ls","-alh"]))
-	
     if args.act == "safe":
         safeConfigs()
     elif args.act == "xbase":
