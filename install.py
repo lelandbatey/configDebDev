@@ -34,9 +34,9 @@ def safeConfigs():
 
 def xbaseConfigs():
     # .xinitrc, .Xresources, .xmonad/xmonad.hi
-    call(["cp",".xinitrc", HOMEDIR])
-    call(["cp",".Xresources", HOMEDIR])
-    call(["cp",".xmonad/xmonad.hs", HOMEDIR+"/.xmonad/"])
+    call(["cp","baseConfig/.xinitrc", HOMEDIR])
+    call(["cp","baseConfig/.Xresources", HOMEDIR])
+    call(["cp","baseConfig/xmonad/xmonad.hs", HOMEDIR+"/.xmonad/"])
 
 def xfceConfigs():
     # xfce/.xsessionrc, xfce/.xmonad/xmonad.hs, userContent.css
