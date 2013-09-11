@@ -468,3 +468,47 @@ Basically, you need to install the appropriate kernel header files, as well as t
 Although I found that just doing `sudo apt-get install linux-headers-generic` worked just fine for me as well.
 
 
+### Installing Xmonad with XFCE4
+
+I'm part way through setting up Xmonad to work with Xfce under ubuntu 13.04, and I figure I should probably start recording this whole process:
+
+#### Step one, install
+
+Download and install Xmonad using `sudo apt-get install xmonad`.
+
+### Step two, configure xmonad
+
+Configure xmonad to work properly by editing the `xmonad.hs` file in `~/.xmonad`. I have mine set to this now:
+
+import XMonad.Config.Xfce
+main = xmonad xfceConfig
+       { terminal = "gnome-terminal"
+       , modMask = mod1Mask -- sets to alt key 
+       , borderWidth = 1 --was "3"
+       , focusedBorderColor = "#4099FF"
+       , normalBorderColor = "#474747"
+       }
+
+See this page for additional info on doing this properly: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE
+
+
+### Step three, set up `dmenu`.
+
+I really need dmenu to function, so I've chosen to install it in this installation. I got most of the instructions from here: http://ubuntuforums.org/showthread.php?t=1746773
+
+ - Install dmenu
+ - Run `dmenu_path` to build the cache of all programs that're installed.
+ - Run `dmenu_run` to verify that it's working correctly.
+ - Configure an XFCE shortcut for quick access
+    - Menu > Settings > Keyboard > Application Shortcuts
+    - Set the command to `dmenu_run` and the shortcut to whatever (I wanted to use alt+p, but that triggers something else, so I set it to ctrl+alt+p)
+
+### Step four, configure xmonad 
+
+Again, the instructions for this can be found here: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE#Ensure_Xmonad_gets_started
+
+ - Get to settings: Menu > Settings > Sessions and Startup > Application Autostart
+ - Add new application, name Xmonad, command `xmonad --replace`
+
+
+
