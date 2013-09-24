@@ -8,6 +8,7 @@ actType = "\n\n\t\
 safe[default]\n\t\
 xbase\n\t\
 xfce\n\t\
+bashmarks (requires 'prepvim' be run first)\n\t\
 prepvim\n"
 
 HOMEDIR = os.path.expanduser('~')
@@ -31,6 +32,7 @@ def safeConfigs():
     call(["cp",".xmobarrc", HOMEDIR])
     call(["cp","-r",".vim/", HOMEDIR])
     call(["cp",".gitignore_global", HOMEDIR])
+    call(["cp",".bash_profile", HOMEDIR])
 
 def xbaseConfigs():
     # .xinitrc, .Xresources, .xmonad/xmonad.hi
@@ -54,6 +56,10 @@ def prepvim():
     call(["git","submodule", "foreach", "git", "submodule", "update"])
     print("All git submodules properly initialized and updated.")
     
+def bashMarks():
+    # Installs bashmarks. Requires you to have run "prepvim" prior to this which instantiates all git submodules.
+    call(["make","-C","bin/bashmarks/","install"])
+
 
 def main():
 
@@ -65,6 +71,8 @@ def main():
         xfceConfigs()
     elif args.act == "prepvim":
         prepvim()
+    elif args.act == "bashmarks":
+        bashMarks()
     else:
         print("Specified action ('--act') was not of any of the necessary types:"+actType)
 

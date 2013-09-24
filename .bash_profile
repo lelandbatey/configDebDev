@@ -15,7 +15,7 @@ if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
         . "$HOME/.bashrc"
     fi
-    if [ -f "$HOME/.local/bin/bashmarks.sh"]; then
+    if [ -f "$HOME/.local/bin/bashmarks.sh" ]; then
         . "$HOME/.local/bin/bashmarks.sh"
     fi
 fi
