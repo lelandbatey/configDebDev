@@ -30,6 +30,7 @@ def safeConfigs():
     call(["cp",".dir_colors", HOMEDIR])
     call(["cp",".xmobarrc", HOMEDIR])
     call(["cp","-r",".vim/", HOMEDIR])
+    call(["cp",".gitignore_global", HOMEDIR])
 
 def xbaseConfigs():
     # .xinitrc, .Xresources, .xmonad/xmonad.hi

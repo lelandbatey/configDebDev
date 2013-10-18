@@ -46,3 +46,6 @@
 [submodule ".vim/bundle/ropevim"]
 	path = .vim/bundle/ropevim
 	url = https://github.com/sontek/rope-vim.git
+[submodule "bin/bashmarks"]
+	path = bin/bashmarks
+	url = git://github.com/huyng/bashmarks.git

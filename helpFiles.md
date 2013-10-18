@@ -11,7 +11,7 @@ This help file is going to be primarilly written using markdown as an organizati
 
 
 ### How to reconnect to an interupted screen session. Useful for when a terminal quits on you. ####
-	- use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
+- use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
 
 ### Alternate way to add network interfaces for Ubuntu ####
 There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
@@ -108,16 +108,25 @@ It then applies the rule, which in this case is to deny access.
 
 ### Deleting Old Kernels from a Full /boot partition ####
 I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
+
 > Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
+
 > Use "uname -r" to show the current kernel
+
 > Now you can remove and old kernels with the command "sudo apt-get purge linux-image-&lt;kernel number here&gt;"
+
 >> I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
 
-#### Using Bootstrap Javascript and Jquery ####
+### Using Bootstrap Javascript and Jquery ####
 I had gone into this trying to set up a simple dropdown for the frontpage of adrenl.in. However, I could not for the life of me figure out why the bootstrap javascript wasn't working. After tons of trial and error, this is what I eventually learned:
 
-    1. Placement of javascript "&lt;script&gt;" notifications matters. These will not work if called in the "head", they must be called in the "body" of the page.
-    2. The *order* of the javascript files matters. In my case, bootstrap requires jquery to already be loaded, so jquery must come BEFORE bootstrap.
+    1. Placement of javascript "&lt;script&gt;" notifications matters. These
+    will not work if called in the "head", they must be called in the "body"
+    of the page.
+   
+    2. The *order* of the javascript files matters. In my case, bootstrap
+    requires jquery to already be loaded, so jquery must come BEFORE
+    bootstrap.
 
 Once I'd done both of those, everything worked great!
 
@@ -133,8 +142,11 @@ Both of which can be gotten via "sudo apt-get install &lt;name&gt;".
 
 Now for the fun part! For whatever reason, the built in video -> .gif convertion function of ffmpeg is super garbage. So, instead we do things a little bit better:
 
-    First, we split apart every single frame of the video into it's own gif frame, with an appropriate file name to put it in the correct order.
-    Second, we use gifsicle to combine all these .gif frames into a single animated gif.
+    First, we split apart every single frame of the video into it's own gif
+    frame, with an appropriate file name to put it in the correct order.
+    
+    Second, we use gifsicle to combine all these .gif frames into a single
+    animated gif.
 
 Here's the command to split up the video into the gif frames:
     
@@ -187,11 +199,19 @@ In the end, this is what the whole script looks like:
 
     #!/bin/bash
     
-    # NOTE: the "$1" in the line below this means "command line argument #1 is inserted here". If you're running these manually, replace the $1 with the name of your video file.
-    ffmpeg -i $1 out%04d.png # Extracts each frame of the video as a single gif
-    convert -delay 4 out*.png anim.gif # Combines all the frames into one very nicely animated gif.
-    convert -layers Optimize anim.gif optimized_output.gif # Optimizes the gif using imagemagick
-     
+    # NOTE: the "$1" in the line below this means "command line argument #1 is
+    # inserted here". If you're running these manually, replace the $1 with
+    # the name of your video file.
+
+    ffmpeg -i $1 out%04d.png # Extracts each frame of the video as a single
+    gif
+    
+    convert -delay 4 out*.png anim.gif # Combines all the frames into one very
+    nicely animated gif.
+    
+    convert -layers Optimize anim.gif optimized_output.gif # Optimizes the gif
+    using imagemagick
+
     # vvvvv Cleans up the leftovers
     rm out*
     rm anim.gif
@@ -219,7 +239,9 @@ Btw, [this is where I found this script](http://stackoverflow.com/questions/7136
 
 Here's an abstract look at what it acomplishes.
 
-    For a set of files named `out*.png` it counts how many there are, then copys them in reverse order, renaming them sequentially, continuing with the numbering of the existing photos.
+    For a set of files named `out*.png` it counts how many there are, then
+    copys them in reverse order, renaming them sequentially, continuing with
+    the numbering of the existing photos.
 
     So, if we had 5 frames named like so:
 
@@ -235,7 +257,16 @@ Here's an abstract look at what it acomplishes.
         out0002.png
         out0003.png
         out0004.png
-        out0005.png out0006.png <- Is actually a renamed out0005.png out0007.png <- renamed out0004.png out0008.png <- renamed out0003.png out0009.png <- etc out0010.png What this does is make the .gif go forwards, then backwards (then it loops, continuing to go backwards then forwards). So you get a nice smooth effect. Sometimes it's nice!  
+        out0005.png
+        out0006.png <- Is actually a renamed out0005.png 
+        out0007.png <- renamed out0004.png 
+        out0008.png <- renamed out0003.png 
+        out0009.png <- etc 
+        out0010.png 
+
+What this does is make the .gif go forwards, then backwards (then it loops,
+continuing to go backwards then forwards). So you get a nice smooth effect.
+Sometimes it's nice!
 
 ### Resize .gif while making this conversion
 
