@@ -476,7 +476,7 @@ I'm part way through setting up Xmonad to work with Xfce under ubuntu 13.04, and
 
 Download and install Xmonad using `sudo apt-get install xmonad`.
 
-### Step two, configure xmonad
+#### Step two, configure xmonad
 
 Configure xmonad to work properly by editing the `xmonad.hs` file in `~/.xmonad`. I have mine set to this now:
 
@@ -492,7 +492,7 @@ main = xmonad xfceConfig
 See this page for additional info on doing this properly: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE
 
 
-### Step three, set up `dmenu`.
+#### Step three, set up `dmenu`.
 
 I really need dmenu to function, so I've chosen to install it in this installation. I got most of the instructions from here: http://ubuntuforums.org/showthread.php?t=1746773
 
@@ -503,12 +503,27 @@ I really need dmenu to function, so I've chosen to install it in this installati
     - Menu > Settings > Keyboard > Application Shortcuts
     - Set the command to `dmenu_run` and the shortcut to whatever (I wanted to use alt+p, but that triggers something else, so I set it to ctrl+alt+p)
 
-### Step four, configure xmonad 
+#### Step four, configure xmonad 
 
 Again, the instructions for this can be found here: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE#Ensure_Xmonad_gets_started
 
  - Get to settings: Menu > Settings > Sessions and Startup > Application Autostart
  - Add new application, name Xmonad, command `xmonad --replace`
+
+### More About Ruby: Setting Up RVM, Gem, and Jekyll
+
+So, I use Jekyll to build stuff because Jekyll is easy and straightforward and
+I know it. However, I often find Ruby to not be straightforward.
+
+Here's how I set up RVM, Gem, and Jekyll for test builds of sites on my many computers:
+
+    Go here, follow instructions for the local install:
+        http://rvm.io/rvm/install
+
+    rvm install ruby #Installs Ruby locally under RVM
+    rvm --default use 2.0  #Sets up the system to use the rvm version of Ruby. Change the number to the actual version installed.
+    gem install jekyll #Installs jekyll for the local user under RVM, using the RVM copy of gem
+
 
 
 
