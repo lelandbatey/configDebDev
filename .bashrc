@@ -34,6 +34,11 @@ if [ -f /etc/bash_completion ]; then
  . /etc/bash_completion
 fi
 
+# Source bashmarks
+if [ -f "$HOME/.local/bin/bashmarks.sh" ]; then
+    . "$HOME/.local/bin/bashmarks.sh"
+fi
+
 ## SSH KEYS ##
 # The below handles ssh keys. It's inside a massive if block that checks if we are in an interactive vs non-interactive shell.
 # This is important, since otherwise it breaks SFTP.
