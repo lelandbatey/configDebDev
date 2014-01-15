@@ -555,6 +555,13 @@ Here's how I set up RVM, Gem, and Jekyll for test builds of sites on my many com
     rvm --default use 2.0  #Sets up the system to use the rvm version of Ruby. Change the number to the actual version installed.
     gem install jekyll #Installs jekyll for the local user under RVM, using the RVM copy of gem
 
+### Xubuntu, Wifi, and Sleep
+
+I found that often when I close the lid of my laptop running Xubuntu, networking would unexpectedly stop. The network-conectivity button in the statusbar up-top would have pretty much no information, and wouldn't help turn it back on. A bit of Googling took me to [this help page](http://askubuntu.com/questions/362933/network-disabled-on-some-wake-ups-on-saucy-laptop) that includes a script to turn Wifi back on. That command is:
+
+    nmcli nm sleep false
+
+
 
 
 
