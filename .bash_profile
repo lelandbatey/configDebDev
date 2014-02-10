@@ -20,9 +20,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# Include .bashrc
-[[ -f ~/.bashrc ]] && . ~/.bashrc
-
 if [ -d "$HOME/bin" ]; then 
     PATH=$PATH:$HOME/bin
 fi
