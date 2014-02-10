@@ -117,6 +117,7 @@ alias gca="git commit -am" # Makes commits faster!
 #alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "\$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
 alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd \$1 && git pull; echo -ne \ : \$1 \\\n' _" # Automatically "pull" all github repos in the current users home directory
 alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "list all gits" and it just lists all the git repo's under ~/
+alias gshow="git show --color --pretty=format:%b" # Pretty-printing of a commit in git
 
 alias vnv="source ~/bin/venv/bin/activate"
 
