@@ -116,10 +116,13 @@ alias less="less -N" # Less now shows line numbers on the left hand side.
 alias gca="git commit -am" # Makes commits faster!
 #alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "\$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
 alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd \$1 && git pull; echo -ne \ : \$1 \\\n' _" # Automatically "pull" all github repos in the current users home directory
-alias lag="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,'" # Stands for "list all gits" and it just lists all the git repo's under ~/
 alias gshow="git show --color --pretty=format:%b" # Pretty-printing of a commit in git
 
 alias vnv="source ~/bin/venv/bin/activate"
+
+function lag(){ # Stands for "list all gits" and it just lists all the git repos in current dir
+    find $PWD -name ".git" -type d | sed 's,/*[^/]\+/*$,,'
+}
 
 # Function for quickly making latex-pdfs via Pandoc easier.
 function mkPd(){
@@ -129,7 +132,7 @@ function mkPd(){
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=50000
+export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
 
-export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] $ '
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
