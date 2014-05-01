@@ -561,6 +561,33 @@ I found that often when I close the lid of my laptop running Xubuntu, networking
 
     nmcli nm sleep false
 
+### Creating WebM clips
+
+Given that I hate the .gif file format (despite having messed around with it), I'm jumping at this chance now that there's some kind of a move towards `WebM` as the animated video format of choice. So, I've taken the time to port my previous `.gif` making advice over to making `.webm` files. This isn't comprehensive, or maybe even good, but it works for me.
+
+The basic steps for `gif` creation where: use `ffmpeg` to cut up a video and export the frames you want to a series of `png` images on disk, edit the pictures on the disk, then use `Imagemagick` to re-compile the edited frames into a `gif` file.
+
+To create a `WebM` file, I use a similar workflow:
+
+1. Use `ffmpeg` to extract the video part I want, then export the frames of that section down to disk.
+2. Edit the `png` frames on the disk.
+3. Use `ffmpeg` to re-compile the frames into a `WebM` file.
+
+In order the commands are:
+
+    ffmpeg -i input_video.mp4 out%04d.png # Export video file to frames on disk
+    # Do the editing of the frames
+    ffmpeg -i out%04d.png -c:v libvpx -b:v 1M -crf 4 output_file.webm # Re-compile edited frames into WebM file
+
+Now I'll go over some of the parameters for the `WebM` encoding.
+
+`-c:v libvpx`: This specifies we want to use the `WebM` video codec 
+
+`-b:v 1M`: Specifies the desired bitrate of the video. `1M` means `1 megabit/second`, which is about `122 kilobytes/second`. This parameter will have to be adjusted to make the video smaller or larger as you need it.
+
+`-crf 4`: Specifies the relative encoding quality of the video. The range is from `64 - 4` with lower numbers meaning higher quality.
+
+That's the basics of creating `WebM` files as if they where `gifs`.
 
 
 
