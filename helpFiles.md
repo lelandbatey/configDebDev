@@ -590,5 +590,24 @@ Now I'll go over some of the parameters for the `WebM` encoding.
 That's the basics of creating `WebM` files as if they where `gifs`.
 
 
+### Linux: Managing Startup Programs
 
+I find I've never really taken the time to come to understand how the program-
+startup system works on linux, and so I'm checking that out now. My interest
+now is because I've got a couple of programs that're launching on startup on
+my laptop that are draining the battery, programs I really don't need running
+by default like `mysql` (thanks to `powertop` for this information).
+
+So far, the best page I've found is this AskUbuntu answer: http://askubuntu.com/a/20347
+
+The tl;dr of it is:
+
+1. There are two systems for starting things when booting up, but the "new" one is called Upstart
+2. To disable an Upstart script so that it won't start on boot, but can be started manually:
+    - Comment out the line that starts with `start on`
+    - Alternatively, put the word `manual` in a `/etc/init/{service}.override` file. So for mysql, the command to make this happen would be:
+
+            echo 'manual' | sudo tee /etc/init/mysql.override
+
+That's the basics of what's going on. For more info, check out the AskUbuntu link.
 
