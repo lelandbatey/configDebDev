@@ -127,7 +127,28 @@ function lag(){ # Stands for "list all gits" and it just lists all the git repos
 # Function for quickly making latex-pdfs via Pandoc easier.
 function mkPd(){
     echo $2 "what" $1
-    pandoc --webtex -o $2 $1
+    pandoc --webtex -s -o $2 $1
+}
+
+# Function for splitting a string on a delimiter using python.
+function pSplit(){
+    #echo -e "1: $1\n2: $2"
+    python -c "from __future__ import print_function
+for x in \"\"\"$1\"\"\".split(\"$2\"): print(x);"
+}
+
+function mp(){
+    x="$1"
+    rawfile="${x%.*}" # Gets all items before first period
+    outfile=""
+    extension=".html"
+
+    if [[ -z "$2" ]]; then
+        outfile="$rawfile$extension"
+    else
+        outfile="$rawfile.$2"
+    fi
+    pandoc -s -o "$outfile" "$1"
 }
 
 #Increases the size of the .bash_history file to 5000 lines
