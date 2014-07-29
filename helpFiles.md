@@ -611,3 +611,31 @@ The tl;dr of it is:
 
 That's the basics of what's going on. For more info, check out the AskUbuntu link.
 
+
+
+### Enabling Autocomplete Suggestions in Sublime Text for Odd Syntaxes
+
+At work, I use a tool called Behat to write tests for Drupal. Behat is written in a language called Gherkin, and nothing has native language support, including Sublime Text (3), my main editor. I was able to install a package which gives me Behat syntax highlighting, but I wasn't able to get dropdown suggestions like I was used to.
+
+Normally, when you type things into Sublime Text, it will display a dropdown box of suggestions. As you add more words to the document, this list gets larger and more comprehensive. It's a great feature, one I really love. With Behat, I could hit tab and it would autocomplete, but it wouldn't display a dropdown of suggestions.
+
+After much fiddling and Googling, I eventually came up with the following fix which enables dropdown autocomplete.
+
+> Add the following line to your User Preferences ("Preferences" > "Settings - User")
+>
+>      "auto_complete_selector": "source, text, feature"
+
+
+#### Explanation
+
+The default for this is:
+
+    "auto_complete_selector": "source - comment, meta.tag - punctuation.definition.tag.begin"
+
+This is setting the `scopes` that SublimeText will enable autocomplete inside. This enables autocomplete on nearly every different language or syntax because nearly all of them follow the convention of naming the scope for thier language something allong the lines of `source.language`. For example, the scope for Python is `source.python`. The scope for JSON is `source.json`. The part in the setting above that says `source - comment` is saying *"allow autocomplete in any scope which has a root of `source` down to the sub-scope `comment`"*. Since nearly all the languages exist within the `source` root scope, this works great.
+
+However, the Behat plugin that's available does NOT follow this convention. The Behat package sets itself up in the scope `feature.behat`. Because it's not within the root scope `source`, autocomplete excludes it.
+
+The modification we made above says *"enable autocomplete on all scopes with roots `source`, `text`, or `feature`"* thus enabling autocomplete suggestions for the Behat language! 
+
+
