@@ -639,3 +639,59 @@ However, the Behat plugin that's available does NOT follow this convention. The 
 The modification we made above says *"enable autocomplete on all scopes with roots `source`, `text`, or `feature`"* thus enabling autocomplete suggestions for the Behat language! 
 
 
+
+### Making Good Gif's -- Colors and Quantization
+
+So I've been messing around, making a couple more gifs using the illustrious ImageMagick library. I wanted to post some of the results of things I'd created.
+
+Here's the [original gif](http://nacr.us/media/pics/gif_experiments/quantization/anim01.gif) used to create all the derivative gifs discussed in this section. It's about 70 mb, so viewing in your browser will be slow. The source of the gif is Season 3, Episode 5, from about `00:18:37` till `00:18:52`.
+
+#### Removing colors
+
+[Here's a version of the original gif using just 32 colors.](http://nacr.us/media/pics/gif_experiments/quantization/anim02.gif) Despite only using a fraction of the colors it could be using, it still looks quite good. It was created with the following command:
+
+    convert anim01.gif -colors 32 -resize %60 anim02.gif
+
+
+#### Removing EVEN MOAR colors
+
+[Here's a version of the original gif using just ***8*** colors.](http://nacr.us/media/pics/gif_experiments/quantization/anim04.gif) Despite being the same resolution as the gif linked above, it's nearly 55% smaller than the one above. However, it also looks awful. Here's the command I used to make it:
+
+    convert anim01.gif +dither -colors 8 -resize %60 anim04.gif
+
+#### Quantization
+
+Quantization is the process of combining colors to simplify the appearance of a picture. It's great in gifs because it reduces the size of the gif.
+
+An important thing to note is that there are different quantization algorithms in ImageMagick. If you want to make a gif look nicer but increase it's size, you can use the `FloydSteinberg` algorithm. Compare [this gif made with the default algorithm](http://nacr.us/media/pics/gif_experiments/quantization/anim05.gif) to [this gif made using `FloydSteinberg`.](http://nacr.us/media/pics/gif_experiments/quantization/anim05.gif) Here's the command for FloydSteinberg:
+
+    convert anim01.gif -dither FloydSteinberg -colors 32 -resize %50 anim08.gif
+
+#### Really Nice Gifs
+
+To get the best gifs while keeping them small (within most image sharing site limits), it's a constant battle between size and quality. However, reducing colors doesn't affect quality too much, and cropping out unnecessary parts of the photo helps as well. The final version of the gif I created is [this one](http://nacr.us/media/pics/gif_experiments/quantization/anim10.gif), and it's created using the following command:
+
+    convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %40 anim10.gif
+
+
+And here's the history of my commands while experimenting with gifs:
+
+    convert anim01.gif -resize %30 anim02.gif
+    convert anim01.gif -colors 64 -resize %60 anim02.gif
+    convert anim01.gif -colors 32 -resize %60 anim02.gif
+    convert anim01.gif -colors 8 -resize %60 anim03.gif
+    convert anim01.gif +dither -colors 8 -resize %60 anim04.gif
+    convert anim01.gif +dither -colors 32 -resize %60 anim05.gif
+    convert anim01.gif +dither -colors 32 -resize %40 anim06.gif
+    convert anim01.gif +dither -colors 32 -resize %50 anim07.gif
+    convert anim01.gif -dither FloydSteinberg -colors 32 -resize %50 anim08.gif
+    convert anim01.gif -dither FloydSteinberg -colors 16 -resize %50 anim07.gif
+    convert anim01.gif -dither FloydSteinberg -colors 8 -resize %50 anim07.gif
+    convert anim01.gif -dither FloydSteinberg -colors 8 -shave 10x0 -resize %50 anim09.gif
+    convert anim01.gif -dither FloydSteinberg -colors 16 -shave 50x0 -resize %50 anim09.gif
+    convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %50 anim10.gif
+    convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %40 anim10.gif
+
+    
+
+
