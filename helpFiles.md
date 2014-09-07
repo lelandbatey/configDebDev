@@ -10,17 +10,17 @@ Author: Leland Batey
 This help file is going to be primarilly written using markdown as an organizational tool. It won't be rendered markdown, but since markdown is a nice and human readable format, it makes this easier.
 
 
-### How to reconnect to an interupted screen session. Useful for when a terminal quits on you. ####
+### How to reconnect to an interupted screen session. Useful for when a terminal quits on you.
 - use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
 
-### Alternate way to add network interfaces for Ubuntu ####
+### Alternate way to add network interfaces for Ubuntu
 There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
 
 	sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
 
 substitute different values as needed, but that is the basic way it should go.
 
-### Connecting to the RaspberyPi with RaspBMC installed ####
+### Connecting to the RaspberyPi with RaspBMC installed
 Connection details:
 
 	username : pi
@@ -29,13 +29,13 @@ Connection details:
 Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
-### Installing Easy_Install with Python3 on Ubuntu ####
+### Installing Easy_Install with Python3 on Ubuntu
 Run `"sudo apt-get install python3-setuptools"`
 From there, you can install Pip with:
 
 	"python3 -m easy_install pip"
 
-### Installing Xmobar with DWM on Ubuntu Server ####
+### Installing Xmobar with DWM on Ubuntu Server
 Installing Xmobar normally seems to fail with the error: 
 
 	checking for X11/extensions/Xinerama.h... yes
@@ -54,7 +54,7 @@ The problem is that there aren't certain Xrandr development files installed. To 
 
 This will install the appropriate files for Xmobar to be installed.
 
-### Using Irssi Linux IRC Client ####
+### Using Irssi Linux IRC Client
 Irssi operates in a way similar to screen/xmonad in that it creates many virtual "windows" to manage things. Additionally, the switching of windows is done using a "modkey" (is generally ALT, although the ESC key will also always work).
 
 > A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
@@ -65,7 +65,7 @@ The following is a list of commands and tips for using IRSSI:
 - To switch between windows, press the modkey and the number of the window you want to switch to.
 - To list all the users in a channel, type "/names" or the shorthand, "/n"
 
-### Using SSH with Authorization Keys ####
+### Using SSH with Authorization Keys
 To make use of authorization keys, the basics are that you need to append your rsa/dsa public key to the "authorized_keys" file on the machine you want to connect to. When you connect, the server creates a problem using your public key, that only the private key will solve. You recieve this data, solve it with your private key, and you send it back to the server. Then, the server knows you are who you say you are, and lets you connect. (This is pretty much taken straight out of the Arch Wiki https://wiki.archlinux.org/index.php/SSH_Keys#Background)
 
 The following is the basics on using ssh keys with a server.
@@ -78,15 +78,15 @@ The following is the basics on using ssh keys with a server.
 
 It is important to note that on the client machine, the name of the public/private key pair needs to be "rsa/dsa_id(.pub)" to work by default. Otherwise, you have to specify if something is using an alternateley named key pair.
 
-### Using "Sets" in Python ####
+### Using "Sets" in Python
 In Python, a "set" is nearly exactly like a list, however it is not ordered. That means that referencing anything via placement (i.e. myList[0]) will not work. However, checking the membership of an item in a set is much much faster than checking the membership of an item in a list. For this reason, it is worthwhile to convert large lists to sets before checking for membership in one of those lists/sets.
 
 > (I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
 
-### Using Virtual Environments (virtualenv) in Python ####
+### Using Virtual Environments (virtualenv) in Python
 So virtualenvs seem pretty awesome. However, something to note is that they cannot be moved. That means that if they move at all, they break. So if you rename a parent directory, then they're broken. Something to be aware of.
 
-### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer ####
+### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer
 To restrict access according to a websites referer, this is how the .htaccess needs to look like this:
 
     RewriteEngine On
@@ -106,7 +106,7 @@ Mod_rewrite works by comparing the incoming referer against the specified (regul
 
 It then applies the rule, which in this case is to deny access.
 
-### Deleting Old Kernels from a Full /boot partition ####
+### Deleting Old Kernels from a Full /boot partition
 I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
 
 > Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
@@ -117,7 +117,7 @@ I have found that on my Ubuntu servers I frequently run out of space on my /boot
 
 >> I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
 
-### Using Bootstrap Javascript and Jquery ####
+### Using Bootstrap Javascript and Jquery
 I had gone into this trying to set up a simple dropdown for the frontpage of adrenl.in. However, I could not for the life of me figure out why the bootstrap javascript wasn't working. After tons of trial and error, this is what I eventually learned:
 
     1. Placement of javascript "&lt;script&gt;" notifications matters. These
@@ -691,6 +691,7 @@ And here's the history of my commands while experimenting with gifs:
     convert anim01.gif -dither FloydSteinberg -colors 16 -shave 50x0 -resize %50 anim09.gif
     convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %50 anim10.gif
     convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %40 anim10.gif
+
 
     
 
