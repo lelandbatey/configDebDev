@@ -693,6 +693,37 @@ And here's the history of my commands while experimenting with gifs:
     convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %40 anim10.gif
 
 
-    
+### Getting Statistics on Command Line Usage
+
+Here's a nice one liner to get setatistics on the commands you use most on the command line:
+
+    #cat ~/.bash_history | sort | uniq -c | sort -r | head -n 10
+    # The below is a much better commands
+    history|awk '{print $2}'|awk 'BEGIN {FS="|"} {print $1}'|sort|uniq -c|sort -rn|head -30
+
+Here's what the output of this looks like:
+
+    291 git
+    202 ll
+    182 cd
+    111 cc
+     69 url_grep
+     63 python
+     42 ssh
+     32 wget
+     25 ls
+     25 cat
+     22 curl
+     21 convert
+     20 url_grep
+     16 rm
+     16 less
+
+Notes:
+
+> THe above output is from a relatively recent install, and so it hasn't quite had time to populate yet.
+>
+> Also, the improved command comes from [this StackOverflow answer.](http://stackoverflow.com/a/6355236/) 
+
 
 
