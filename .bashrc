@@ -55,7 +55,7 @@ then
     # plopped this down in .bash_profile and said that the way to fix this is
     # to change your terminal emulator to log in as a login shell.
     # Which is just INCREDIBLY stupid. They need to get their crap together.
-    # Douchebags.
+    # Jerks.
     [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
     ### Starts ssh-agent and loads all ssh keys as needed ###
@@ -105,7 +105,11 @@ alias lx="ls -x" #grouped by file extension
 
 alias ld="ls -d */" # Lists only folders
 alias la="ls -a" #lists all files
-alias ll="ls -lh" #lists files in long form, and in a more human readble format
+
+alias ll="ls -lhL" # lists files in long form, and in a more human readble 
+                   # format. Additionally, the capital L makes `ls` regard
+                   # symlinks as normal directories so they'd get grouped
+                   # first as well.\
 alias lo="ll --sort=extension" #Lists in nice human readble form, sorts directories first, then groups files with similar formats together.
 alias lk="ls -alh" #listals all files in verbose form with human readable numbers/permissions.
 alias netrestart="sudo service networking restart"
@@ -151,9 +155,28 @@ function mp(){
     pandoc -s -o "$outfile" "$1"
 }
 
+function azbuild(){
+    original_location="$PWD"
+
+    # The below is super specific to my environment and not portable at all.
+    cd "/home/bate136/projects/aztec_build/" 
+    ./azbuild.py
+    cd "$original_location"
+}
+
+
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=50000
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
 
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+
+# If terminal launched inside X, the DISPLAY variable will already be set.
+# However, if launched without X (such as in CYGWIN) then DISPLAY will not be
+# set. In these cases, we set it to a sane default.
+if [ -z "$DISPLAY" ]; then
+    DISPLAY=":0.0"
+fi
+
