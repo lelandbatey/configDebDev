@@ -14,7 +14,7 @@
 # terminal :). So, this little flag disables the very annoying behaviour of
 # Ctrl-S freezing the terminal, requiring Ctrl-Q to unfreeze. So yay for things
 # being more modern!
-stty -ixon
+[[ $- == *i* ]] && stty -ixon
 
 if [ "$TERM" != "dumb" ]; then
     [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
