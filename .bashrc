@@ -112,7 +112,7 @@ alias netrestart="sudo service networking restart"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
-alias less="less -N" # Less now shows line numbers on the left hand side.
+alias lesn="less -N" # Less now shows line numbers on the left hand side.
 alias gca="git commit -am" # Makes commits faster!
 #alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "\$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
 alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd \$1 && git pull; echo -ne \ : \$1 \\\n' _" # Automatically "pull" all github repos in the current users home directory
