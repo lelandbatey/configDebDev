@@ -721,9 +721,28 @@ Here's what the output of this looks like:
 
 Notes:
 
-> THe above output is from a relatively recent install, and so it hasn't quite had time to populate yet.
+> The above output is from a relatively recent install, and so it hasn't quite had time to populate yet.
 >
 > Also, the improved command comes from [this StackOverflow answer.](http://stackoverflow.com/a/6355236/) 
+
+
+
+### High Resolution Screen Shots of Web Pages
+
+
+To make really high DPI screenshots, you can use [PhantomJS](http://phantomjs.org) with the [rasterize.js](https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js). When used, it'll create extremely high-dpi images of the website in question.
+
+I've used this to create really high resolution renders of some of the amazing visualizations made by [Mike Bostock](http://bost.ocks.org/mike/), the inventor of D3.js. He has a series of really impressive visualizations which he's made public on [bl.ocks.org/mbostock](http://bl.ocks.org/mbostock), many of which I wanted to use as desktop backgrounds.
+
+Here's an example of how I'd use `rasterize.js` to create a high resolution render of a Mike Bostock visualization:
+
+    phantomjs rasterize.js "http://bl.ocks.org/mbostock/raw/8460692/" new_york_population_density.png "" 15
+
+This requires that `rasterize.js` is in our current folder, and writes the image to our current folder. The size of the image to create is modified via the `15` on the end, which is telling `rasterize.js` to render the image as 15x its standard resolution which on my copy of is approximately `1280x720`, for a total resolution of `14520 x 10809`. It's not exactly 15x larger, so you may need to mess with the zoom to get an image that's the perfect size for you.
+
+Also, it should be noted that Mike Bostock has asked that people not share renders of his visualizations online; I know this because [I asked him, and he's said not to do this.](https://twitter.com/mbostock/status/482592269267369984) ([mirror1](http://i.imgur.com/d0XpjTR.png) [mirror2](http://nacr.us/media/pics/proof.png)). So please, don't share images from Mike Bostock, and if you're rendering other people's work, always ask permission.
+
+
 
 
 
