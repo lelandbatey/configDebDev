@@ -726,7 +726,6 @@ Notes:
 > Also, the improved command comes from [this StackOverflow answer.](http://stackoverflow.com/a/6355236/) 
 
 
-
 ### High Resolution Screen Shots of Web Pages
 
 
@@ -744,5 +743,60 @@ Also, it should be noted that Mike Bostock has asked that people not share rende
 
 
 
+### Using X11 Forwarding
 
+#### 1. Configure Host Server
+
+
+##### SSH Configuration
+
+SSH must be configured to allow X11 forwarding. To do this, add the following line to your `~/.ssh/config` file (create this file if it doesn't already exits):
+
+    Host *
+        ForwardX11 yes
+
+
+##### Installing X11 and Associated Libraries
+
+You need to install X11, but there's also some other libraries that need installing (like GTK). Here's the command I use to install them:
+
+    sudo apt-get update
+    sudo apt-get install x11-apps libgtk2.0-0
+
+This will install x11 (as a requirement for x11-apps) and the GTK2 runtimes.
+
+#### 2. Configure the Client
+
+It should be noted that I am doing this from a Windows machine running X under Cygwin. There may be differences between my instructions and the requirements for other setups.
+
+##### Make Sure X is Installed
+
+On Unix/Linux systems, this isn't much of a worry since if you're currently using any kind of GUI you probably have X installed. However, if you're on some other kind of system, you may not have X installed (like Cygwin).
+
+To install X in Cygwin, install the package `xinit` via the Cygwin setup.
+
+On Ubuntu you can install X by installing the package `x11-apps` which will install the necessary X libraries as dependencies.
+
+##### Set `Display`
+
+For terminals that are not launched from X, you may need to set the `DISPLAY` variable. 
+
+You can check if `DISPLAY` is set with the command `echo $DISPLAY`. If it prints a result like `:0` then `DISPLAY` is set. If it prints nothing, you need to set `DISPLAY` manually.
+
+[As suggested here,](http://x.cygwin.com/docs/ug/using-remote-apps.html) set the `DISPLAY` environment variable with the following command:
+
+    $ export DISPLAY=:0.0
+
+
+##### Connect and Start Application
+
+A normal SSH connection will probably make X11 forwarding very slow; at least it was extremely laggy for me. However, you can make SSH faster and more responsive by changing the encryption method to a faster one. Based on [recommendations](http://www.cyberciti.biz/faq/speeding-up-ssh-x11-forwarding-with-unix-osx-linux-bsd/) I use this SSH command to keep X11 forwarding fast:
+
+    ssh -X -C -c blowfish-cbc,arcfour username@host
+
+Once logged into the remote host, you just launch X apps from the command line:
+
+    xclock
+
+This should bring up the classic example clock X application.
 
