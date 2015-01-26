@@ -800,3 +800,20 @@ Once logged into the remote host, you just launch X apps from the command line:
 
 This should bring up the classic example clock X application.
 
+### Compiling D programs with `std.net.curl`
+
+
+On Ubuntu 14.04, while trying to compile a very simple program:
+
+    import std.stdio, std.net.curl;
+    void main(){
+            writeln(get("http://example.com/"));
+    }
+
+Compile with:
+
+    dmd download_test.d
+
+It would fail with a ton of linker errors. The fix is to modify the order of linking to various libraries, as per [this](http://stackoverflow.com/a/14121794) stackoverflow answer:
+
+    dmd download_test.d -L-lphobos2 -L-lcurl
