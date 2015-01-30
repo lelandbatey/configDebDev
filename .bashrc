@@ -16,6 +16,20 @@
 # being more modern!
 [[ $- == *i* ]] && stty -ixon
 
+# Append to the history file instead of over-writing it. Normally, the history
+# file is read into memory by the shell, then overwritten when the shell exits.
+# This can lead to a loss of history with multiple terminals open. Instead, this
+# ensures the history will be appended-to, stopping loss of history.
+shopt -s histappend
+
+# Sets the term variable to be 256colors if the terminal would otherwise just
+# call itself xterm. Done since MinTTY defaults to a TERM of 'xterm', which
+# causes screen not to work with 256 colors.
+case "$TERM" in
+    xterm) export TERM="$TERM-256color";;
+esac
+
+
 if [ "$TERM" != "dumb" ]; then
     [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
     [ -e "$DIR_COLORS" ] || DIR_COLORS=""
@@ -167,6 +181,8 @@ function azbuild(){
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=50000
+
+# Changes the prompt to have striking colors and a nice layout.
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
 
 
