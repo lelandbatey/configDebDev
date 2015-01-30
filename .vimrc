@@ -7,13 +7,23 @@ call pathogen#helptags()
 :set t_AF=[38;5;%dm
 :colorscheme Monokai-Refined
 :syntax on
-:set expandtab
+:set noexpandtab
 :set tabstop=4
 :set autoindent
 :set smartindent
 :set ruler
 " The following sets up a very permissive backspace command, so that you can use backspace pretty much anywhere.
 :set backspace=indent,eol,start
+
+" Creates a nice way to make invisible characters (newline, spaces, etc) visible.
+" Shortcut to rapidly toggle `set list`. Default is '\-l'
+nmap <leader>l :set list!<CR>
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+
+" Sets the number of columns to be indented by the '<<' operators. Without this,
+" the `shift-tab` bindings below will un-indent too much 
+:set shiftwidth=4
 " The following 2 *map statements allow for 'inverse tabbing' using 'shift-tab'
 " for insert mode
 imap <S-Tab> <Esc><<i
