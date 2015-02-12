@@ -6,6 +6,18 @@
 # 
 # Leland Batey
 
+# Setting flags for different versions of Unix. Since I could use this on OS
+# X, Cygwin, Ubuntu, Fedora, Freebsd, or more, we need to account for the
+# different ways to enable behaviours.
+NIXTYPE="$(uname)"
+
+case "$NIXTYPE" in
+    "Darwin" )
+        COLORFLAG="-G"
+        ;;
+esac
+
+
 # The below is a very ancient holdover from the classic TTY days. It used to be
 # that you could pause the presentation of characters on a TTY by using a
 # control key (Ctrl-S) so that the person using it could read things before they
@@ -14,7 +26,9 @@
 # terminal :). So, this little flag disables the very annoying behaviour of
 # Ctrl-S freezing the terminal, requiring Ctrl-Q to unfreeze. So yay for things
 # being more modern!
-[[ $- == *i* ]] && stty -ixon
+if [[ $- == *i* ]]; then
+    stty -ixon
+fi
 
 # Append to the history file instead of over-writing it. Normally, the history
 # file is read into memory by the shell, then overwritten when the shell exits.
@@ -31,15 +45,15 @@ esac
 
 
 if [ "$TERM" != "dumb" ]; then
-    [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
-    [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    eval "`dircolors -b $DIR_COLORS`"
-    alias ls='ls --color=auto'
+    # [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
+    # [ -e "$DIR_COLORS" ] || DIR_COLORS=""
+    # eval "`dircolors -b $DIR_COLORS`"
+    alias ls="ls $COLORFLAG"
     #alias dir='ls --color=auto --format=vertical'
     #alias vdir='ls --color=auto --format=long'
 fi
 
-if [ -f ~/.dir_colors ]; then
+if [[ -f ~/.dir_colors && -n "$(which dircolors)" ]]; then
     eval `dircolors ~/.dir_colors`
 fi
 
@@ -112,28 +126,34 @@ then
 fi
 
 # These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
-alias ls="ls --color=auto --group-directories-first"
+#alias ls="ls --color=auto --group-directories-first"
 alias la="ls -a" #all files
 # Removed for better alternative below  alias ll="ls -l" #long listing format
-alias lx="ls -x" #grouped by file extension
-
-alias ld="ls -d */" # Lists only folders
-alias la="ls -a" #lists all files
-
+# Lists all files in verbose form with human readable numbers/permissions.
+alias lk="ls -alh" 
 alias ll="ls -lhL" # lists files in long form, and in a more human readble 
                    # format. Additionally, the capital L makes `ls` regard
                    # symlinks as normal directories so they'd get grouped
                    # first as well.\
-alias lo="ll --sort=extension" #Lists in nice human readble form, sorts directories first, then groups files with similar formats together.
-alias lk="ls -alh" #listals all files in verbose form with human readable numbers/permissions.
+
+# The following aliases do not work on OS X.
+# Grouped by file extension.
+alias lx="ls -x"
+# Lists only folders
+alias ld="ls -d */"
+# Lists in nice human readble form, sorts directories first, then groups files with similar formats together.
+alias lo="ll --sort=extension"
+
 alias netrestart="sudo service networking restart"
 
 alias lguf="git ls-files --other --exclude-standard" # Lists all untracked files in a repository (alias name is a bit verbose)'
 alias grpax="ps aux | grep" # Shortcut for searching for running processes
 alias lesn="less -N" # Less now shows line numbers on the left hand side.
 alias gca="git commit -am" # Makes commits faster!
-#alias gpa="find ~/ -name ".git" -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd "\$1" && git pull' _" # Automatically "pull" all github repos in the current users home directory
-alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd \$1 && git pull; echo -ne \ : \$1 \\\n' _" # Automatically "pull" all github repos in the current users home directory
+
+# Automatically "pull" all github repos in the current users home directory
+alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -c 'cd \$1 && git pull; echo -ne \ : \$1 \\\n' _"
+
 alias gshow="git show --color --pretty=format:%b" # Pretty-printing of a commit in git
 
 alias vnv="source ~/bin/venv/bin/activate"
@@ -185,8 +205,16 @@ HISTSIZE=50000
 # Changes the prompt to have striking colors and a nice layout.
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
 
+if [[ -n "$(which rvm)" ]]; then
+    # Add RVM to PATH for scripting
+    PATH=$PATH:$HOME/.rvm/bin
+fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Does rbenv specific setup
+if [[ -n "$(which rbenv)" ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
 
 
 # If terminal launched inside X, the DISPLAY variable will already be set.
