@@ -11,9 +11,19 @@
 # different ways to enable behaviours.
 NIXTYPE="$(uname)"
 
+# Default COLORFLAG. Set's as this for unknown systems.
+COLORFLAG="--color=auto"
 case "$NIXTYPE" in
     "Darwin" )
         COLORFLAG="-G"
+        ;;
+
+    "Linux" )
+        COLORFLAG="--color=auto"
+        ;;
+
+    "CYGWIN*" )
+        COLORFLAG="--color=auto"
         ;;
 esac
 
@@ -45,12 +55,7 @@ esac
 
 
 if [ "$TERM" != "dumb" ]; then
-    # [ -e "$HOME/.dir_colors" ] && DIR_COLORS="$HOME/.dir_colors"
-    # [ -e "$DIR_COLORS" ] || DIR_COLORS=""
-    # eval "`dircolors -b $DIR_COLORS`"
     alias ls="ls $COLORFLAG"
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
 fi
 
 if [[ -f ~/.dir_colors && -n "$(which dircolors)" ]]; then
