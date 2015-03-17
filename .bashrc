@@ -19,11 +19,11 @@ case "$NIXTYPE" in
         ;;
 
     "Linux" )
-        COLORFLAG="--color=auto"
+        COLORFLAG="--color=auto --group-directories-first"
         ;;
 
     "CYGWIN*" )
-        COLORFLAG="--color=auto"
+        COLORFLAG="--color=auto --group-directories-first"
         ;;
 esac
 
