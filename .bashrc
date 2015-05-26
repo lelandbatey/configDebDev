@@ -94,7 +94,7 @@ then
     ### Starts ssh-agent and loads all ssh keys as needed ###
     # This excellent script was copied from http://rocksolidwebdesign.com/notes-and-fixes/ubuntu-server-ssh-agent/
     # Check to see if SSH Agent is already running
-    agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}')"
+    agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}' | head -n 1)"
      
     # If the agent is not running (pid is zero length string)
     if [[ -z "$agent_pid" ]]; then

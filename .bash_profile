@@ -21,7 +21,7 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 if [ -d "$HOME/bin" ]; then 
-    PATH=$PATH:$HOME/bin
+    PATH=$HOME/bin:$PATH
 fi
 
 if [ -d "$HOME/.cabal/bin" ]; then
