@@ -221,6 +221,10 @@ if [[ -n "$(which rbenv)" ]]; then
     eval "$(rbenv init -)"
 fi
 
+# Sources nvm if it's installed.
+if [ -d "$HOME/.nvm/" ]; then
+	source "$HOME/.nvm/nvm.sh"
+fi
 
 # If terminal launched inside X, the DISPLAY variable will already be set.
 # However, if launched without X (such as in CYGWIN) then DISPLAY will not be
