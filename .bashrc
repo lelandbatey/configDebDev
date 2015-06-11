@@ -221,6 +221,13 @@ if [[ -n "$(which rbenv)" ]]; then
     eval "$(rbenv init -)"
 fi
 
+# Adds android things to path if appropriate
+if [[ -d "$HOME/bin/android-sdk-linux/" ]]; then
+	export ANDROID_HOME="$HOME/bin/android-sdk-linux/"
+	export PATH=$PATH:$ANDROID_HOME/tools
+	export PATH=$PATH:$ANDROID_HOME/platform-tools
+fi
+
 
 # If terminal launched inside X, the DISPLAY variable will already be set.
 # However, if launched without X (such as in CYGWIN) then DISPLAY will not be
