@@ -94,7 +94,7 @@ then
     ### Starts ssh-agent and loads all ssh keys as needed ###
     # This excellent script was copied from http://rocksolidwebdesign.com/notes-and-fixes/ubuntu-server-ssh-agent/
     # Check to see if SSH Agent is already running
-    agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}')"
+    agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}' | head -n 1)"
      
     # If the agent is not running (pid is zero length string)
     if [[ -z "$agent_pid" ]]; then
@@ -228,6 +228,10 @@ if [[ -d "$HOME/bin/android-sdk-linux/" ]]; then
 	export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
+# Sources nvm if it's installed.
+if [ -d "$HOME/.nvm/" ]; then
+	source "$HOME/.nvm/nvm.sh"
+fi
 
 # If terminal launched inside X, the DISPLAY variable will already be set.
 # However, if launched without X (such as in CYGWIN) then DISPLAY will not be
