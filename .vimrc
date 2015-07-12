@@ -62,9 +62,9 @@ set statusline+=\ %P
 " Set total number of available colors (forcefully) to 256
 set t_Co=256
 " Set the background color
-set t_AB=m
+set t_AB=[48;5;%dm
 " Set the foreground color
-set t_AF=m
+set t_AF=[38;5;%dm
 
 " Lets the backspace key delete things it otherwise can't
 set backspace=indent,eol,start
