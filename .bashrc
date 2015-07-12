@@ -210,13 +210,13 @@ HISTSIZE=50000
 # Changes the prompt to have striking colors and a nice layout.
 export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
 
-if [[ -n "$(which rvm)" ]]; then
+if hash rvm 2>/dev/null; then
     # Add RVM to PATH for scripting
     PATH=$PATH:$HOME/.rvm/bin
 fi
 
 # Does rbenv specific setup
-if [[ -n "$(which rbenv)" ]]; then
+if hash rbenv 2>/dev/null; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 fi
