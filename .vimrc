@@ -35,6 +35,9 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 "
 
+" Turn on syntax highlighting
+syntax on
+
 " Tab characters '\t' are represented as 4 spaces, but they are still inserted
 " as single '\t' characters
 set tabstop=4
