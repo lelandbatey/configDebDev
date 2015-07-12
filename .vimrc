@@ -15,6 +15,10 @@ Plugin 'gmarik/Vundle.vim'
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 
+" delimiMate -- Enables SublimeText-like autocompletion for quotes, brackets, etc.
+Plugin 'Raimondi/delimitMate'
+
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -78,4 +82,6 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Turn on delimiMate
+let delimitMate_expand_cr = 1
 
