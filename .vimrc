@@ -85,6 +85,16 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" Create map to edit vimrc
+map <leader>v :sp ~/.vimrc<enter>G
+
+" Inserting newlines in normal mode without moving your cursor, from here:
+" http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
+" Bind <Shift-Enter> to insert a line below you without moving your cursor
+nmap <leader><Enter> o<Esc>k
+
 " Turn on delimiMate
 let delimitMate_expand_cr = 1
 
+" Fix filetype associations for Markdown.
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
