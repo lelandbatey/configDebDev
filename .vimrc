@@ -98,12 +98,20 @@ colorscheme monokai
 
 " Map space to leader
 map <space> <leader>
+" For compatability, map double space to double leader.
+map <space><space> <leader><leader>
 
 " Maps `ctrl+movementKey` to allow you to move between vim windows.
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
+
+" Fast resizing of windows
+nnoremap <silent> <leader><leader>h :exe "vertical resize" . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <leader><leader>l :exe "vertical resize" . (winwidth(0) * 2/3)<CR>
+nnoremap <silent> <leader><leader>j :exe "resize" . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <leader><leader>k :exe "resize" . (winheight(0) * 2/3)<CR>
 
 " Create map to edit vimrc
 map <leader>v :sp ~/.vimrc<enter>G
