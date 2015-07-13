@@ -18,6 +18,8 @@ Plugin 'tpope/vim-fugitive'
 " delimiMate -- Enables SublimeText-like autocompletion for quotes, brackets, etc.
 Plugin 'Raimondi/delimitMate'
 
+" Monokai colorscheme
+Plugin 'sickill/vim-monokai'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,6 +36,9 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
+
+" Turn on delimiMate
+let delimitMate_expand_cr = 1
 
 " Turn on syntax highlighting
 syntax on
@@ -77,7 +82,10 @@ set t_AF=[38;5;%dm
 set backspace=indent,eol,start
 
 " Set the colorscheme
-colorscheme Monokai-Refined
+colorscheme monokai
+
+" Map space to leader
+map <space> <leader>
 
 " Maps `ctrl+movementKey` to allow you to move between vim windows.
 map <c-j> <c-w>j
@@ -88,13 +96,26 @@ map <c-h> <c-w>h
 " Create map to edit vimrc
 map <leader>v :sp ~/.vimrc<enter>G
 
+" Function to source `vimrc` again. Originally from here:
+" https://github.com/adamryman/dotfiles/blob/c794063815e674c956bc2450c3bafa9067722016/home/adamryman/.vimrc#L124
+if !exists("*SourceAgain")
+	function! SourceAgain()
+		execute "source ~/.vimrc"
+		execute "set filetype=" . &filetype
+	endfunction
+endif
+:map <leader>s :call SourceAgain()<enter>
+
+" Quick opening tabs
+map <leader>t :tabe<space>
+
+" Toggleing viewing whitespace
+nmap <leader>w :set list!<enter>
+
 " Inserting newlines in normal mode without moving your cursor, from here:
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 " Bind <Shift-Enter> to insert a line below you without moving your cursor
 nmap <leader><Enter> o<Esc>k
-
-" Turn on delimiMate
-let delimitMate_expand_cr = 1
 
 " Fix filetype associations for Markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
