@@ -405,7 +405,7 @@ That's all for my favorite find commands right now. I'll add more later if need 
 
 I found that there are actually a pretty decent amount of programs that don't really play well with traditional Unix pipes. In fact, that reason is why I ended up having to create Veiled, which uses pseudo-terminals to totally get in front of the input/output of various programs and control them, even if they don't want to play nice.
 
-However, what if you just need to script somthing? For example, I found that the first time the `hldsupdate` program is run on *nix is doesn't play well and will send a force close *directly* to it's controlling terminal, circumventing any terminals. This is the way I found to get around this:
+However, what if you just need to script somthing? For example, I found that the first time the `hldsupdate` program is run on *nix is doesn't play well and will send a force close *directly* to it's controlling terminal, circumventing any terminals. This is the way I found to get around this*:
 
     ./yourProgram || true
 
@@ -522,6 +522,14 @@ With Vimperator being like Vim, we're able to rebind keys super easily. Here are
 > By default, when you use the `f` and `F` keys to show hints on the page, Vimperator assigns numbers to those hints. However, I want it to use keys that are on my home row for hints, because then it's easier to open links and such. The characters used for hints are controlled via an option called `hintchars`, and interestingly, Vimperator already has a sort of 'preset' for this, which it labels as "Smart order." To set this hinting, use the following:
 
 >		set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+## Changing	GUI
+
+> With Vimperator, it's almost beneficial to not have any ui other than the tabs and the command bar at the bottom. To disable all but the tabs at the top, enter the following:
+
+>		set toolbars=nobookmarks,nonavigation
+>		# To disable, use `set toolbars=all` to re-enable all toolbars
+
 
 # Shared Access to Files on Linux Via FTP
 
