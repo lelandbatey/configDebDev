@@ -10,17 +10,17 @@ Author: Leland Batey
 This help file is going to be primarilly written using markdown as an organizational tool. It won't be rendered markdown, but since markdown is a nice and human readable format, it makes this easier.
 
 
-### How to reconnect to an interupted screen session. Useful for when a terminal quits on you.
+# How to reconnect to an interupted screen session. Useful for when a terminal quits on you.
 - use "screen -D" to force a disconnect, then reconnect normally (using "screen -r")
 
-### Alternate way to add network interfaces for Ubuntu
+# Alternate way to add network interfaces for Ubuntu
 There is some kind of bug in Ubuntu, you can't add interfaces very well. To add and interface, use this command:
 
 	sudo ifconfig eth0:0 199.21.222.23 netmask 255.255.255.240 up
 
 substitute different values as needed, but that is the basic way it should go.
 
-### Connecting to the RaspberyPi with RaspBMC installed
+# Connecting to the RaspberyPi with RaspBMC installed
 Connection details:
 
 	username : pi
@@ -29,14 +29,14 @@ Connection details:
 Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
-### Installing Easy_Install with Python3 on Ubuntu
+# Installing Easy_Install with Python3 on Ubuntu
 Run `"sudo apt-get install python3-setuptools"`
 From there, you can install Pip with:
 
 	"python3 -m easy_install pip"
 
-### Installing Xmobar with DWM on Ubuntu Server
-Installing Xmobar normally seems to fail with the error: 
+# Installing Xmobar with DWM on Ubuntu Server
+Installing Xmobar normally seems to fail with the error:
 
 	checking for X11/extensions/Xinerama.h... yes
 	checking X11/extensions/Xrandr.h usability... no
@@ -54,7 +54,7 @@ The problem is that there aren't certain Xrandr development files installed. To 
 
 This will install the appropriate files for Xmobar to be installed.
 
-### Using Irssi Linux IRC Client
+# Using Irssi Linux IRC Client
 Irssi operates in a way similar to screen/xmonad in that it creates many virtual "windows" to manage things. Additionally, the switching of windows is done using a "modkey" (is generally ALT, although the ESC key will also always work).
 
 > A great guide on using IRSSI can be found at http://carina.org.uk/screenirssi.shtml
@@ -78,15 +78,15 @@ The following is the basics on using ssh keys with a server.
 
 It is important to note that on the client machine, the name of the public/private key pair needs to be "rsa/dsa_id(.pub)" to work by default. Otherwise, you have to specify if something is using an alternateley named key pair.
 
-### Using "Sets" in Python
+# Using "Sets" in Python
 In Python, a "set" is nearly exactly like a list, however it is not ordered. That means that referencing anything via placement (i.e. myList[0]) will not work. However, checking the membership of an item in a set is much much faster than checking the membership of an item in a list. For this reason, it is worthwhile to convert large lists to sets before checking for membership in one of those lists/sets.
 
 > (I should note that I ran across this tip while working on my TorrentTxt project. The web page that started this all is: http://stackoverflow.com/questions/10005367/python-set-difference )
 
-### Using Virtual Environments (virtualenv) in Python
+# Using Virtual Environments (virtualenv) in Python
 So virtualenvs seem pretty awesome. However, something to note is that they cannot be moved. That means that if they move at all, they break. So if you rename a parent directory, then they're broken. Something to be aware of.
 
-### Stopping Access/Hotlinking Using .Htaccess by Checking the Referer
+# Stopping Access/Hotlinking Using .Htaccess by Checking the Referer
 To restrict access according to a websites referer, this is how the .htaccess needs to look like this:
 
     RewriteEngine On
@@ -106,7 +106,7 @@ Mod_rewrite works by comparing the incoming referer against the specified (regul
 
 It then applies the rule, which in this case is to deny access.
 
-### Deleting Old Kernels from a Full /boot partition
+# Deleting Old Kernels from a Full /boot partition
 I have found that on my Ubuntu servers I frequently run out of space on my /boot partition. Normally you'd empty that out by using the "sudo apt-get autoremove" command, but it will fail because that partition is full and that partition is used as a temporary extraction point by apt-get. Here are the steps involved:
 
 > Use the command "dpkg -l | grep linux-image" to show a list of all installed linux kernels
@@ -117,7 +117,7 @@ I have found that on my Ubuntu servers I frequently run out of space on my /boot
 
 >> I recommend only getting rid of old kernels and only just enough to allow you to run "sudo apt-get autoremove"
 
-### Using Bootstrap Javascript and Jquery
+# Using Bootstrap Javascript and Jquery
 I had gone into this trying to set up a simple dropdown for the frontpage of adrenl.in. However, I could not for the life of me figure out why the bootstrap javascript wasn't working. After tons of trial and error, this is what I eventually learned:
 
     1. Placement of javascript "&lt;script&gt;" notifications matters. These
@@ -130,7 +130,7 @@ I had gone into this trying to set up a simple dropdown for the frontpage of adr
 
 Once I'd done both of those, everything worked great!
 
-### Converting video's to animated GIF's ###
+# Converting video's to animated GIF's
 So, converting a video to an animated gif is semi-easy, but mostly not. Here's how it goes:
 
 Make sure you have the following tools install:
@@ -218,7 +218,7 @@ In the end, this is what the whole script looks like:
 
 And that's how you convert a video to a .gif file!
 
-### Further Details on Converting Video to .GIF ###
+## Further Details on Converting Video to .GIF
 
 So, after *EVEN MOAR* messing around with .gifs and videos, I have found a nice and easy way to also do reverse .gifs! This script needs to be run between the `ffmpeg` step and the `convert` step:
 
@@ -235,7 +235,7 @@ So, after *EVEN MOAR* messing around with .gifs and videos, I have found a nice 
 
 Btw, [this is where I found this script](http://stackoverflow.com/questions/7136222/bash-script-to-copy-numbered-files-in-reverse-order) though I've done a lot of adapting it to my needs.
 
-#### Anyway, here's an explanation of what the above is doing:
+## Anyway, here's an explanation of what the above is doing:
 
 Here's an abstract look at what it acomplishes.
 
@@ -258,17 +258,17 @@ Here's an abstract look at what it acomplishes.
         out0003.png
         out0004.png
         out0005.png
-        out0006.png <- Is actually a renamed out0005.png 
-        out0007.png <- renamed out0004.png 
-        out0008.png <- renamed out0003.png 
-        out0009.png <- etc 
-        out0010.png 
+        out0006.png <- Is actually a renamed out0005.png
+        out0007.png <- renamed out0004.png
+        out0008.png <- renamed out0003.png
+        out0009.png <- etc
+        out0010.png
 
 What this does is make the .gif go forwards, then backwards (then it loops,
 continuing to go backwards then forwards). So you get a nice smooth effect.
 Sometimes it's nice!
 
-### Resize .gif while making this conversion
+## Resize .gif while making this conversion
 
 You can also resize the gif that you create automatically. Like so:
 
@@ -276,11 +276,11 @@ You can also resize the gif that you create automatically. Like so:
 
 This'll resize it to %50 of it's previous size, maintaining the aspect ratio.
 
-### List Fonts in Ubuntu
+# List Fonts in Ubuntu
 
 If you want to list fonts in Ubuntu, use the command `fc-list` which will list all the fonts on your system. Then use `grep` to check for certain versions.
 
-### Xmonad, Xresources, and Fonts
+# Xmonad, Xresources, and Fonts
 
 Xresources can be an absolute pain (they were for me). So, this a bit of help:
 
@@ -292,7 +292,7 @@ Xresources can be an absolute pain (they were for me). So, this a bit of help:
 
 > So, thats the most basic part of fonts in urxvt specified via Xresources.
 
-### Fixing ~/.ssh/ Permissions in Cygwin
+# Fixing ~/.ssh/ Permissions in Cygwin
 
 In Cygwin on Windows I found that I could not set the permissions of my `~/.ssh/ folder` to be 0600, as is required for ssh to allow you to use keys. The symptom I had was that I no matter what I did, it always modfied the owner **and** the group permissions for a file and folder. So if I entered `chmod 0600 id_rsa` it would instead set the permissions of `id_rsa` to 0660 instead of 0600 (this is bad because it gives the owner of the file **and** anyone in the same group as the owner read access to this key file. Which means anyone who's in the same group as the owner could use it to log into a remote system).
 
@@ -302,7 +302,7 @@ After much Googling, I found that the problem was the setting of a `None` group 
 
 This added all the files in the current folder to the user-group called "`Users`". From there, I was able to set the permissions normally.
 
-### Jquery Parameters - Odd Behaviour Explained
+# Jquery Parameters - Odd Behaviour Explained
 
 Something that I noticed in the Jquery documentation was that there were odd inconsistencies with the parameters being passed to various functions. For example, according to the Jquery documentation, the method `$.getJSON` takes these arguments: `jQuery.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )`
 
@@ -327,7 +327,7 @@ The answer is: no, that's valid in Jquery. I searched for quite a while, and [I 
 
 > `$.getJSON` has 3 different variables, and most importantly, *each variable is of a differnt type.* What this means is that if you only pass two variables (a string and a function) then Jquery can match up the variables based on type. It's a pretty smart system.
 
-### Gemfiles, RVM, and Ruby
+# Gemfiles, RVM, and Ruby
 
 Alright, the following is a rant that I wrote in my .bash_profile, after just trying to **install** RVM:
     
@@ -352,7 +352,7 @@ RVM though does no such thing. Everything goes in one place, your `rvm` folder w
 
 Alright, ranting over. I have a feeling in about two weeks I'm going to look back at myself and say how stupid this is. Oh well :)
 
-#### Bash Color Characters / Escape Sequences
+# Bash Color Characters / Escape Sequences
 
 In messing with Ruby and RVM, I found that I wanted to use a more modified terminal prompt. I wanted color, and most of what I actually write to be on a new line. This is what I originally created:
 
@@ -366,7 +366,7 @@ After some searching I learned that I'd made a classic newbie mistake: you need 
 
 Problem solved!
 
-### Finding files in *Nix
+# Finding files in *Nix
 
 I figured I'd finally take the time to actually write down some of the great commands I've found that you can use to find and manipulate files en-mass!
 
@@ -401,7 +401,7 @@ So that's that explanation. Here's another command I found really useful:
 
 That's all for my favorite find commands right now. I'll add more later if need be.
 
-### Dealing with programs that don't play well with \*nix pipes
+# Dealing with programs that don't play well with \*nix pipes
 
 I found that there are actually a pretty decent amount of programs that don't really play well with traditional Unix pipes. In fact, that reason is why I ended up having to create Veiled, which uses pseudo-terminals to totally get in front of the input/output of various programs and control them, even if they don't want to play nice.
 
@@ -412,13 +412,16 @@ However, what if you just need to script somthing? For example, I found that the
 This puts a logical or there, and is the equivenlent of saying `some_thing_which_is_always_false OR true` and thus it will always be able to continue. Huzzah!
 
 
-### Various things to remember about Vim (and all of your plugins for it)
+# Various things to remember about Vim (and all of your plugins for it)
 
 *Vanilla Vim Stuff:*
 
 > `F - <some character>`: Will jump the the next-previous instance of the entered character on the line you are on.
 
 > `f - <some character>`: Will jump to the next-forward instance of the entered character on the line you are on.
+
+> `i - <some character>`: stands for 'inside', where some character is the delimiter. So, if you where near a piece of text surrounded by quotes, and you wanted to delete everything inside those quotes and start writing your own thing, you'd type `ci'` and that would **c**hange what's **i**nside the quotes.
+
 
 > **Text Formatting:**
 
@@ -446,7 +449,29 @@ This puts a logical or there, and is the equivenlent of saying `some_thing_which
 
 >> Close current window: `Ctrl-w-q`
 
-#### Vim, Buffers, and Windows: What?
+## Tabs
+
+For more rigorous reference on tabs, see the `tab-page` section (`:help tab-page`).
+
+> Open a new empty tab: `:tabe`
+
+> Open existing file in new tab: `:tabe {filepath}`
+
+> Move to next tab: `gt`, `<C-PageDown>`, `:tabn`
+
+> Move to previous tab: `gT`, `<C-PageUp>`, `:tabp`
+
+> Close a tab: close all windows within that tab (e.g. `:q`)
+
+## Mapping Buttons
+
+Something I like in Sublime Text is it's ability to create temporary buffers that I can use as scratch spaces to do work. I think I can get that same functionality in vim, via a couple of approaches:
+
+> I can create a new empty tab with `:tabe`
+
+> I can create a new split window with an un-named file in it with `:new`
+
+## Vim, Buffers, and Windows: What?
 
 I'll attempt here to record how buffers and windows work in Vim, hopefully outlining the correct "mental model" for how this operates.
 
@@ -462,8 +487,43 @@ Having said that, the next logical topic is: buffers. In Vim, buffers are just t
 
 > This plugin will look up the built in documentation for various python modules. By built in, I mean that it can only access documentation that has been installed into the `man pages` of a system. Generally, that rather centralized storage of info can only be added to by a very structured installer like pip, apt-get, etc. So use this for big important stuff, but not for your own work.
 
+## Settings
 
-### Shared Access to Files on Linux Via FTP
+> By default, vim's handling for the `.md` file extension is to [interpret it as a Modula2 file.](https://github.com/tpope/vim-markdown) To fix this, we add the following to our `.vimrc` file:
+>
+>		autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+
+# Vimperator in FireFox
+
+Vim is awesome, so Vim in my webbrowser is more awesome.
+
+## Creating a `vimperatorrc` file
+
+On a fresh install, you can create a `vimperatorrc` file with the command `mkvimperatorrc`, which creates (if it doesn't already exist) your `vimperatorrc` file.
+
+The location of the `vimperatorrc` file differs across platforms:
+
+ > On Windows, the `vimperatorrc` file is generally located in `C:\Users\{username}\_vimperatorrc` (for Windows Vista and newer). Note that the filename begins with and underscore and not with a period.
+
+ > On Linux, the `vimperatorrc` file is in `$HOME/.vimperatorrc`
+
+## Rebinding Keys
+
+With Vimperator being like Vim, we're able to rebind keys super easily. Here are a couple I really like:
+
+**Note:** In vimperator, if you change settings in your session and would like to persist those changes into your `vimperatorrc`, you can use the `mkvimperatorrc` command again (you will need to append an exclamation mark at the of the `mkvimperatorrc` command to get it to overwrite your `vimperatorrc` file if it already exists).
+
+> I really like the idea of using shift+{movementkey} to switch between tabs. Specifically, I'd like `Shift-j` to move to the previous tab, and `Shift-k` to move to the next tab. Here are the map commands you'd use to set this:
+>
+>		map J <C-p>
+>		map K <C-n>
+
+> By default, when you use the `f` and `F` keys to show hints on the page, Vimperator assigns numbers to those hints. However, I want it to use keys that are on my home row for hints, because then it's easier to open links and such. The characters used for hints are controlled via an option called `hintchars`, and interestingly, Vimperator already has a sort of 'preset' for this, which it labels as "Smart order." To set this hinting, use the following:
+
+>		set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+# Shared Access to Files on Linux Via FTP
 
 In many cases I've needed to set up a folder that can be accessed by multiple users on Linux, something I find I do often enough to warrant documentation:
 
@@ -485,7 +545,7 @@ In many cases I've needed to set up a folder that can be accessed by multiple us
     * **Edit the vsftp configuration file to allow files to be uploaded!** I often forget this step, which is regrettable since it's so important.
         * Edit the `/etc/vsftpd.conf` file, and uncomment the line that says `write_enable=YES`.
 
-### Installing Virtualbox Guest Additions in Ubuntu 13.04
+# Installing Virtualbox Guest Additions in Ubuntu 13.04
 
 Many times before, I had problems installing virtualbox guest additions in Ubuntu. Things'd often just not work, and I'd not really know why.
 
@@ -499,22 +559,22 @@ Basically, you need to install the appropriate kernel header files, as well as t
 Although I found that just doing `sudo apt-get install linux-headers-generic` worked just fine for me as well.
 
 
-### Installing Xmonad with XFCE4
+# Installing Xmonad with XFCE4
 
 I'm part way through setting up Xmonad to work with Xfce under ubuntu 13.04, and I figure I should probably start recording this whole process:
 
-#### Step one, install
+## Step one, install
 
 Download and install Xmonad using `sudo apt-get install xmonad`.
 
-#### Step two, configure xmonad
+## Step two, configure xmonad
 
 Configure xmonad to work properly by editing the `xmonad.hs` file in `~/.xmonad`. I have mine set to this now:
 
 import XMonad.Config.Xfce
 main = xmonad xfceConfig
        { terminal = "gnome-terminal"
-       , modMask = mod1Mask -- sets to alt key 
+       , modMask = mod1Mask -- sets to alt key
        , borderWidth = 1 --was "3"
        , focusedBorderColor = "#4099FF"
        , normalBorderColor = "#474747"
@@ -523,7 +583,7 @@ main = xmonad xfceConfig
 See this page for additional info on doing this properly: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE
 
 
-#### Step three, set up `dmenu`.
+## Step three, set up `dmenu`.
 
 I really need dmenu to function, so I've chosen to install it in this installation. I got most of the instructions from here: http://ubuntuforums.org/showthread.php?t=1746773
 
@@ -534,14 +594,14 @@ I really need dmenu to function, so I've chosen to install it in this installati
     - Menu > Settings > Keyboard > Application Shortcuts
     - Set the command to `dmenu_run` and the shortcut to whatever (I wanted to use alt+p, but that triggers something else, so I set it to ctrl+alt+p)
 
-#### Step four, configure xmonad 
+## Step four, configure xmonad
 
 Again, the instructions for this can be found here: http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_in_XFCE#Ensure_Xmonad_gets_started
 
  - Get to settings: Menu > Settings > Sessions and Startup > Application Autostart
  - Add new application, name Xmonad, command `xmonad --replace`
 
-### More About Ruby: Setting Up RVM, Gem, and Jekyll
+# More About Ruby: Setting Up RVM, Gem, and Jekyll
 
 So, I use Jekyll to build stuff because Jekyll is easy and straightforward and
 I know it. However, I often find Ruby to not be straightforward.
@@ -555,13 +615,13 @@ Here's how I set up RVM, Gem, and Jekyll for test builds of sites on my many com
     rvm --default use 2.0  #Sets up the system to use the rvm version of Ruby. Change the number to the actual version installed.
     gem install jekyll #Installs jekyll for the local user under RVM, using the RVM copy of gem
 
-### Xubuntu, Wifi, and Sleep
+# Xubuntu, Wifi, and Sleep
 
 I found that often when I close the lid of my laptop running Xubuntu, networking would unexpectedly stop. The network-conectivity button in the statusbar up-top would have pretty much no information, and wouldn't help turn it back on. A bit of Googling took me to [this help page](http://askubuntu.com/questions/362933/network-disabled-on-some-wake-ups-on-saucy-laptop) that includes a script to turn Wifi back on. That command is:
 
     nmcli nm sleep false
 
-### Creating WebM clips
+# Creating WebM clips
 
 Given that I hate the .gif file format (despite having messed around with it), I'm jumping at this chance now that there's some kind of a move towards `WebM` as the animated video format of choice. So, I've taken the time to port my previous `.gif` making advice over to making `.webm` files. This isn't comprehensive, or maybe even good, but it works for me.
 
@@ -581,7 +641,7 @@ In order the commands are:
 
 Now I'll go over some of the parameters for the `WebM` encoding.
 
-`-c:v libvpx`: This specifies we want to use the `WebM` video codec 
+`-c:v libvpx`: This specifies we want to use the `WebM` video codec
 
 `-b:v 1M`: Specifies the desired bitrate of the video. `1M` means `1 megabit/second`, which is about `122 kilobytes/second`. This parameter will have to be adjusted to make the video smaller or larger as you need it.
 
@@ -590,7 +650,7 @@ Now I'll go over some of the parameters for the `WebM` encoding.
 That's the basics of creating `WebM` files as if they where `gifs`.
 
 
-### Linux: Managing Startup Programs
+# Linux: Managing Startup Programs
 
 I find I've never really taken the time to come to understand how the program-
 startup system works on linux, and so I'm checking that out now. My interest
@@ -613,7 +673,7 @@ That's the basics of what's going on. For more info, check out the AskUbuntu lin
 
 
 
-### Enabling Autocomplete Suggestions in Sublime Text for Odd Syntaxes
+# Enabling Autocomplete Suggestions in Sublime Text for Odd Syntaxes
 
 At work, I use a tool called Behat to write tests for Drupal. Behat is written in a language called Gherkin, and nothing has native language support, including Sublime Text (3), my main editor. I was able to install a package which gives me Behat syntax highlighting, but I wasn't able to get dropdown suggestions like I was used to.
 
@@ -626,7 +686,7 @@ After much fiddling and Googling, I eventually came up with the following fix wh
 >      "auto_complete_selector": "source, text, feature"
 
 
-#### Explanation
+## Explanation
 
 The default for this is:
 
@@ -636,30 +696,30 @@ This is setting the `scopes` that SublimeText will enable autocomplete inside. T
 
 However, the Behat plugin that's available does NOT follow this convention. The Behat package sets itself up in the scope `feature.behat`. Because it's not within the root scope `source`, autocomplete excludes it.
 
-The modification we made above says *"enable autocomplete on all scopes with roots `source`, `text`, or `feature`"* thus enabling autocomplete suggestions for the Behat language! 
+The modification we made above says *"enable autocomplete on all scopes with roots `source`, `text`, or `feature`"* thus enabling autocomplete suggestions for the Behat language!
 
 
 
-### Making Good Gif's -- Colors and Quantization
+# Making Good Gif's -- Colors and Quantization
 
 So I've been messing around, making a couple more gifs using the illustrious ImageMagick library. I wanted to post some of the results of things I'd created.
 
 Here's the [original gif](http://nacr.us/media/pics/gif_experiments/quantization/anim01.gif) used to create all the derivative gifs discussed in this section. It's about 70 mb, so viewing in your browser will be slow. The source of the gif is Season 3, Episode 5, from about `00:18:37` till `00:18:52`.
 
-#### Removing colors
+## Removing colors
 
 [Here's a version of the original gif using just 32 colors.](http://nacr.us/media/pics/gif_experiments/quantization/anim02.gif) Despite only using a fraction of the colors it could be using, it still looks quite good. It was created with the following command:
 
     convert anim01.gif -colors 32 -resize %60 anim02.gif
 
 
-#### Removing EVEN MOAR colors
+## Removing EVEN MOAR colors
 
 [Here's a version of the original gif using just ***8*** colors.](http://nacr.us/media/pics/gif_experiments/quantization/anim04.gif) Despite being the same resolution as the gif linked above, it's nearly 55% smaller than the one above. However, it also looks awful. Here's the command I used to make it:
 
     convert anim01.gif +dither -colors 8 -resize %60 anim04.gif
 
-#### Quantization
+## Quantization
 
 Quantization is the process of combining colors to simplify the appearance of a picture. It's great in gifs because it reduces the size of the gif.
 
@@ -667,7 +727,7 @@ An important thing to note is that there are different quantization algorithms i
 
     convert anim01.gif -dither FloydSteinberg -colors 32 -resize %50 anim08.gif
 
-#### Really Nice Gifs
+## Really Nice Gifs
 
 To get the best gifs while keeping them small (within most image sharing site limits), it's a constant battle between size and quality. However, reducing colors doesn't affect quality too much, and cropping out unnecessary parts of the photo helps as well. The final version of the gif I created is [this one](http://nacr.us/media/pics/gif_experiments/quantization/anim10.gif), and it's created using the following command:
 
@@ -693,7 +753,7 @@ And here's the history of my commands while experimenting with gifs:
     convert anim01.gif -dither FloydSteinberg -colors 12 -shave 60x0 -resize %40 anim10.gif
 
 
-### Getting Statistics on Command Line Usage
+# Getting Statistics on Command Line Usage
 
 Here's a nice one liner to get setatistics on the commands you use most on the command line:
 
@@ -723,10 +783,10 @@ Notes:
 
 > The above output is from a relatively recent install, and so it hasn't quite had time to populate yet.
 >
-> Also, the improved command comes from [this StackOverflow answer.](http://stackoverflow.com/a/6355236/) 
+> Also, the improved command comes from [this StackOverflow answer.](http://stackoverflow.com/a/6355236/)
 
 
-### High Resolution Screen Shots of Web Pages
+# High Resolution Screen Shots of Web Pages
 
 
 To make really high DPI screenshots, you can use [PhantomJS](http://phantomjs.org) with the [rasterize.js](https://github.com/ariya/phantomjs/blob/master/examples/rasterize.js). When used, it'll create extremely high-dpi images of the website in question.
@@ -743,12 +803,12 @@ Also, it should be noted that Mike Bostock has asked that people not share rende
 
 
 
-### Using X11 Forwarding
+# Using X11 Forwarding
 
-#### 1. Configure Host Server
+## 1. Configure Host Server
 
 
-##### SSH Configuration
+### SSH Configuration
 
 SSH must be configured to allow X11 forwarding. To do this, add the following line to your `~/.ssh/config` file (create this file if it doesn't already exits):
 
@@ -756,7 +816,7 @@ SSH must be configured to allow X11 forwarding. To do this, add the following li
         ForwardX11 yes
 
 
-##### Installing X11 and Associated Libraries
+## Installing X11 and Associated Libraries
 
 You need to install X11, but there's also some other libraries that need installing (like GTK). Here's the command I use to install them:
 
@@ -765,11 +825,11 @@ You need to install X11, but there's also some other libraries that need install
 
 This will install x11 (as a requirement for x11-apps) and the GTK2 runtimes.
 
-#### 2. Configure the Client
+## 2. Configure the Client
 
 It should be noted that I am doing this from a Windows machine running X under Cygwin. There may be differences between my instructions and the requirements for other setups.
 
-##### Make Sure X is Installed
+### Make Sure X is Installed
 
 On Unix/Linux systems, this isn't much of a worry since if you're currently using any kind of GUI you probably have X installed. However, if you're on some other kind of system, you may not have X installed (like Cygwin).
 
@@ -777,9 +837,9 @@ To install X in Cygwin, install the package `xinit` via the Cygwin setup.
 
 On Ubuntu you can install X by installing the package `x11-apps` which will install the necessary X libraries as dependencies.
 
-##### Set `Display`
+### Set `Display`
 
-For terminals that are not launched from X, you may need to set the `DISPLAY` variable. 
+For terminals that are not launched from X, you may need to set the `DISPLAY` variable.
 
 You can check if `DISPLAY` is set with the command `echo $DISPLAY`. If it prints a result like `:0` then `DISPLAY` is set. If it prints nothing, you need to set `DISPLAY` manually.
 
@@ -788,7 +848,7 @@ You can check if `DISPLAY` is set with the command `echo $DISPLAY`. If it prints
     $ export DISPLAY=:0.0
 
 
-##### Connect and Start Application
+### Connect and Start Application
 
 A normal SSH connection will probably make X11 forwarding very slow; at least it was extremely laggy for me. However, you can make SSH faster and more responsive by changing the encryption method to a faster one. Based on [recommendations](http://www.cyberciti.biz/faq/speeding-up-ssh-x11-forwarding-with-unix-osx-linux-bsd/) I use this SSH command to keep X11 forwarding fast:
 
@@ -800,7 +860,7 @@ Once logged into the remote host, you just launch X apps from the command line:
 
 This should bring up the classic example clock X application.
 
-### Compiling D programs with `std.net.curl`
+# Compiling D programs with `std.net.curl`
 
 
 On Ubuntu 14.04, while trying to compile a very simple program:
@@ -817,3 +877,5 @@ Compile with:
 It would fail with a ton of linker errors. The fix is to modify the order of linking to various libraries, as per [this](http://stackoverflow.com/a/14121794) stackoverflow answer:
 
     dmd download_test.d -L-lphobos2 -L-lcurl
+
+
