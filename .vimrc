@@ -10,10 +10,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
+" User-specified vim plugins
 Plugin 'tpope/vim-fugitive'
+
+" In-file identifier completion, like Sublime Text
+Plugin 'Valloric/YouCompleteMe'
+
+" Airline, for better buffer displays
+Plugin 'bling/vim-airline'
 
 " delimiMate -- Enables SublimeText-like autocompletion for quotes, brackets, etc.
 Plugin 'Raimondi/delimitMate'
@@ -39,6 +43,14 @@ filetype plugin indent on    " required
 
 " Turn on delimiMate
 let delimitMate_expand_cr = 1
+
+" Enable airline's smarter tabline
+let g:airline#extensions#tabline#enabled = 1
+
+" When opening a new buffer, moves the previous buffer into the background and
+" allows the new buffer to be opened, and hides the previous buffer, instead
+" of forcing changes to be saved before opening a new buffer.
+set hidden
 
 " Turn on syntax highlighting
 syntax on
@@ -111,6 +123,10 @@ map <leader>t :tabe<space>
 
 " Toggleing viewing whitespace
 nmap <leader>w :set list!<enter>
+
+" Moving between buffers in normal mode
+nmap <leader>m :bnext<enter>
+nmap <leader>n :bprevious<enter>
 
 " Inserting newlines in normal mode without moving your cursor, from here:
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
