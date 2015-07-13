@@ -40,7 +40,12 @@ def safe_configs():
     call(["cp", ".vimrc", HOMEDIR])
     call(["cp", ".dir_colors", HOMEDIR])
     call(["cp", ".xmobarrc", HOMEDIR])
-    call(["cp", "-r", ".vim/", HOMEDIR])
+    # For compatibility with OS X, use the capital R option with `cp` and don't
+	# have a trailing slash in the name of the folder. On OS X, there is no
+	# lowercase 'r' option, and the uppercase 'R' will only copy the contents
+	# of a directory if it has a trailing slash. GNU `cp` maps `-r` and `-R`
+	# as the same, so behavior there is unchanged.
+    call(["cp", "-R", ".vim", HOMEDIR])
     call(["cp", ".gitignore_global", HOMEDIR])
     call(["cp", ".bash_profile", HOMEDIR])
 
