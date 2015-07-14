@@ -93,6 +93,9 @@ set statusline+=/%L,\ Column:
 set statusline+=\ %-8c
 set statusline+=\ %P
 
+" Highlight matching search terms
+set hlsearch
+
 " Set total number of available colors (forcefully) to 256
 set t_Co=256
 " Set the background color
@@ -153,6 +156,9 @@ nmap <leader>n :tabprevious<enter>
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode
 " Bind <Shift-Enter> to insert a line below you without moving your cursor
 nmap <leader><Enter> o<Esc>k
+
+" Toggle search highlighting
+nmap <leader>/ :set hlsearch!<enter>
 
 " Fix filetype associations for Markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
