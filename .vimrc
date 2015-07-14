@@ -25,6 +25,12 @@ Plugin 'Raimondi/delimitMate'
 " Monokai colorscheme
 Plugin 'sickill/vim-monokai'
 
+" File side view
+Plugin 'scrooloose/nerdtree'
+
+" Nerdtree plugin for better display
+Bundle 'jistr/vim-nerdtree-tabs'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -51,6 +57,10 @@ let g:airline#extensions#tabline#enabled = 1
 " allows the new buffer to be opened, and hides the previous buffer, instead
 " of forcing changes to be saved before opening a new buffer.
 set hidden
+
+" Switching to a buffer means switching to the existing tab if the buffer is
+" open, or creating a new one if it's not.
+se switchbuf=usetab,newtab
 
 " Turn on syntax highlighting
 syntax on
@@ -126,6 +136,9 @@ if !exists("*SourceAgain")
 endif
 :map <leader>s :call SourceAgain()<enter>
 
+" Toggle Nerdtree file view on and off
+map <leader>f <plug>NERDTreeTabsToggle<CR>
+
 " Quick opening tabs
 map <leader>t :tabe<space>
 
@@ -133,8 +146,8 @@ map <leader>t :tabe<space>
 nmap <leader>w :set list!<enter>
 
 " Moving between buffers in normal mode
-nmap <leader>m :bnext<enter>
-nmap <leader>n :bprevious<enter>
+nmap <leader>m :tabnext<enter>
+nmap <leader>n :tabprevious<enter>
 
 " Inserting newlines in normal mode without moving your cursor, from here:
 " http://vim.wikia.com/wiki/Insert_newline_without_entering_insert_mode

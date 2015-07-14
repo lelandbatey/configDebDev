@@ -26,7 +26,7 @@ Connection details:
 	username : pi
 	password : raspberry
 
-Use "nmap -sP '192.168.2.*'" to find it in the group of IP's.
+Use `nmap -sP '192.168.2.*'` to find it in the group of IP's.
 Even better, use "nmap 192.168.2.1-254" to scan all ports on all ip addresses.
 
 # Installing Easy_Install with Python3 on Ubuntu
