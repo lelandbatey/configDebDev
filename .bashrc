@@ -194,21 +194,35 @@ function mp(){
     pandoc -s -o "$outfile" "$1"
 }
 
-function azbuild(){
-    original_location="$PWD"
-
-    # The below is super specific to my environment and not portable at all.
-    cd "/home/bate136/projects/aztec_build/" 
-    ./azbuild.py
-    cd "$original_location"
-}
-
 
 #Increases the size of the .bash_history file to 5000 lines
 HISTSIZE=50000
 
-# Changes the prompt to have striking colors and a nice layout.
-export PS1='\[\e[0;36m\]${debian_chroot:+($debian_chroot)}\u\[\e[1;33m\]@\[\e[0;35m\]\h:\[\e[0;32m\]\n\w\[\e[0m\] \n$ '
+# Defining colors for prompt
+bold='\e[1;39m'
+orange='\e[38;5;208m'
+red='\e[1;31m'
+green='\e[0;32m'
+bright_green='\e[1;32m'
+yellow='\e[1;33m'
+blue='\e[1;34m'
+cyan='\e[0;36m'
+purple='\e[1;35m'
+reset='\e[0m'
+
+
+function get_git_branch {
+	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+	echo "("${ref#refs/heads/}")"
+}
+
+user="\[$cyan\]\u\[$reset\]"
+host="\[$purple\]\h\[$reset\]"
+path="\[$green\]\w\[$reset\]"
+cur_branch="\[$bright_green\]\$(get_git_branch)\[$reset\]"
+line_join="\[$yellow\]@\[$reset\]"
+export PS1="$user$line_join$host\n$path $cur_branch\n$ "
+
 
 if hash rvm 2>/dev/null; then
     # Add RVM to PATH for scripting
