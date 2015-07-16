@@ -160,5 +160,12 @@ nmap <leader><Enter> o<Esc>k
 " Toggle search highlighting
 nmap <leader>/ :set hlsearch!<enter>
 
+" Global yank/put modifier for easy system copy/paste
+" For example, let's say you've made a selection in visual mode and you'd like
+" to copy it to your system clipboard. Assuming the selection is active, you'd
+" type "<leader><shift><quote>y" and that would copy the selection to system
+" keyboard.
+map <leader>" "+
+
 " Fix filetype associations for Markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
