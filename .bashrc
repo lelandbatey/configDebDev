@@ -201,7 +201,7 @@ HISTSIZE=50000
 # Defining colors for prompt
 bold='\e[1;39m'
 orange='\e[38;5;208m'
-red='\e[1;31m'
+red='\e[0;31m'
 green='\e[0;32m'
 bright_green='\e[1;32m'
 yellow='\e[1;33m'
@@ -210,7 +210,13 @@ cyan='\e[0;36m'
 purple='\e[1;35m'
 reset='\e[0m'
 
-
+# Functions in bash don't seem to really "return" anything. The only way to get
+# a message out of them is to have them print data, then to capture that data
+# via command substitution. That is what we do here.
+function get_repo_name {
+	repo=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null) || return
+	echo "("$repo")"
+}
 function get_git_branch {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
 	echo "("${ref#refs/heads/}")"
@@ -220,8 +226,9 @@ user="\[$cyan\]\u\[$reset\]"
 host="\[$purple\]\h\[$reset\]"
 path="\[$green\]\w\[$reset\]"
 cur_branch="\[$bright_green\]\$(get_git_branch)\[$reset\]"
+cur_repo="\[$red\]\$(get_repo_name)\[$reset\]"
 line_join="\[$yellow\]@\[$reset\]"
-export PS1="$user$line_join$host\n$path $cur_branch\n$ "
+export PS1="$user$line_join$host\n$path $cur_branch $cur_repo\n$ "
 
 
 if hash rvm 2>/dev/null; then
