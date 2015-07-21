@@ -31,6 +31,9 @@ Plugin 'scrooloose/nerdtree'
 " Nerdtree plugin for better display
 Bundle 'jistr/vim-nerdtree-tabs'
 
+" Autoindent
+Plugin 'tpope/vim-sleuth'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
