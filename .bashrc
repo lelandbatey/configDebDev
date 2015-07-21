@@ -3,7 +3,7 @@
 #     / __ \/ __ `/ ___/ __ \/ ___/ ___/
 #  _ / /_/ / /_/ (__  ) / / / /  / /__  
 # (_)_.___/\__,_/____/_/ /_/_/   \___/  
-# 
+#
 # Leland Batey
 
 # Setting flags for different versions of Unix. Since I could use this on OS
@@ -207,7 +207,7 @@ bright_green='\e[1;32m'
 yellow='\e[1;33m'
 blue='\e[1;34m'
 cyan='\e[0;36m'
-purple='\e[1;35m'
+purple='\e[0;35m'
 reset='\e[0m'
 
 # Functions in bash don't seem to really "return" anything. The only way to get
@@ -219,6 +219,7 @@ function get_repo_name {
 }
 function get_git_branch {
 	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+	echo ""
 	echo "("${ref#refs/heads/}")"
 }
 
