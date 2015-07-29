@@ -22,7 +22,7 @@ case "$NIXTYPE" in
         COLORFLAG="--color=auto --group-directories-first"
         ;;
 
-    "CYGWIN*" )
+    "CYGWIN"* )
         COLORFLAG="--color=auto --group-directories-first"
         ;;
 esac
