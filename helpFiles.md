@@ -887,3 +887,19 @@ It would fail with a ton of linker errors. The fix is to modify the order of lin
     dmd download_test.d -L-lphobos2 -L-lcurl
 
 
+
+# Configure XFCE with basic window manipulation keyboard shortcuts
+
+In recently moving back to Xubuntu and thus Xubuntu, I wanted to configure some keys for window manipulation. I wanted a keyboard shortcut to move a window to the left or right hand respectively. Additionally, I wanted a keyboard shortcut to fullscreen a window, as well as to remap the keys for switching between workspaces.
+
+These keyboard shortcuts can be configured by opening the XFCE menu and going to the path `Window Manager > Keyboard (Tab)`. An explanations of the various actions:
+
+    Split active window to the left: "Tile window to right left"
+    Split active window to the right: "Tile window to the right"
+    Fullscreen current active window: "Maximize window"
+    Move to the left workspace: "Left workspace"
+    Move to the right workspace: "Right workspace"
+
+From there, bind these to whatever key-combinations you like.
+
+
