@@ -493,6 +493,20 @@ Having said that, the next logical topic is: buffers. In Vim, buffers are just t
 >
 >		autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
+## Load order of configuration files
+
+When working on the configuration of Vim, I found that the configuration and plugin files found in `~/.vimrc` and `~/.vim/` where being superceded by other default configurations. For example, I had set my tab/indentation style to use literal tabs everywhere. However, whenever I edited a Python file the indentation would default to 8 columns wide (which I don't want). In trying to debug this, I learned the first of a series of awesome vim commands; to show where an option was set to the value that it holds now, use the command:
+
+	verbose set <command_name>?
+
+For example, to see where my `tabstop` was being changed to 8 instead of 4, I ran the command `verbose set tabstop?`. This showed that the tabstop variable was being set by the file `/usr/share/vim/vim74/ftplugin/python.vim`. Researching that a bit further, I found I could create my own filetype settings by creating a folder called `~/.vim/ftplugin/` and putting an appropriatly named `{language_name}.vim` file within that folder (in this case `python.vim`). I did this, but I found that my settings where still being overridden by the files in `/usr/shar/vim/`. At this time I found my second awesome vim command for the day; to list the configuration files that vim sources and the order from first to last that they're sourced in, use the command:
+
+	scriptnames
+
+This will list all the files that vim reads for configuration, with the ones at the top being loaded first and the ones at the bottom being loaded last.
+
+Going through that led me to [this helpful exaplanation](http://vimhelp.appspot.com/vim_faq.txt.html#faq-26.3). The official vim documentation on overriding filetype plugins can also be found in the `ftplugin-overrule` section of help (`:help ftplugin-overrule`). Basically, Vim loads the system filetype settings after the standard user specified ones. However, you can specify files to be loaded after all other vim files by creating a folder `after` in `~/.vim/` that otherwise mirrors the contents of `~/.vim/`. So to have my Python syntax override all others I'd create a folder `~/.vim/after/ftplugins` and put a `python.vim` file in there with the settings I want.
+
 
 # Vimperator in FireFox
 
