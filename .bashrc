@@ -38,6 +38,7 @@ esac
 # being more modern!
 if [[ $- == *i* ]]; then
     stty -ixon
+    bind '"\C-b":backward-kill-word'
 fi
 
 # Append to the history file instead of over-writing it. Normally, the history
@@ -119,7 +120,7 @@ then
      
         # and the actual auth socket file name is simply numerically one less than
         # the actual process id, regardless of what `ps -ef` reports as the ppid
-        agent_sock="$(find /tmp -path "*ssh*" -type s -iname "agent.$agent_ppid")"
+        agent_sock="$(find /tmp ! -readable -prune -path "*ssh*" -type s -iname "agent.$agent_ppid")"
      
         echo "Agent pid $agent_pid"
         export SSH_AGENT_PID="$agent_pid"
@@ -238,7 +239,7 @@ if hash rvm 2>/dev/null; then
 fi
 
 # Does rbenv specific setup
-if hash rbenv 2>/dev/null; then
+if [ -d "$HOME/.rbenv/" ]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 fi
