@@ -56,6 +56,9 @@ let delimitMate_expand_cr = 1
 " Enable airline's smarter tabline
 let g:airline#extensions#tabline#enabled = 1
 
+" Have NERDTree ignore certain files
+let NERDTreeIgnore = ['\.pyc$', '\.sqlite3$', '\.png$', '\.jpg$']
+
 " When opening a new buffer, moves the previous buffer into the background and
 " allows the new buffer to be opened, and hides the previous buffer, instead
 " of forcing changes to be saved before opening a new buffer.
@@ -63,7 +66,7 @@ set hidden
 
 " Switching to a buffer means switching to the existing tab if the buffer is
 " open, or creating a new one if it's not.
-se switchbuf=usetab,newtab
+set switchbuf=usetab,newtab
 
 " Turn on syntax highlighting
 syntax on
@@ -79,7 +82,7 @@ set autoindent
 
 " Makes tab and newline characters visible
 " To toggle, type `set list!`
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,space:·,trail:␣
 
 " Turns on line number for current line, then turns on relative line numbers
 " for all other lines.
