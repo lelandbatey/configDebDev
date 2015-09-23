@@ -30,7 +30,7 @@ set $left h
 set $right l
 
 # Start Firefox
-bindsym Mod1+backslash exec firefox
+bindsym $mod+backslash exec firefox
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -161,7 +161,9 @@ bar {
         status_command i3status
 }
 
+# Start the xfce4 volumed daemon which will handle the volume up/down/mute
+exec --no-startup-id xfce4-volumed
 # Start the xfce4 panel
-exec --no-startup-id xfce4-panel --disable-wm-check
+# exec --no-startup-id xfce4-panel --disable-wm-check
 # Start the xfce4 panel network applet
 exec --no-startup-id nm-applet
