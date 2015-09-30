@@ -22,7 +22,7 @@ Next up are the things that *are* liable to cause some problems if just blindly 
 
 The other directories are named for their uses, for example `xfceConfig` holds all the files that are particular to using xfce(/xmonad).
 
-Additionally, I'll be editing the installation script to accomadate and allow for different types of installations.
+Additionally, I'll be editing the installation script to accommodate and allow for different types of installations.
 
 Prerequisites
 -------------
