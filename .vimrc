@@ -34,6 +34,12 @@ Bundle 'jistr/vim-nerdtree-tabs'
 " Autoindent
 Plugin 'tpope/vim-sleuth'
 
+" Handlebars support
+Plugin 'mustache/vim-mustache-handlebars'
+
+" Rust language support
+Plugin 'rust-lang/rust.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -55,9 +61,19 @@ let delimitMate_expand_cr = 1
 
 " Enable airline's smarter tabline
 let g:airline#extensions#tabline#enabled = 1
+" Set the number next to the filename in the tab to show splits and tab number
+let g:airline#extensions#tabline#tab_nr_type = 2
 
 " Have NERDTree ignore certain files
 let NERDTreeIgnore = ['\.pyc$', '\.sqlite3$', '\.png$', '\.jpg$']
+" Ensure NERDTree window size is sufficiently small
+let NERDTreeWinSize=20
+
+" Make YouCompleteMe close it's preview window once you leave insert mode
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+" Add powerline font support
+let g:airline_powerline_fonts = 1
 
 " When opening a new buffer, moves the previous buffer into the background and
 " allows the new buffer to be opened, and hides the previous buffer, instead
