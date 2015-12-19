@@ -38,7 +38,7 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 # start a terminal in the same directory
-bindsym $mod+Shift+Return exec i3-sensible-terminal --working-directory="`xcwd`"
+bindsym $mod+Shift+Return exec i3-sensible-terminal -cd "`xcwd`"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -169,5 +169,6 @@ exec --no-startup-id xfce4-volumed
 # exec --no-startup-id xfce4-panel --disable-wm-check
 # Start the xfce4 panel network applet
 exec --no-startup-id nm-applet
+exec --no-startup-id feh --bg-fill /home/leland/configDebDev/baseConfig/.xmonad/there-joehesus.jpg
 # Start the xfce4 power manager
 exec --no-startup-id xfce4-power-manager

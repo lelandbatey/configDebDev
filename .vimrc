@@ -28,6 +28,9 @@ Plugin 'sickill/vim-monokai'
 " File side view
 Plugin 'scrooloose/nerdtree'
 
+" Convenient commenting
+Plugin 'scrooloose/nerdcommenter'
+
 " Nerdtree plugin for better display
 Bundle 'jistr/vim-nerdtree-tabs'
 
@@ -39,6 +42,9 @@ Plugin 'mustache/vim-mustache-handlebars'
 
 " Rust language support
 Plugin 'rust-lang/rust.vim'
+
+" Vim-orgmode
+Plugin 'jceb/vim-orgmode'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -182,6 +188,9 @@ nmap <leader><Enter> o<Esc>k
 " Toggle search highlighting
 nmap <leader>/ :set hlsearch!<enter>
 
+" Toggle paste
+nmap <leader><leader>p :set paste!<enter>
+
 " Global yank/put modifier for easy system copy/paste
 " For example, let's say you've made a selection in visual mode and you'd like
 " to copy it to your system clipboard. Assuming the selection is active, you'd
@@ -191,3 +200,5 @@ map <leader>" "+
 
 " Fix filetype associations for Markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
+map <leader>cd <plug>NERDCommenterToggle

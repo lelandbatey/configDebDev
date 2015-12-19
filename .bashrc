@@ -162,7 +162,8 @@ alias gpa="find ~/ -name .git -type d | sed 's,/*[^/]\+/*$,,' | xargs -L1 bash -
 
 alias gshow="git show --color --pretty=format:%b" # Pretty-printing of a commit in git
 
-alias vnv="source ~/bin/venv/bin/activate"
+alias vnv="source ~/bin/venv-3/bin/activate"
+alias vnv2="source ~/bin/venv/bin/activate"
 
 function lag(){ # Stands for "list all gits" and it just lists all the git repos in current dir
     find $PWD -name ".git" -type d | sed 's,/*[^/]\+/*$,,'
@@ -262,4 +263,10 @@ fi
 if [ -z "$DISPLAY" ]; then
     DISPLAY=":0.0"
 fi
+
+export ANDROID_HOME="$HOME/Android/Sdk/"
+export PATH=$PATH:$ANDROID_HOME/build-tools/23.0.1/
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/tools
+
 
