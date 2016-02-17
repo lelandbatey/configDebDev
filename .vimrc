@@ -46,6 +46,12 @@ Plugin 'rust-lang/rust.vim'
 " Vim-orgmode
 Plugin 'jceb/vim-orgmode'
 
+" Improved C syntax highlighting
+Plugin 'justinmk/vim-syntax-extra'
+
+" Nice Go integrations and autocompletions
+Plugin 'fatih/vim-go'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
