@@ -916,4 +916,14 @@ These keyboard shortcuts can be configured by opening the XFCE menu and going to
 
 From there, bind these to whatever key-combinations you like.
 
+# Initial Configuration Checklist for Server
+
+Let's say I have a brand new server, and I want to get it to a state where it's generally useable for common tasks. Here are the *most basic* of those steps:
+
+1. Create user and home directory at the same time with `useradd -m {USERNAME}`
+2. Set the user password with `passwd {USERNAME}`
+3. Add user to sudoers with `usermod -a -G sudo {USERNAME}`
+4. Add SSH keys from local machine to sever via `ssh-copy-id {USERNAME}@{HOSTNAME}`
+5. Run dotfiles auto-install with `curl http://d.xwl.me/install_environment.sh | sh`
+
 
