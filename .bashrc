@@ -245,6 +245,20 @@ if [ -d "$HOME/.rbenv/" ]; then
     eval "$(rbenv init -)"
 fi
 
+# Does go specific setup
+if [ -d "$HOME/bin/go/" ]; then
+	export GOROOT="$HOME/bin/go"
+	export PATH="$PATH:$GOROOT/bin"
+	export GOPATH="/home/leland/projects/go-projects/"
+	export PATH="$PATH:${GOPATH//://bin:}/bin"
+fi
+
+# Does rust specific setup
+if [ -d "$HOME/.cargo/bin/" ]; then
+	export PATH="$PATH:$HOME/.cargo/bin/"
+fi
+
+
 # Adds android things to path if appropriate
 if [[ -d "$HOME/bin/android-sdk-linux/" ]]; then
 	export ANDROID_HOME="$HOME/bin/android-sdk-linux/"
