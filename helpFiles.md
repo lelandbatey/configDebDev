@@ -928,6 +928,8 @@ Let's say I have a brand new server, and I want to get it to a state where it's 
 
 # Configuration of Nginx
 
+Note: at any time during configuration of Nginx, if you'd like to have extra debug information displayed about your configuration files, use the command `sudo nginx -t`.
+
 - Install nginx
 - Add your user to www-data `usermod -a -G www-data {USER}`
 - Change ownership of the /var/www/html directory `sudo chown -R {USERNAME}:www-data /var/www/`
