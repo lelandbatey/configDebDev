@@ -1,8 +1,8 @@
-#       __               __             
+#       __               __
 #      / /_  ____ ______/ /_  __________
 #     / __ \/ __ `/ ___/ __ \/ ___/ ___/
-#  _ / /_/ / /_/ (__  ) / / / /  / /__  
-# (_)_.___/\__,_/____/_/ /_/_/   \___/  
+#  _ / /_/ / /_/ (__  ) / / / /  / /__
+# (_)_.___/\__,_/____/_/ /_/_/   \___/
 #
 # Leland Batey
 
@@ -79,10 +79,10 @@ fi
 if [[ $- == *i* ]]
 then
     ### RVM Startup! ###
-    # By default RVM puts this next line into the .bash_profile line. However, 
+    # By default RVM puts this next line into the .bash_profile line. However,
     # this is a STUPID IDEA because .bash_profile is only exectuted for "login"
     # shells. By default, most shells opened once you've actually logged in are
-    # NOT login shells. So URXVT, Gnome Terminal, etc are all non-login shells 
+    # NOT login shells. So URXVT, Gnome Terminal, etc are all non-login shells
     # by default. However, they are interactive shells, which should be the
     # distinction. But, because the Ruby community seems to only ever do
     # anything on OS X and they don't care at all about how stuff works, they
@@ -96,35 +96,35 @@ then
     # This excellent script was copied from http://rocksolidwebdesign.com/notes-and-fixes/ubuntu-server-ssh-agent/
     # Check to see if SSH Agent is already running
     agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}' | head -n 1)"
-     
+
     # If the agent is not running (pid is zero length string)
     if [[ -z "$agent_pid" ]]; then
         # Start up SSH Agent
-     
+
         # this seems to be the proper method as opposed to `exec ssh-agent bash`
         eval "$(ssh-agent)"
-     
+
         # if you have a passphrase on your key file you may or may
         # not want to add it when logging in, so comment this out
         # if asking for the passphrase annoys you
         ssh-add
-     
+
     # If the agent is running (pid is non zero)
     else
         # Connect to the currently running ssh-agent
-     
+
         # this doesn't work because for some reason the ppid is 1 both when
         # starting from ~/.profile and when executing as `ssh-agent bash`
         #agent_ppid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($3)}')"
         agent_ppid="$(($agent_pid - 1))"
-     
+
         # and the actual auth socket file name is simply numerically one less than
         # the actual process id, regardless of what `ps -ef` reports as the ppid
         agent_sock="$(find /tmp ! -readable -prune -path "*ssh*" -type s -iname "agent.$agent_ppid")"
-     
+
         echo "Agent pid $agent_pid"
         export SSH_AGENT_PID="$agent_pid"
-     
+
         echo "Agent sock $agent_sock"
         export SSH_AUTH_SOCK="$agent_sock"
         ssh-add
@@ -136,8 +136,8 @@ fi
 alias la="ls -a" #all files
 # Removed for better alternative below  alias ll="ls -l" #long listing format
 # Lists all files in verbose form with human readable numbers/permissions.
-alias lk="ls -alh" 
-alias ll="ls -lhL" # lists files in long form, and in a more human readble 
+alias lk="ls -alh"
+alias ll="ls -lhL" # lists files in long form, and in a more human readble
                    # format. Additionally, the capital L makes `ls` regard
                    # symlinks as normal directories so they'd get grouped
                    # first as well.\
