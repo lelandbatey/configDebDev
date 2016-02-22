@@ -926,4 +926,25 @@ Let's say I have a brand new server, and I want to get it to a state where it's 
 4. Add SSH keys from local machine to sever via `ssh-copy-id {USERNAME}@{HOSTNAME}`
 5. Run dotfiles auto-install with `curl http://d.xwl.me/install_environment.sh | sh`
 
+# Configuration of Nginx
+
+- Install nginx
+- Add your user to www-data `usermod -a -G www-data {USER}`
+- Change ownership of the /var/www/html directory `sudo chown -R {USERNAME}:www-data /var/www/`
+- Set `group id` flag for the `/var/www/html/` directory, so future files and directories created in `/var/www/html/` will have a group of `www-data`, allowin NGINX to read those files
+- Refer to [this DigitalOcean article on configuring "virtual hosts" with Nginx](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-virtual-hosts-server-blocks-on-ubuntu-12-04-lts--3)
+- If you're setting up an open directory, [turn on the `autoindex` directive, otherwise it will not show open directories, and will instead show '403 not allowed'.](http://stackoverflow.com/a/10663272)
+
+For setting up a reverse proxy for server software, use the `proxy_pass` directive inside a `location` block inside a new directive. An example configuration `server` block for a reverse proxy might look like this:
+
+    server {
+        listen 80;
+        server_name example.com;
+
+        location / {
+            proxy_pass http://127.0.0.1:8080/;
+        }
+    }
+
+
 
