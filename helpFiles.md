@@ -949,4 +949,13 @@ For setting up a reverse proxy for server software, use the `proxy_pass` directi
     }
 
 
+# Creating `virtualenv`s for both Python 2 and Python 3
+
+If you want to create virtualenvs for Python 2 and Python 3 on the same system, how do you go about doing that (assuming Ubuntu)?
+
+Currently (March 2016), it seems there are two approaches. By default, `virtualenv` in Ubuntu is 'bound' to the Python 2 version of Python. So by default, creating a virtualenvironment with `virtualenv venv` will create a Python2 specific virtualenvironment. However, it is possible to use the default `virtualenv` to create a Python3 virtualenvironment. To do so, you'd use the `-p` argument, like so:
+
+    virtualenv -p $(which python3) venv-3
+
+Additionally, it is possible to create python3 virtualenvironments with the `pyvenv` command. However, that requires additional installation via `apt-get`.
 
