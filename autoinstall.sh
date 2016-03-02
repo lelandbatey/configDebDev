@@ -1,7 +1,7 @@
 #!/bin/bash
 # Install with 
 #
-# curl https://raw.githubusercontent.com/lelandbatey/configDebDev/link-based-install/autoinstall.sh | sh
+# curl https://raw.githubusercontent.com/lelandbatey/configDebDev/master/autoinstall.sh | sh
 
 sudo apt-get update
 sudo apt-get -y install git make htop python-pip
@@ -24,7 +24,6 @@ fi
 cd ~
 git clone "https://github.com/lelandbatey/configDebDev.git"
 cd configDebDev
-git checkout link-based-install
 
 python install.py --act safe
 #python install.py --act prepvim
