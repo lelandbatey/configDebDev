@@ -1,6 +1,6 @@
 [submodule "bin/bashmarks"]
 	path = bin/bashmarks
-	url = git://github.com/huyng/bashmarks.git
+	url = https://github.com/huyng/bashmarks.git
 [submodule ".vim/bundle/Vundle.vim"]
 	path = .vim/bundle/Vundle.vim
 	url = https://github.com/gmarik/Vundle.vim.git
