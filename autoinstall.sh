@@ -24,6 +24,7 @@ fi
 cd ~
 git clone "https://github.com/lelandbatey/configDebDev.git"
 cd configDebDev
+git checkout link-based-install
 
 python install.py --act safe
 #python install.py --act prepvim
