@@ -3,7 +3,10 @@
 
 from __future__ import print_function
 from subprocess import call
+import datetime
 import argparse
+import os.path
+import shutil
 import os
 
 ACTION_TYPE = "\n\n\t\
@@ -25,6 +28,55 @@ PARSER.add_argument('--act', default='', help='Action to be taken;'+ACTION_TYPE)
 # Access the results of arguments as stuff stored in 'ARGS'
 ARGS = PARSER.parse_args()
 
+ARCHIVE_DIR = os.path.join(HOMEDIR, "dotfiles_backup", datetime.datetime.now().strftime('%Y-%m-%d--%H.%M.%S'))
+
+def install_component(*args):
+    """Installs a 'component' within this repository into it's cooresponding
+    location in the home directory of this current user. Does this by creating
+    a symlink to the file in this repository."""
+    repo_path = ""
+    dest_path = ""
+
+    if len(args) == 1:
+        repo_path = args[0]
+        dest_path = HOMEDIR
+    elif len(args) == 2:
+        repo_path = args[0]
+        dest_path = args[1]
+    else:
+        print("Cannot understand arguments:", args)
+        return
+
+    dest_path = os.path.join(dest_path, repo_path)
+    # Assumes that the current working directory is within the repository.
+    repo_path = os.path.join(os.getcwd(), repo_path)
+
+    if not os.path.lexists(repo_path):
+        print("The repository path '{}' does not exist, ignoring component '{}'".format(repo_path, args))
+        return
+
+    # Check if there's already something that exists where we want to place the
+    # link to the component. If it exists, move it to an archive directory for
+    # safekeeping, but proceed with the install.
+    if os.path.lexists(dest_path):
+        if os.path.islink(dest_path):
+            # Check if there's already a link to the repopath where there
+            # should be for this component. If there is, then this install has
+            # already happened, and we can move on.
+            conflict_link_dest = os.path.realpath(dest_path)
+            if conflict_link_dest == os.path.realpath(repo_path):
+                print("'{}' is already installed, skipping".format(repo_path))
+                return
+        if not os.path.lexists(ARCHIVE_DIR):
+            os.makedirs(ARCHIVE_DIR)
+        print("Moving existing file/folder '{}' to the archive folder '{}'".format(dest_path, ARCHIVE_DIR))
+        shutil.move(dest_path, ARCHIVE_DIR)
+
+    # Create the symlink, thus installing the file
+    os.symlink(repo_path, dest_path)
+    print("Created symlink from target '{}' to '{}'".format(repo_path, dest_path))
+
+
 
 
 def safe_configs():
@@ -35,19 +87,12 @@ def safe_configs():
 
         .bashrc, .vimrc, .vim/, .dir_colors, .xmobarrc
     """
-
-    call(["cp", ".bashrc", HOMEDIR])
-    call(["cp", ".vimrc", HOMEDIR])
-    call(["cp", ".dir_colors", HOMEDIR])
-    call(["cp", ".xmobarrc", HOMEDIR])
-    # For compatibility with OS X, use the capital R option with `cp` and don't
-	# have a trailing slash in the name of the folder. On OS X, there is no
-	# lowercase 'r' option, and the uppercase 'R' will only copy the contents
-	# of a directory if it has a trailing slash. GNU `cp` maps `-r` and `-R`
-	# as the same, so behavior there is unchanged.
-    call(["cp", "-R", ".vim", HOMEDIR])
-    call(["cp", ".gitignore_global", HOMEDIR])
-    call(["cp", ".bash_profile", HOMEDIR])
+    install_component('.bashrc')
+    install_component('.vimrc')
+    install_component('.dir_colors')
+    install_component('.vim')
+    install_component('.gitignore_global')
+    install_component('.bash_profile')
 
 def x_base_configs():
     """These are the basic files for configuring an X/Desktop environment.
@@ -110,4 +155,8 @@ def main():
 was not of any of the necessary types:"+ACTION_TYPE
         print(errstr)
 
-main()
+# main()
+if __name__ == '__main__':
+    main()
+    # install_component('DELETE_THIS_TEST_FILE')
+    # install_component('.bashrc')
