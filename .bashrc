@@ -137,10 +137,12 @@ alias la="ls -a" #all files
 # Removed for better alternative below  alias ll="ls -l" #long listing format
 # Lists all files in verbose form with human readable numbers/permissions.
 alias lk="ls -alh"
-alias ll="ls -lhL" # lists files in long form, and in a more human readble
-                   # format. Additionally, the capital L makes `ls` regard
-                   # symlinks as normal directories so they'd get grouped
-                   # first as well.\
+
+# Lists files in long form, and in a more human readble format. Additionally,
+# the capital L makes `ls` regard symlinks as normal directories so they'd get
+# grouped first as well. Does not display files ending in the extension "*.pyc"
+# (compiled python files)
+alias ll="ls -lhL --ignore=\"*.pyc\""
 
 # The following aliases do not work on OS X.
 # Grouped by file extension.
