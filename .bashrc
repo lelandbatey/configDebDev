@@ -73,62 +73,21 @@ if [ -f "$HOME/.local/bin/bashmarks.sh" ]; then
     . "$HOME/.local/bin/bashmarks.sh"
 fi
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
 ## SSH KEYS ##
-# The below handles ssh keys. It's inside a massive if block that checks if we are in an interactive vs non-interactive shell.
-# This is important, since otherwise it breaks SFTP.
+# The below handles ssh keys. It's inside a massive if block that checks if we
+# are in an interactive vs non-interactive shell. This is important, since
+# otherwise it breaks SFTP.
 if [[ $- == *i* ]]
 then
-    ### RVM Startup! ###
-    # By default RVM puts this next line into the .bash_profile line. However,
-    # this is a STUPID IDEA because .bash_profile is only exectuted for "login"
-    # shells. By default, most shells opened once you've actually logged in are
-    # NOT login shells. So URXVT, Gnome Terminal, etc are all non-login shells
-    # by default. However, they are interactive shells, which should be the
-    # distinction. But, because the Ruby community seems to only ever do
-    # anything on OS X and they don't care at all about how stuff works, they
-    # plopped this down in .bash_profile and said that the way to fix this is
-    # to change your terminal emulator to log in as a login shell.
-    # Which is just INCREDIBLY stupid. They need to get their crap together.
-    # Jerks.
-    [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-    ### Starts ssh-agent and loads all ssh keys as needed ###
-    # This excellent script was copied from http://rocksolidwebdesign.com/notes-and-fixes/ubuntu-server-ssh-agent/
-    # Check to see if SSH Agent is already running
-    agent_pid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($2)}' | head -n 1)"
-
-    # If the agent is not running (pid is zero length string)
-    if [[ -z "$agent_pid" ]]; then
-        # Start up SSH Agent
-
-        # this seems to be the proper method as opposed to `exec ssh-agent bash`
-        eval "$(ssh-agent)"
-
-        # if you have a passphrase on your key file you may or may
-        # not want to add it when logging in, so comment this out
-        # if asking for the passphrase annoys you
-        ssh-add
-
-    # If the agent is running (pid is non zero)
-    else
-        # Connect to the currently running ssh-agent
-
-        # this doesn't work because for some reason the ppid is 1 both when
-        # starting from ~/.profile and when executing as `ssh-agent bash`
-        #agent_ppid="$(ps -ef | grep "ssh-agent" | grep -v "grep" | awk '{print($3)}')"
-        agent_ppid="$(($agent_pid - 1))"
-
-        # and the actual auth socket file name is simply numerically one less than
-        # the actual process id, regardless of what `ps -ef` reports as the ppid
-        agent_sock="$(find /tmp ! -readable -prune -path "*ssh*" -type s -iname "agent.$agent_ppid")"
-
-        echo "Agent pid $agent_pid"
-        export SSH_AGENT_PID="$agent_pid"
-
-        echo "Agent sock $agent_sock"
-        export SSH_AUTH_SOCK="$agent_sock"
-        ssh-add
+    if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+        eval "$(ssh-agent -s)"
+        echo "ssh auth socket: $SSH_AUTH_SOCK"
+        ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
     fi
+    export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+    ssh-add -l | grep "The agent has no identities" && ssh-add
 fi
 
 # These copied from Lane Aasen (https://github.com/aaasen/config/blob/master/home/.bashrc)
@@ -218,13 +177,13 @@ reset='\e[0m'
 # a message out of them is to have them print data, then to capture that data
 # via command substitution. That is what we do here.
 function get_repo_name {
-	repo=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null) || return
-	echo "("$repo")"
+    repo=$(basename $(git rev-parse --show-toplevel 2> /dev/null) 2> /dev/null) || return
+    echo "("$repo")"
 }
 function get_git_branch {
-	ref=$(git symbolic-ref HEAD 2> /dev/null) || return
-	echo ""
-	echo "("${ref#refs/heads/}")"
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo ""
+    echo "("${ref#refs/heads/}")"
 }
 
 user="\[$cyan\]\u\[$reset\]"
@@ -249,28 +208,28 @@ fi
 
 # Does go specific setup
 if [ -d "$HOME/bin/go/" ]; then
-	export GOROOT="$HOME/bin/go"
-	export PATH="$PATH:$GOROOT/bin"
-	export GOPATH="/home/leland/projects/go-projects/"
-	export PATH="$PATH:${GOPATH//://bin:}/bin"
+    export GOROOT="$HOME/bin/go"
+    export PATH="$PATH:$GOROOT/bin"
+    export GOPATH="/home/leland/projects/go-projects/"
+    export PATH="$PATH:${GOPATH//://bin:}/bin"
 fi
 
 # Does rust specific setup
 if [ -d "$HOME/.cargo/bin/" ]; then
-	export PATH="$PATH:$HOME/.cargo/bin/"
+    export PATH="$PATH:$HOME/.cargo/bin/"
 fi
 
 
 # Adds android things to path if appropriate
 if [[ -d "$HOME/bin/android-sdk-linux/" ]]; then
-	export ANDROID_HOME="$HOME/bin/android-sdk-linux/"
-	export PATH=$PATH:$ANDROID_HOME/tools
-	export PATH=$PATH:$ANDROID_HOME/platform-tools
+    export ANDROID_HOME="$HOME/bin/android-sdk-linux/"
+    export PATH=$PATH:$ANDROID_HOME/tools
+    export PATH=$PATH:$ANDROID_HOME/platform-tools
 fi
 
 # Sources nvm if it's installed.
 if [ -d "$HOME/.nvm/" ]; then
-	source "$HOME/.nvm/nvm.sh"
+    source "$HOME/.nvm/nvm.sh"
 fi
 
 # If terminal launched inside X, the DISPLAY variable will already be set.
