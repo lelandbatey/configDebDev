@@ -210,7 +210,7 @@ fi
 if [ -d "$HOME/bin/go/" ]; then
     export GOROOT="$HOME/bin/go"
     export PATH="$PATH:$GOROOT/bin"
-    export GOPATH="/home/leland/projects/go-projects/"
+    export GOPATH="/home/leland/projects/go-projects"
     export PATH="$PATH:${GOPATH//://bin:}/bin"
 fi
 

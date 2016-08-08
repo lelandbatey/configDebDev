@@ -143,6 +143,15 @@ set backspace=indent,eol,start
 " Set the colorscheme
 colorscheme monokai
 
+" Clear last search
+noremap <silent> <leader>/ :let @/ = ""<CR>
+" Change search highlight color
+highlight Search ctermbg=yellow ctermfg=black
+
+" Create a "crosshair" on the current position
+set cursorline
+set cursorcolumn
+
 " Map space to leader
 map <space> <leader>
 " For compatability, map double space to double leader.
@@ -191,9 +200,6 @@ nmap <leader>n :tabprevious<enter>
 " Bind <Shift-Enter> to insert a line below you without moving your cursor
 nmap <leader><Enter> o<Esc>k
 
-" Toggle search highlighting
-nmap <leader>/ :set hlsearch!<enter>
-
 " Toggle paste
 nmap <leader><leader>p :set paste!<enter>
 
@@ -208,3 +214,13 @@ map <leader>" "+
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 map <leader>cd <plug>NERDCommenterToggle
+
+nmap <F5> :silent !tmux split-window -h '/usr/bin/env python -i "%:p"' <CR>
+
+" Golang syntax highlighting
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_types = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
