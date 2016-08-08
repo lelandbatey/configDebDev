@@ -11,8 +11,6 @@ import os
 
 ACTION_TYPE = "\n\n\t\
 safe[default]\n\t\
-xbase\n\t\
-xfce\n\t\
 bashmarks (requires 'prepvim' be run first)\n\t\
 prepvim\n"
 
@@ -85,7 +83,7 @@ def safe_configs():
     These files should be "safe" in that they won't stop an existing system
     from working. They are:
 
-        .bashrc, .vimrc, .vim/, .dir_colors, .xmobarrc
+        .bashrc, .vimrc, .vim/, .dir_colors, .gitignore_global
     """
     install_component('.bashrc')
     install_component('.vimrc')
@@ -93,34 +91,6 @@ def safe_configs():
     install_component('.vim')
     install_component('.gitignore_global')
     install_component('.bash_profile')
-
-def x_base_configs():
-    """These are the basic files for configuring an X/Desktop environment.
-
-    These files are not "safe" to install blindly, as they may make your
-    Desktop environment cease to function. These files are:
-
-        .xinitrc, .Xresources, .xmonad/xmonad.hi
-    """
-
-    call(["cp", "baseConfig/.xinitrc", HOMEDIR])
-    call(["cp", "baseConfig/.Xresources", HOMEDIR])
-    call(["cp", "baseConfig/xmonad/xmonad.hs", HOMEDIR+"/.xmonad/"])
-
-def xfce_config():
-    """These configuration files are for XFCE.
-
-    They are:
-
-        xfce/.xsessionrc, xfce/.xmonad/xmonad.hs, userContent.css
-    """
-
-    call(["cp", "xfce/.xsessionrc", HOMEDIR])
-    call(["cp", "xfce/.xmonad/xmonad.hs", HOMEDIR+"/.xmonad/"])
-    print("You're going to have to copy the 'userContent.css' file to the \
-appropriate directory. It should be:\n\t\
-~/.mozilla/firefox/<randomString.default>/chrome.\nIf the chrome directory\
- doesn't exist, just make one.")
 
 def prepvim():
     """Installs all the submodules. This is mostly for Vim."""
@@ -142,10 +112,6 @@ def main():
 
     if ARGS.act == "safe":
         safe_configs()
-    elif ARGS.act == "xbase":
-        x_base_configs()
-    elif ARGS.act == "xfce":
-        xfce_config()
     elif ARGS.act == "prepvim":
         prepvim()
     elif ARGS.act == "bashmarks":
@@ -155,8 +121,5 @@ def main():
 was not of any of the necessary types:"+ACTION_TYPE
         print(errstr)
 
-# main()
 if __name__ == '__main__':
     main()
-    # install_component('DELETE_THIS_TEST_FILE')
-    # install_component('.bashrc')

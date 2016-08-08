@@ -169,7 +169,7 @@ exec --no-startup-id xfce4-volumed
 # exec --no-startup-id xfce4-panel --disable-wm-check
 # Start the xfce4 panel network applet
 exec --no-startup-id nm-applet
-exec --no-startup-id feh --bg-fill /home/leland/configDebDev/baseConfig/.xmonad/there-joehesus.jpg
+exec --no-startup-id feh --bg-fill /home/leland/configDebDev/img/there-joehesus.jpg
 #exec --no-startup-id /home/leland/.dropbox-dist/dropbox-lnx.x86_64-3.12.6/dropboxd
 exec --no-startup-id /home/leland/.dropbox-dist/dropboxd
 # Start the xfce4 power manager

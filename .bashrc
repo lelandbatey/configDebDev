@@ -158,8 +158,9 @@ function mp(){
 }
 
 
-#Increases the size of the .bash_history file to 5000 lines
-HISTSIZE=50000
+# Unlimited bash history size
+unset HISTSIZE
+unset HISTFILESIZE
 
 # Defining colors for prompt
 bold='\e[1;39m'
