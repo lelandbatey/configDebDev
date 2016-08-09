@@ -1,6 +1,6 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+if !isdirectory($HOME."/.vim/bundle/Vundle.vim")
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -57,6 +57,7 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
+endif
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -110,7 +111,8 @@ set autoindent
 
 " Makes tab and newline characters visible
 " To toggle, type `set list!`
-set listchars=tab:▸\ ,eol:¬,space:·,trail:␣
+"set listchars=tab:▸\ ,eol:¬,space:·,trail:␣
+set listchars=tab:>\ ,eol:$,trail:&
 
 " Turns on line number for current line, then turns on relative line numbers
 " for all other lines.
@@ -141,7 +143,7 @@ set t_AF=[38;5;%dm
 set backspace=indent,eol,start
 
 " Set the colorscheme
-colorscheme monokai
+colorscheme Monokai
 
 " Clear last search
 noremap <silent> <leader>/ :let @/ = ""<CR>
