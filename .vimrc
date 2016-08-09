@@ -212,6 +212,9 @@ map <leader>" "+
 
 " Fix filetype associations for Markdown.
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+" Fix filetype associations for Gotemplate files.
+autocmd BufNewFile,BufReadPost *.gotemplate set filetype=go
+
 
 map <leader>cd <plug>NERDCommenterToggle
 
@@ -221,6 +224,34 @@ nmap <F5> :silent !tmux split-window -h '/usr/bin/env python -i "%:p"' <CR>
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_fields = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
 let g:go_highlight_types = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Show info about current syntax highlighting unit below cursor
+map <F3> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
+
+
+" Function to allow syntax highlighting within golang templates. Sets the
+" syntax highlighting on lines containing a backtick to be a bogus type,
+" turning off syntax highlighting for that line, thus enabling it for the
+" following lines which contain templated go code
+if !exists("*RemoveHighlight")
+function! RemoveHighlight()
+	let curline = line('.')
+	let linenos = []
+
+	let firstmatch = search('`')
+	execute printf('syntax match synIgnoreLine /\%%%dl/', line('.'))
+
+	while search('`') != firstmatch
+		execute printf('syntax match synIgnoreLine /\%%%dl/', line('.'))
+	endwhile
+
+	call cursor(curline,0)
+endfunction
+endif
+map <leader>r :call RemoveHighlight()<enter>
