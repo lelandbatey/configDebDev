@@ -1,0 +1,50 @@
+*customization:	-color
+xscreensaver.Dialog.Button.background:	#444
+xscreensaver.Dialog.Button.foreground:	#EDEDFF
+xscreensaver.Dialog.background:	#202020
+xscreensaver.Dialog.bodyFont:	-*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.borderWidth:	0
+xscreensaver.Dialog.bottomShadowColor:	#202024
+xscreensaver.Dialog.buttonFont:	-*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:	-*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.foreground:	#EDEDED
+xscreensaver.Dialog.headingFont:	-*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.internalBorderWidth:	24
+xscreensaver.Dialog.labelFont:	-*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.Dialog.shadowThickness:	2
+xscreensaver.Dialog.text.background:	#444
+xscreensaver.Dialog.text.foreground:	#EDEDFF
+xscreensaver.Dialog.topShadowColor:	#202024
+xscreensaver.Dialog.unameFont:	-*-dina-medium-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.dateFormat:	%I:%M%P %a %b %d, %Y
+xscreensaver.passwd.passwdFont:	-*-dina-bold-r-*-*-10-*-*-*-*-*-*-*
+xscreensaver.passwd.thermometer.background:	#202020
+xscreensaver.passwd.thermometer.foreground:	#A9B7C4
+xscreensaver.passwd.thermometer.width:	8
+Xft.antialias:	1
+Xft.hinting:	1
+Xft.hintstyle:	hintslight
+Xft.rgba:	rgb
+Xft.lcdfilter:	lcddefault
+Xft.dpi:	135
+!Xft.dpi:	106
+Xcursor.theme:	Human
+Xcursor.size:	24
+Xcursor.theme_core:	1
+
+
+!urxvt*font:xft:Inconsolata:size=10,xft:Inconsolata\ for\ Powerline:size=10
+!urxvt*font:xft:Inconsolata:size=11,xft:Inconsolata\ for\ Powerline:size=11
+urxvt*font:xft:Inconsolata:size=11,xft:Inconsolata\ for\ Powerline:size=11,xft:Symbola:size=7
+!urxvt*font:xft:Inconsolata:size=11, xft:Inconsolata\ for\ Powerline:pixelsize=13 ,xft:Terminus
+!URxvt.font: xft:Consolas:size=13, xft:Inconsolata\ for\ Powerline
+URxvt*letterSpace: -1
+URxvt.scrollBar:off
+URxvt.foreground:grey80
+URxvt.depth:32
+URxvt.background: rgba:1300/1900/2600/ffff
+URxvt.blurRadius: 1x128
+
+URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : chromium-browser
+URxvt.matcher.button  : 1

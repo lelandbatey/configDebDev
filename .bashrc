@@ -159,8 +159,10 @@ function mp(){
 
 
 # Unlimited bash history size
-unset HISTSIZE
-unset HISTFILESIZE
+#unset HISTSIZE
+#unset HISTFILESIZE
+export HISTSIZE=50000000
+export HISTFILESIZE=50000000
 
 # Defining colors for prompt
 bold='\e[1;39m'

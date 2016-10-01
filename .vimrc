@@ -111,8 +111,8 @@ set autoindent
 
 " Makes tab and newline characters visible
 " To toggle, type `set list!`
-"set listchars=tab:▸\ ,eol:¬,space:·,trail:␣
-set listchars=tab:>\ ,eol:$,trail:&
+set listchars=tab:▸\ ,eol:¬,space:·,trail:␣
+"set listchars=tab:>\ ,eol:$,trail:&
 
 " Turns on line number for current line, then turns on relative line numbers
 " for all other lines.
@@ -143,7 +143,7 @@ set t_AF=[38;5;%dm
 set backspace=indent,eol,start
 
 " Set the colorscheme
-colorscheme Monokai
+colorscheme monokai
 
 " Clear last search
 noremap <silent> <leader>/ :let @/ = ""<CR>
