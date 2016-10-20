@@ -5,6 +5,10 @@
 # Run the following to make enable it:
 # git config --global core.excludesfile ~/.gitignore_global
 
+# Editor Files #
+################
+.*.swp
+
 # Compiled source #
 ###################
 *.com
@@ -13,6 +17,7 @@
 *.exe
 *.o
 *.so
+__pycache__/
 
 # Packages #
 ############

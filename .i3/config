@@ -29,8 +29,8 @@ set $down j
 set $left h
 set $right l
 
-# Start Firefox
-bindsym $mod+backslash exec firefox
+# Start a web browser
+bindsym $mod+backslash exec qutebrowser
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

@@ -959,3 +959,34 @@ Currently (March 2016), it seems there are two approaches. By default, `virtuale
 
 Additionally, it is possible to create python3 virtualenvironments with the `pyvenv` command. However, that requires additional installation via `apt-get`.
 
+
+# Swapping Escape and Capslock
+
+Place the following in `~/.xprofile`:
+
+    # to find out more check man pages and 'man xkeyboard-config'
+    # changes caps to be escape
+    setxkbmap -option caps:escape
+
+# Changing Desktop Themes
+
+Though I use i3, I still use lots of graphical programs, and I want those programs to have an acceptable look. To change that, I need to edit the `~/.config/gtk-3.0/settings.ini` file, or use the program `lxappearance` which will let you interactively select a theme, then save the correct settings to `~/.config/gtk-3.0/settings.ini` for you. Either way, here's an example of what that settings file looks like on my machine:
+
+    [Settings]
+    gtk-theme-name=Adwaita
+    gtk-icon-theme-name=elementary-xfce
+    gtk-font-name=Sans 10
+    gtk-cursor-theme-name=DMZ-White
+    gtk-cursor-theme-size=0
+    gtk-toolbar-style=GTK_TOOLBAR_BOTH
+    gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
+    gtk-button-images=1
+    gtk-menu-images=1
+    gtk-enable-event-sounds=1
+    gtk-enable-input-feedback-sounds=1
+    gtk-xft-antialias=1
+    gtk-xft-hinting=1
+    gtk-xft-hintstyle=hintslight
+    gtk-xft-rgba=rgb
+
+

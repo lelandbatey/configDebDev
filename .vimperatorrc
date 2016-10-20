@@ -1,0 +1,96 @@
+
+" Fix problem with vimperator autocomplete
+" Found here: https://github.com/vimperator/vimperator-labs/issues/590
+js services.services.autoCompleteSearch.class_="@mozilla.org/autocomplete/search;1?name=unifiedcomplete"
+
+"Looks like vimium!
+"highlight Hint font-family: monospace; font-size: 13px; background: linear-gradient(to bottom, #FFF785, #FFC543); box-shadow: 0px 3px 7px 0px rgba(0, 0, 0, 0.3); color: #302505; font-weight: bold; padding: 0px 4px 0px 4px; text-transform: uppercase; z-index: 99999 !important;
+
+map ? t<Space>liberator://help/intro<Return>
+
+set hintchars=hjklasdfgyuiopqwertnmzxcvb
+
+"better tab movements
+map J :tabprevious<Return>
+map K :tabnext<Return>
+
+map s :tabopen google<space>
+
+set gui=none
+set gui=tabs
+
+" Try to stay in normal mode after loading a web page
+set focuscontent
+
+" Private browsing mode
+map E :emenu File.New Private Window<Return>
+
+
+" ### LEADER ###
+" In vimperator, space is not normally mappable, I figured out how to change it
+" and documented it here https://github.com/vimperator/vimperator-labs/issues/10
+" IMPROVED https://github.com/vimperator/vimperator-labs/issues/10#issuecomment-158256240
+
+" To Enable map <Space>
+js <<EOM
+  window.addEventListener('keypress',function (event) {
+    var code=event.charCode;
+    if ((liberator.mode === modes.INSERT && modes.extended === modes.MENU)
+    ||(liberator.mode ==modes.NORMAL && code==32)
+    ||(liberator.mode ==modes.COMMAND_LINE && code !=32)){
+      let map = mappings.get(liberator.mode, events.toString(event));
+      if (map) {
+        event.preventDefault();
+        event.stopPropagation();
+        map.execute();
+      }
+    }
+  },false);
+EOM
+
+" My Customization
+let mapleader="\"
+map <Space> <Leader>
+
+
+"Remove search highlighting quickly
+map <Leader>/ :nohlsearch<Return>
+
+
+" ##### FULL SCREEN HIDING #####
+" Taken from here https://github.com/vimperator/vimperator-labs/issues/26#issuecomment-73982996"
+
+" Hide status bar when fullscreen mode is detected
+autocmd Fullscreen .* js updateBottomBar()
+
+" Re-enable bottom bar during certain commands.
+noremap : :js updateBottomBar(false)<CR>:
+noremap o :js updateBottomBar(false)<CR>o
+noremap O :js updateBottomBar(false)<CR>O
+noremap t :js updateBottomBar(false)<CR>t
+noremap T :js updateBottomBar(false)<CR>t
+noremap / :js updateBottomBar(false)<CR>/
+cnoremap <CR> <CR>:js updateBottomBar()<CR>
+cnoremap <Esc> <Esc>:js updateBottomBar()<CR>
+
+:js << EOF
+let hlContentSepValue = highlight.get('ContentSeparator').value
+
+function updateBottomBar(close = window.fullScreen) {
+  let bb = document.getElementById('liberator-bottombar')
+  if (! bb) return
+
+  if (close) {
+    bb.style.height = '0px'
+    bb.style.overflow = 'hidden'
+    liberator.execute('highlight ContentSeparator display: none;')
+  }
+  else {
+    bb.style.height = ''
+    bb.style.overflow = ''
+    liberator.execute('highlight ContentSeparator ' + hlContentSepValue)
+  }
+}
+updateBottomBar()
+EOF
+
