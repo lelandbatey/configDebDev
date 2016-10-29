@@ -1,0 +1,3 @@
+# to find out more check man pages and 'man xkeyboard-config'
+# changes caps to be escape
+setxkbmap -option caps:escape
